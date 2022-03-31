@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
+
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
@@ -93,6 +95,9 @@
         android:layout_height="54dp"
         android:background="#1E8708"
         android:ems="10"
+
+        android:shadowRadius=""
+
         android:hint="Ingrese monto de venta"
         android:inputType="textPersonName"
         android:minHeight="48dp"
@@ -140,9 +145,11 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Ingrese la fecha"
+        android:background="#1E8708"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         android:inputType="date"
         android:minHeight="48dp"
-        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.189"
@@ -154,8 +161,12 @@
         android:id="@+id/spinner"
         android:layout_width="324dp"
         android:layout_height="60dp"
-        android:outlineAmbientShadowColor="#000000"
-        android:outlineSpotShadowColor="#000000"
+        android:background="#1E8708"
+        android:contentDescription="@string/app_name"
+        android:outlineAmbientShadowColor="#FFFFFF"
+        android:outlineSpotShadowColor="#FFFFFF"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/buttonBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.402"
