@@ -106,9 +106,9 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="131dp"
-        android:layout_height="31dp"
-        android:text="Genere su usario!"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
+        android:text="Genere su usuario!"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
