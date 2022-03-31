@@ -23,7 +23,7 @@
         android:id="@+id/editTextTextFincaName"
         android:layout_width="298dp"
         android:layout_height="55dp"
-        android:background="#1E8708"
+        android:background="@drawable/rectangle_drawable"
         android:textColor="#FFFFFF"
         android:ems="10"
         android:hint="Ingrese el nombre"
@@ -42,7 +42,7 @@
         android:id="@+id/editTextTextFincaSize"
         android:layout_width="299dp"
         android:layout_height="60dp"
-        android:background="#1E8708"
+        android:background="@drawable/rectangle_drawable"
         android:ems="10"
         android:hint="Ingrese el tamaño"
         android:inputType="textPersonName"
@@ -72,5 +72,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/registrar_finca"
+        tools:layout_editor_absoluteX="147dp"
+        tools:layout_editor_absoluteY="158dp" />
 
 </android.support.constraint.ConstraintLayout>

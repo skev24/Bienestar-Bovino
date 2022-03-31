@@ -38,7 +38,7 @@
         android:id="@+id/editTextTextPassword2"
         android:layout_width="320dp"
         android:layout_height="52dp"
-        android:background="#1E8708"
+        android:background="@drawable/rectangle_drawable"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
@@ -93,15 +93,18 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="326dp"
-        android:layout_height="55dp"
+        android:layout_width="324dp"
+        android:layout_height="39dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+
+        android:hint="Ingrese su correo"
+        android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="@android:color/white"
+
         android:textColorHint="@android:color/white"
-        android:ems="10"
-        android:hint="Ingrese su correo"
-        android:background="@drawable/rectangle_drawable"
-        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
