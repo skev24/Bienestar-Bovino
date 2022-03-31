@@ -94,6 +94,7 @@
         android:ems="10"
         android:background="#1E8708"
         android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
         android:hint="Ingrese monto de venta"
         android:inputType="textPersonName"
         android:minHeight="48dp"
