@@ -10,7 +10,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="¿No tienes una cuenta?"
+        android:text="¿No tienes una cuenta? "
         tools:layout_editor_absoluteX="97dp"
         tools:layout_editor_absoluteY="634dp" />
 
@@ -22,7 +22,7 @@
         android:text="Inscribirse"
         android:textColor="#4CAF50"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="239dp"
+        tools:layout_editor_absoluteX="245dp"
         tools:layout_editor_absoluteY="634dp" />
 
     <EditText
