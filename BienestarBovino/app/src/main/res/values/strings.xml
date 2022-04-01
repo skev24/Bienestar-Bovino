@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">BienestarBovino</string>
+
+    <string name="invalid_mail">Ingrese un email válido.</string>
+    <string name="invalid_password">Ingrese un contraseña con 6 dígitos o más.</string>
 </resources>

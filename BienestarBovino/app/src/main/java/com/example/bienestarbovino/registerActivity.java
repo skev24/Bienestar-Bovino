@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +26,8 @@ public class registerActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText confirmPassword;
+    private Button buttonRegister;
+    private TextView textLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -37,6 +41,27 @@ public class registerActivity extends AppCompatActivity {
         password = findViewById(R.id.editTextTextPasswordRegister);
         confirmPassword = findViewById(R.id.editTextTextConfirmPasswordRegister);
 
+        buttonRegister = findViewById(R.id.buttonRegisterNew);
+        textLogin = findViewById(R.id.textViewLogin);
+
+        textLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLoginActivityFromRegister();
+            }
+        });
+
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerUser(view);
+            }
+        });
+    }
+
+    public void openLoginActivityFromRegister(){
+        Intent intent = new Intent(registerActivity.this, loginActivity.class);
+        startActivity(intent);
     }
 
     @Override

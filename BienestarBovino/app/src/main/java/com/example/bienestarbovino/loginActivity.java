@@ -23,6 +23,8 @@ public class loginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText email;
     private EditText password;
+
+    private Button buttonLogin;
     private TextView textNewUser;
 
     @Override
@@ -35,7 +37,16 @@ public class loginActivity extends AppCompatActivity {
         email = findViewById(R.id.editTextEmailLogin);
         password = findViewById(R.id.editTextPasswordLogin);
 
+        buttonLogin = findViewById(R.id.buttonAccept);
         textNewUser = findViewById(R.id.textViewNewUser);
+
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginUser(view);
+            }
+        });
+
         textNewUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,7 +56,7 @@ public class loginActivity extends AppCompatActivity {
     }
 
     public void openRegisterActivity(){
-        Intent intent = new Intent(this, registerActivity.class);
+        Intent intent = new Intent(loginActivity.this, registerActivity.class);
         startActivity(intent);
     }
 
@@ -64,11 +75,13 @@ public class loginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
+                            Toast.makeText(getApplicationContext(), "Sesion iniciada.",
+                                    Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(getApplicationContext(), "Authentication failed.",
+                            Toast.makeText(getApplicationContext(), "Contraseña o correo incorrecto.",
                                     Toast.LENGTH_SHORT).show();
                             //updateUI(null);
                         }
