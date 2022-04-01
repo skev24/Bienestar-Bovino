@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".registerActivity">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -18,7 +19,7 @@
         app:srcCompat="@drawable/inicio_sesion" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextUserRegister"
         android:layout_width="250dp"
         android:layout_height="51dp"
         android:background="@drawable/rectangle_drawable"
@@ -36,7 +37,7 @@
         app:layout_constraintVertical_bias="0.416" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/editTextEmailRegister"
         android:layout_width="252dp"
         android:layout_height="52dp"
         android:background="@drawable/rectangle_drawable"
@@ -68,7 +69,7 @@
         app:layout_constraintVertical_bias="0.804" />
 
     <EditText
-        android:id="@+id/editTextTextPassword4"
+        android:id="@+id/editTextTextConfirmPasswordRegister"
         android:layout_width="251dp"
         android:layout_height="51dp"
         android:background="@drawable/rectangle_drawable"
@@ -86,7 +87,7 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <EditText
-        android:id="@+id/editTextTextPassword3"
+        android:id="@+id/editTextTextPasswordRegister"
         android:layout_width="251dp"
         android:layout_height="48dp"
         android:background="@drawable/rectangle_drawable"
