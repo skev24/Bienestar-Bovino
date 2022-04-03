@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
 
     <TextView
         android:id="@+id/textView3"
@@ -64,7 +66,7 @@
         app:layout_constraintVertical_bias="0.345" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre: "
@@ -91,13 +93,13 @@
         android:id="@+id/editTextTextSale"
         android:layout_width="312dp"
         android:layout_height="54dp"
+        android:background="@drawable/rectangle_drawable"
         android:ems="10"
-        android:background="#1E8708"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@android:color/white"
         android:hint="Ingrese monto de venta"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.353"
@@ -120,7 +122,7 @@
         app:layout_constraintVertical_bias="0.534" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textViewNewUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Fecha de venta"
@@ -135,13 +137,15 @@
 
     <EditText
         android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="214dp"
+        android:layout_height="54dp"
+        android:background="@drawable/rectangle_drawable"
         android:ems="10"
         android:hint="Ingrese la fecha"
         android:inputType="date"
-        android:minHeight="48dp"
-        android:textColor="#FFFFFF"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.189"
@@ -153,8 +157,11 @@
         android:id="@+id/spinner"
         android:layout_width="324dp"
         android:layout_height="60dp"
-        android:outlineAmbientShadowColor="#000000"
-        android:outlineSpotShadowColor="#000000"
+        android:contentDescription="@string/app_name"
+        android:outlineAmbientShadowColor="#FFFFFF"
+        android:outlineSpotShadowColor="#FFFFFF"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/buttonBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.402"
@@ -175,4 +182,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.139" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

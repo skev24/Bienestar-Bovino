@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".loginActivity">
 
     <TextView
         android:id="@+id/textView7"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.89" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textViewNewUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -35,10 +35,10 @@
         app:layout_constraintVertical_bias="0.928" />
 
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/editTextPasswordLogin"
         android:layout_width="320dp"
         android:layout_height="52dp"
-        android:background="#1E8708"
+        android:background="@drawable/rectangle_drawable"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
@@ -78,7 +78,7 @@
         app:layout_constraintVertical_bias="0.101" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonAccept"
         android:layout_width="317dp"
         android:layout_height="68dp"
         android:background="#146304"
@@ -92,16 +92,19 @@
         app:layout_constraintVertical_bias="0.805" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="326dp"
-        android:layout_height="55dp"
-        android:background="#1E8708"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
+        android:id="@+id/editTextEmailLogin"
+        android:layout_width="324dp"
+        android:layout_height="48dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/rectangle_drawable"
         android:ems="10"
+
         android:hint="Ingrese su correo"
         android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.51"
@@ -109,4 +112,4 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.553" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
