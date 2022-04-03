@@ -12,13 +12,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BienestarBovino">
         <activity
-            android:name=".registerActivity"
+            android:name=".PurchaseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SaleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FincaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity2"
             android:exported="false" />
         <activity
-            android:name=".loginActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
