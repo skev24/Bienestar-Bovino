@@ -91,9 +91,10 @@
         app:srcCompat="@drawable/produccion" />
 
     <ImageButton
-        android:id="@+id/imageButton3"
+        android:id="@+id/botonchequeo"
         android:layout_width="157dp"
         android:layout_height="105dp"
+        android:onClick="loginUser"
         android:background="@drawable/rectangle_drawable"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
