@@ -16,10 +16,14 @@
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.17239583333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16980692545572923" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.125" />
+        <entry key="app/src/main/res/layout/chequeo_menu.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/compra.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/finca.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/inventario_vacas.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/login.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/menuprincipal.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/register.xml" value="0.29292929292929293" />
+        <entry key="app/src/main/res/layout/vacunacion.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/venta.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/welcome.xml" value="0.2035536171733469" />
         <entry key="app/src/main/res/layout/welcome2.xml" value="0.25885416666666666" />
