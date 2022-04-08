@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
 
     <Button
         android:id="@+id/buttonBack3"
@@ -81,7 +82,7 @@
         app:srcCompat="@drawable/vaca" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/imageButtonInventory"
         android:layout_width="157dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
