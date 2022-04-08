@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/imageButton4"
+        android:id="@+id/btnVacuna"
         android:layout_width="157dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
