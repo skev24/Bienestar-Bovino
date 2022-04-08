@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:context=".VaccineActivity"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".VaccineActivity">
 
     <Button
-        android:id="@+id/buttonRegister3"
+        android:id="@+id/buttonRegisterMenu"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:background="#146304"
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.914" />
 
     <Button
-        android:id="@+id/btnVacunaRegresar"
+        android:id="@+id/btnRegresarVacunacion"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#146304"
@@ -43,7 +43,7 @@
     <EditText
         android:id="@+id/editTextDate3"
         android:layout_width="289dp"
-        android:layout_height="47dp"
+        android:layout_height="48dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
         android:hint="Ingrese la fecha"
@@ -62,6 +62,7 @@
         android:id="@+id/spinner3"
         android:layout_width="308dp"
         android:layout_height="53dp"
+        android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

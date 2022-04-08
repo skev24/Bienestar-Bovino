@@ -39,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         confirmPassword = findViewById(R.id.editTextTextConfirmPasswordRegister);
 
         buttonRegister = findViewById(R.id.buttonRegisterNew);
-        textLogin = findViewById(R.id.textViewLogin);
+        textLogin = findViewById(R.id.textViewNameVenta);
 
         textLogin.setOnClickListener(new View.OnClickListener() {
             @Override

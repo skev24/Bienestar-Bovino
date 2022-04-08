@@ -8,16 +8,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class VetMenuActivity extends AppCompatActivity {
+public class MenuVetActivity extends AppCompatActivity {
 
     private ImageButton buttonVacunaClass;
+    private Button btnRegresar;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chequeo_menu);
 
         buttonVacunaClass = findViewById(R.id.btnVacuna);
+        btnRegresar = findViewById(R.id.buttonBackVet);
 
         buttonVacunaClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,15 +28,22 @@ public class VetMenuActivity extends AppCompatActivity {
                 openVaccineActivity();
             }
         });
+
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                returnMenuPrincipal();
+            }
+        });
     }
 
     public void openVaccineActivity(){
-        Intent intent = new Intent(VetMenuActivity.this, VaccineActivity.class);
+        Intent intent = new Intent(MenuVetActivity.this, VaccineActivity.class);
         startActivity(intent);
     }
 
     public void returnMenuPrincipal(){
-        Intent intent = new Intent(VetMenuActivity.this, MenuActivity.class);
+        Intent intent = new Intent(MenuVetActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 }

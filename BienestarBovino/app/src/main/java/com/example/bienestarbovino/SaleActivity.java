@@ -28,7 +28,7 @@ public class SaleActivity extends AppCompatActivity {
     }
 
     public void openVentaRegresarActivity(){
-        Intent intent = new Intent(SaleActivity.this, MenuActivity.class);
+        Intent intent = new Intent(SaleActivity.this, InventoryActivity.class);
         startActivity(intent);
     }
 }

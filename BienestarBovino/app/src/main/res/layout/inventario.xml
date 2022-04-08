@@ -12,14 +12,14 @@
         android:layout_height="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007"
+        app:layout_constraintVertical_bias="0.01"
         app:srcCompat="@drawable/_2459_1" />
 
     <Button
-        android:id="@+id/btnRegresar"
+        android:id="@+id/btnRegresarInventory"
         android:layout_width="409dp"
         android:layout_height="54dp"
         android:background="#146304"
@@ -36,7 +36,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/btnVenta"
+        android:id="@+id/btnVentaInventory"
         android:layout_width="202dp"
         android:layout_height="53dp"
         android:background="#146304"
@@ -53,7 +53,7 @@
         app:layout_constraintVertical_bias="0.904" />
 
     <Button
-        android:id="@+id/btnCompra"
+        android:id="@+id/btnCompraInventory"
         android:layout_width="204dp"
         android:layout_height="53dp"
         android:background="#146304"

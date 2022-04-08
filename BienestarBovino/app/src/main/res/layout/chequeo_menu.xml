@@ -3,13 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MenuVetActivity">
 
     <ImageButton
         android:id="@+id/btnVacuna"
         android:layout_width="157dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
+        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/image_1.png"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +20,7 @@
         app:srcCompat="@drawable/image_1" />
 
     <Button
-        android:id="@+id/buttonBack4"
+        android:id="@+id/buttonBackVet"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#146304"

@@ -166,6 +166,7 @@
         android:id="@+id/spinner2"
         android:layout_width="308dp"
         android:layout_height="53dp"
+        android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
