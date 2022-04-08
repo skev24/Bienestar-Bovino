@@ -3,6 +3,7 @@ package com.example.bienestarbovino;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import java.util.Calendar;
 public class PurchaseActivity extends AppCompatActivity {
     private TextView textDate;
     private Button btn;
+    private Button buttonCompraRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +25,19 @@ public class PurchaseActivity extends AppCompatActivity {
         setContentView(R.layout.compra);
         textDate.findViewById(R.id.TextViewDatePurchase);
         btn.findViewById(R.id.buttonCalendar);
+        buttonCompraRegresar.findViewById(R.id.btnCompraRegresar);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCalendar(view);
+            }
+        });
+
+        buttonCompraRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCompraRegresarActivity(view);
             }
         });
     }
@@ -46,5 +56,10 @@ public class PurchaseActivity extends AppCompatActivity {
             }
         }, yearD, monthD, dayD);
         dpd.show();
+    }
+
+    public void openCompraRegresarActivity(View view){
+        Intent intent = new Intent(PurchaseActivity.this, MenuActivity.class);
+        startActivity(intent);
     }
 }

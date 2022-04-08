@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.067" />
 
     <Button
-        android:id="@+id/buttonRegister"
+        android:id="@+id/buttonVentaRegister"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:background="#146304"
@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.914" />
 
     <Button
-        android:id="@+id/buttonBack"
+        android:id="@+id/btnVentaRegresar"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#146304"
@@ -176,7 +176,7 @@
         android:outlineSpotShadowColor="#FFFFFF"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonBack"
+        app:layout_constraintBottom_toBottomOf="@+id/btnVentaRegresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.402"
         app:layout_constraintStart_toStartOf="parent"

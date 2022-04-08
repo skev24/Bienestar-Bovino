@@ -31,4 +31,9 @@ public class VetMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(VetMenuActivity.this, VaccineActivity.class);
         startActivity(intent);
     }
+
+    public void returnMenuPrincipal(){
+        Intent intent = new Intent(VetMenuActivity.this, MenuActivity.class);
+        startActivity(intent);
+    }
 }

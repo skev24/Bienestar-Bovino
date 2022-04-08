@@ -7,7 +7,7 @@
     tools:context=".MenuActivity">
 
     <Button
-        android:id="@+id/buttonBack3"
+        android:id="@+id/btnVacunaRegresar"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#146304"
