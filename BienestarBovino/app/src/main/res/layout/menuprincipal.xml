@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MenuActivity">
+    android:layout_height="match_parent">
 
     <Button
         android:id="@+id/buttonBack3"
@@ -68,15 +67,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/imageButtonCow"
+        android:id="@+id/imageButton2"
         android:layout_width="157dp"
         android:layout_height="115dp"
         android:background="@drawable/rectangle_drawable"
-<<<<<<< Updated upstream
         android:contentDescription="@string/app_name"
-=======
-        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/vaca.png"
->>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.846"
@@ -86,15 +81,11 @@
         app:srcCompat="@drawable/vaca" />
 
     <ImageButton
-        android:id="@+id/imageButtonInventory"
+        android:id="@+id/imageButton"
         android:layout_width="157dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
-<<<<<<< Updated upstream
         android:contentDescription="@string/app_name"
-=======
-        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/produccion.png"
->>>>>>> Stashed changes
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.137"
@@ -103,23 +94,6 @@
         app:layout_constraintVertical_bias="0.348"
         app:srcCompat="@drawable/produccion" />
 
-<<<<<<< Updated upstream
-=======
-    <ImageButton
-        android:id="@+id/imageButtonVaccine"
-        android:layout_width="157dp"
-        android:layout_height="105dp"
-        android:background="@drawable/rectangle_drawable"
-        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/image_1.png"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.137"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559"
-        app:srcCompat="@drawable/image_1" />
-
->>>>>>> Stashed changes
     <ImageView
         android:id="@+id/imageView6"
         android:layout_width="37dp"

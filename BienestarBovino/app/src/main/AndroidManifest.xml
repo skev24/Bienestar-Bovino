@@ -12,9 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BienestarBovino">
         <activity
-            android:name=".MenuActivity"
-            android:exported="false" />
-        <activity
             android:name=".PurchaseActivity"
             android:exported="false" />
         <activity
