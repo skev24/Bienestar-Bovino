@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    tools:context="VaccineActivity"
+    tools:context=".VaccineActivity"
     android:layout_height="match_parent">
 
     <Button
@@ -24,7 +24,7 @@
         app:layout_constraintVertical_bias="0.914" />
 
     <Button
-        android:id="@+id/buttonBack3"
+        android:id="@+id/btnVacunaRegresar"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#146304"
