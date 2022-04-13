@@ -11,26 +11,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private DatabaseReference db;
+//    private DatabaseReference db;
     private EditText email;
     private EditText password;
 
     private Button buttonLogin;
     private TextView textNewUser;
+
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.login);
 
         mAuth = FirebaseAuth.getInstance();
-        db = FirebaseDatabase.getInstance().getReference();
+        db = FirebaseFirestore.getInstance();
 
         email = findViewById(R.id.editTextEmailLogin);
         password = findViewById(R.id.editTextPasswordLogin);
@@ -75,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void loginUser(View view){
+        //Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -97,32 +97,33 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void escogerNuevaVentana(){
-
-        db.child("Fincas").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                int state = 0;
-                if (snapshot.exists()){
-                    for(DataSnapshot ds: snapshot.getChildren()){
-                        String user = ds.child("user").getValue().toString();
-                        if(user.equals(mAuth.getCurrentUser().getUid())){
-                            state = 1;
-                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                            startActivity(intent);
-                            break;
-                        }
-                    }
-                    if(state == 0){
-                        Intent intent = new Intent(LoginActivity.this, FincaActivity.class);
-                        startActivity(intent);
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        Intent intent = new Intent(LoginActivity.this, FincaActivity.class);
+        startActivity(intent);
+//        db.child("Fincas").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                int state = 0;
+//                if (snapshot.exists()){
+//                    for(DataSnapshot ds: snapshot.getChildren()){
+//                        String user = ds.child("user").getValue().toString();
+//                        if(user.equals(mAuth.getCurrentUser().getUid())){
+//                            state = 1;
+//                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+//                            startActivity(intent);
+//                            break;
+//                        }
+//                    }
+//                    if(state == 0){
+//                        Intent intent = new Intent(LoginActivity.this, FincaActivity.class);
+//                        startActivity(intent);
+//                    }
+//                }
+//            }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
 
     }
 }

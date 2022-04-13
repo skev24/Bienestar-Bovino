@@ -1,8 +1,10 @@
 package com.example.bienestarbovino;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,67 +13,108 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import model.Register;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private EditText userRegister, emailRegister, passwordRegister, confirmPasswordRegister;
+    private Button registerNew;
+    private TextView iniciarSesion;
+    private String userReg, emailReg, passwordReg, confirmPasswordReg;
+
+    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
-    private EditText user;
-    private EditText email;
-    private EditText password;
-    private EditText confirmPassword;
-    private Button buttonRegister;
-    private TextView textLogin;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register);
 
+        db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        user = findViewById(R.id.editTextUserRegister);
-        email = findViewById(R.id.editTextEmailRegister);
-        password = findViewById(R.id.editTextTextPasswordRegister);
-        confirmPassword = findViewById(R.id.editTextTextConfirmPasswordRegister);
+        userRegister = findViewById(R.id.editTextUserRegister);
+        emailRegister = findViewById(R.id.editTextEmailRegister);
+        passwordRegister = findViewById(R.id.editTextTextPasswordRegister);
+        confirmPasswordRegister = findViewById(R.id.editTextTextConfirmPasswordRegister);
+        registerNew = findViewById(R.id.buttonRegisterNew);
+        iniciarSesion = findViewById(R.id.textViewIniciarSesion);
 
-        buttonRegister = findViewById(R.id.buttonRegisterNew);
-        textLogin = findViewById(R.id.textViewNameVenta);
-
-        textLogin.setOnClickListener(new View.OnClickListener() {
+        iniciarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openLoginActivityFromRegister();
+                openLoginActivity();
             }
         });
 
-        buttonRegister.setOnClickListener(new View.OnClickListener() {
+        registerNew.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                registerUser(view);
+            public void onClick(View v) {
+                registerUser(v);
+//                userReg = userRegister.getText().toString();
+//                emailReg = emailRegister.getText().toString();
+//                passwordReg = passwordRegister.getText().toString();
+//                confirmPasswordReg = confirmPasswordRegister.getText().toString();
+//
+//                if (TextUtils.isEmpty(userReg)) {
+//                    userRegister.setError("Ingrese un usuario valido");
+//                    Toast.makeText(RegisterActivity.this, "ERROR \n", Toast.LENGTH_SHORT).show();
+//                } else if (TextUtils.isEmpty(emailReg)) {
+//                    emailRegister.setError("Ingrese un correo valido");
+//                    Toast.makeText(RegisterActivity.this, "ERROR \n", Toast.LENGTH_SHORT).show();
+//                } else if (TextUtils.isEmpty(passwordReg)) {
+//                    passwordRegister.setError("Ingrese un contraseña valida");
+//                    Toast.makeText(RegisterActivity.this, "ERROR \n", Toast.LENGTH_SHORT).show();
+//                } else if (TextUtils.isEmpty(confirmPasswordReg)) {
+//                    confirmPasswordRegister.setError("Ingrese un contraseña valida");
+//                    Toast.makeText(RegisterActivity.this, "ERROR \n", Toast.LENGTH_SHORT).show();
+//                } else if (!(passwordReg.equals(confirmPasswordReg))){
+//                    Toast.makeText(RegisterActivity.this, "Las contraseñas no coinciden. \n", Toast.LENGTH_SHORT).show();
+//                }else {
+//                    addDataToFirestore(userReg, emailReg, passwordReg);
+//                    openLoginActivity();
+//                }
             }
         });
     }
 
-    public void openLoginActivityFromRegister(){
+    public void openLoginActivity(){
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        //updateUI(currentUser); método para comprobar si ya está con una sesión iniciada
+    private void addDataToFirestore(String userReg, String emailReg, String passwordReg) {
+
+        CollectionReference dbCourses = db.collection("usuario");
+
+        Register nuevoUsuario = new Register(userReg, emailReg, passwordReg);
+
+        dbCourses.add(nuevoUsuario).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            @Override
+            public void onSuccess(DocumentReference documentReference) {
+                Toast.makeText(RegisterActivity.this, "Usuario creado", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(RegisterActivity.this, "Error al crear usuario \n" + e, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void registerUser(View view) {
-        if (password.getText().toString().equals(confirmPassword.getText().toString())) {
-            mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+        if (passwordRegister.getText().toString().equals(confirmPasswordRegister.getText().toString())) {
+            mAuth.createUserWithEmailAndPassword(emailRegister.getText().toString(), passwordRegister.getText().toString())
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -97,4 +140,6 @@ public class RegisterActivity extends AppCompatActivity {
             Toast.makeText(this, "Las contraseñas no coinciden.", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 }

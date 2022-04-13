@@ -8,14 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import com.google.firebase.database.DatabaseReference;
 
 public class MenuActivity extends AppCompatActivity {
 
     private Button btnSincronizar;
     ImageButton btnGanado, btnPesaje, btnChequeo;
 
-    private DatabaseReference db;
     //pruebas
     //private TextView nombre;
     //private TextView tamanno;
