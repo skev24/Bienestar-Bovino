@@ -100,21 +100,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void escogerNuevaVentana(){
-//        db.collection("finca").document("4HPxwx0p4DkiwEu3Z8yb").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-//            @Override
-//            public void onSuccess(DocumentSnapshot documentSnapshot) {
-//                if(documentSnapshot.exists()){
-//                    String name = documentSnapshot.getString("name");
-//                    Toast.makeText(getApplicationContext(), name,
-//                            Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
+
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 int state = 0;
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+
                     String user = qs.getString("user");
                     if(user.equals(mAuth.getCurrentUser().getUid())){
                         state = 1;
@@ -130,34 +122,29 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //Intent intent = new Intent(LoginActivity.this, FincaActivity.class);
-        //startActivity(intent);
+    }
+    // Para obtener un campo especifico de un documento especifico
 
-//        db.child("Fincas").addValueEventListener(new ValueEventListener() {
+    //        db.collection("finca").document("4HPxwx0p4DkiwEu3Z8yb").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
 //            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                int state = 0;
-//                if (snapshot.exists()){
-//                    for(DataSnapshot ds: snapshot.getChildren()){
-//                        String user = ds.child("user").getValue().toString();
-//                        if(user.equals(mAuth.getCurrentUser().getUid())){
-//                            state = 1;
-//                            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-//                            startActivity(intent);
-//                            break;
-//                        }
-//                    }
-//                    if(state == 0){
-//                        Intent intent = new Intent(LoginActivity.this, FincaActivity.class);
-//                        startActivity(intent);
-//                    }
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if(documentSnapshot.exists()){
+//                    String name = documentSnapshot.getString("name");
+//                    Toast.makeText(getApplicationContext(), name,
+//                            Toast.LENGTH_SHORT).show();
 //                }
-//            }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
 //            }
 //        });
 
-    }
+    // para obtener el id
+    // db.collection("finca").document("4HPxwx0p4DkiwEu3Z8yb").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if(documentSnapshot.exists()){
+//                    String id = documentSnapshot.getId();
+//                    Toast.makeText(getApplicationContext(), id,
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 }
