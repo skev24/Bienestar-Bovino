@@ -12,11 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -97,8 +100,39 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void escogerNuevaVentana(){
-        Intent intent = new Intent(LoginActivity.this, FincaActivity.class);
-        startActivity(intent);
+//        db.collection("finca").document("4HPxwx0p4DkiwEu3Z8yb").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                if(documentSnapshot.exists()){
+//                    String name = documentSnapshot.getString("name");
+//                    Toast.makeText(getApplicationContext(), name,
+//                            Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
+        db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                int state = 0;
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String user = qs.getString("user");
+                    if(user.equals(mAuth.getCurrentUser().getUid())){
+                        state = 1;
+                        Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                        startActivity(intent);
+                        break;
+                    }
+                }
+                if(state == 0){
+                        Intent intent = new Intent(LoginActivity.this, FincaActivity.class);
+                        startActivity(intent);
+                    }
+            }
+        });
+
+        //Intent intent = new Intent(LoginActivity.this, FincaActivity.class);
+        //startActivity(intent);
+
 //        db.child("Fincas").addValueEventListener(new ValueEventListener() {
 //            @Override
 //            public void onDataChange(@NonNull DataSnapshot snapshot) {
