@@ -50,7 +50,7 @@ public class PurchaseActivity extends AppCompatActivity {
         DatePickerDialog dpd = new DatePickerDialog(PurchaseActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + month + "/" + year;
+                String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 textDate.setText(date);
             }
         }, yearD, monthD, dayD);
