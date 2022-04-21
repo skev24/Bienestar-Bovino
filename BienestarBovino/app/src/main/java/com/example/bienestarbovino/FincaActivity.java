@@ -26,14 +26,10 @@ public class FincaActivity extends AppCompatActivity {
 
     private Button btnMenu;
     private EditText nameFinca, tamFinca;
-//
-    private FirebaseAuth mAuth;
-//    private FirebaseDatabase firebaseDatabase;
-//    private DatabaseReference databaseReference;
 
+    private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
-    private finca newFinca;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,10 +41,7 @@ public class FincaActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
-//        firebaseDatabase = FirebaseDatabase.getInstance();
-//        databaseReference = firebaseDatabase.getReference("Fincas");
 
-        newFinca = new finca();
 
         btnMenu = findViewById(R.id.buttonContinueFinca);
 

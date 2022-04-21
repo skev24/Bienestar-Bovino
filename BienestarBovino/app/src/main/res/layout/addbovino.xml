@@ -7,7 +7,7 @@
     tools:context=".NewBovinoActivity">
 
     <Spinner
-        android:id="@+id/spinner4"
+        android:id="@+id/spinnerRazaNewBovino"
         android:layout_width="411dp"
         android:layout_height="48dp"
         android:contentDescription="@string/app_name"
@@ -19,16 +19,17 @@
         app:layout_constraintVertical_bias="0.279" />
 
     <EditText
-        android:id="@+id/editTextaddbovino"
+        android:id="@+id/editTextNameNewBovino"
         android:layout_width="181dp"
         android:layout_height="59dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
+        android:hint="Nombre del bovino"
         android:inputType="textPersonName"
-        android:text="Nombre del bovino"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.067"
@@ -37,16 +38,17 @@
         app:layout_constraintVertical_bias="0.375" />
 
     <EditText
-        android:id="@+id/editTextaddbovino4"
+        android:id="@+id/editTextIdNewBovino"
         android:layout_width="193dp"
         android:layout_height="60dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
+        android:hint="Identificador bovino"
         android:inputType="textPersonName"
-        android:text="Identificador bovino"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.967"
@@ -55,7 +57,7 @@
         app:layout_constraintVertical_bias="0.375" />
 
     <Spinner
-        android:id="@+id/spinneraddbovino"
+        android:id="@+id/spinnerPadreNewBovino"
         android:layout_width="166dp"
         android:layout_height="54dp"
         android:contentDescription="@string/app_name"
@@ -67,7 +69,7 @@
         app:layout_constraintVertical_bias="0.54" />
 
     <Spinner
-        android:id="@+id/spinneraddbovino8"
+        android:id="@+id/spinnerMadreNewBovino"
         android:layout_width="166dp"
         android:layout_height="54dp"
         android:contentDescription="@string/app_name"
@@ -79,7 +81,7 @@
         app:layout_constraintVertical_bias="0.54" />
 
     <TextView
-        android:id="@+id/textViewaddbovino9"
+        android:id="@+id/textViewDateNewBovino"
         android:layout_width="214dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -99,7 +101,7 @@
         app:layout_constraintVertical_bias="0.64" />
 
     <Button
-        android:id="@+id/buttonaddbovino"
+        android:id="@+id/buttonOpenCalendarNewBovino"
         android:layout_width="111dp"
         android:layout_height="52dp"
         android:text="Abrir"
@@ -125,15 +127,16 @@
         app:srcCompat="@drawable/imgvacas" />
 
     <EditText
-        android:id="@+id/editTextaddbovino1"
+        android:id="@+id/editTextDesteteNewBovino"
         android:layout_width="112dp"
         android:layout_height="48dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
+        android:hint="Al destete"
         android:inputType="textPersonName"
-        android:text="Al destete"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -142,15 +145,16 @@
         app:layout_constraintVertical_bias="0.796" />
 
     <EditText
-        android:id="@+id/editTextaddbovino2"
+        android:id="@+id/editTextNacimientoNewBovino"
         android:layout_width="90dp"
         android:layout_height="48dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
+        android:hint="Al nacer"
         android:inputType="textPersonName"
-        android:text="Al nacer"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.056"
@@ -159,15 +163,16 @@
         app:layout_constraintVertical_bias="0.795" />
 
     <EditText
-        android:id="@+id/editTextaddbovino3"
+        android:id="@+id/editTextMesesNewBovino"
         android:layout_width="106dp"
         android:layout_height="48dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
+        android:hint="12 meses"
         android:inputType="textPersonName"
-        android:text="12 meses"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.927"
@@ -176,7 +181,7 @@
         app:layout_constraintVertical_bias="0.795" />
 
     <Button
-        android:id="@+id/buttonaddbovino4"
+        android:id="@+id/buttonBackNewBovino"
         android:layout_width="417dp"
         android:layout_height="46dp"
         android:background="#146304"
@@ -192,7 +197,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/buttonaddbovino5"
+        android:id="@+id/buttonAddNewBovino"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:layout_marginTop="608dp"
