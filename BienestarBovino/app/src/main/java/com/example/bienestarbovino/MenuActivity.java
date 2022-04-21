@@ -11,13 +11,12 @@ import android.widget.ImageButton;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private Button btnSincronizar;
+    private Button btnSincronizar, btnAddBovino;
     ImageButton btnGanado, btnPesaje, btnChequeo;
 
     //pruebas
     //private TextView nombre;
     //private TextView tamanno;
-    //private Button btnregistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +28,9 @@ public class MenuActivity extends AppCompatActivity {
         btnGanado = findViewById(R.id.imageButtonGanado);
         //btnPesaje = findViewById(R.id.imageButtonPesaje);
         btnChequeo = findViewById(R.id.botonchequeo);
-        //btnregistro = findViewById(R.id.buttonRegisterMenu);
+        btnAddBovino = findViewById(R.id.buttonRegisterMenu);
 
-        //pruebas
-        //nombre = findViewById(R.id.textView8);
-        //tamanno = findViewById(R.id.textView18);
-
+// pruebas
         //db = FirebaseDatabase.getInstance().getReference();
 
         /*btnSincronizar.setOnClickListener(new View.OnClickListener() {
@@ -65,12 +61,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        /*btnregistro.setOnClickListener(new View.OnClickListener() {
+        btnAddBovino.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openAddBovino();
             }
-        });*/
+        });
 
     }
 
@@ -104,6 +100,11 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openChequeo(){
         Intent intent = new Intent(MenuActivity.this, MenuVetActivity.class);
+        startActivity(intent);
+    }
+
+    public void openAddBovino(){
+        Intent intent = new Intent(MenuActivity.this, NewBovinoActivity.class);
         startActivity(intent);
     }
 }

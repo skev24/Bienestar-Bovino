@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BienestarBovino">
         <activity
+            android:name=".NewBovinoActivity"
+            android:exported="false" />
+        <activity
             android:name=".InventoryActivity"
             android:exported="false" />
         <activity
