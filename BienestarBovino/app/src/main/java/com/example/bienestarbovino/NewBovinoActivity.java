@@ -39,7 +39,6 @@ public class NewBovinoActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    private String idFinca;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,42 +128,34 @@ public class NewBovinoActivity extends AppCompatActivity {
 
     private void addDatatoFirebase(String p_name, String p_id, String p_raza, String p_madre, String p_padre,
                                    String p_fecha, String p_Nacimiento, String p_Destete, String p_Meses) {
-
         CollectionReference dbBovino = db.collection("bovino");
-        buscarIdFinca();
-        bovino nuevoBovino = new bovino(p_name, p_id, p_raza, p_padre, p_madre, p_fecha, p_Nacimiento,
-                p_Destete, p_Meses, idFinca);
-
-        dbBovino.add(nuevoBovino).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(NewBovinoActivity.this, "Bovino agregado.", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(NewBovinoActivity.this, "Error al agregar bovino. \n" + e, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    // Se puede poner en algun lugar para que todos lo usen
-    public void buscarIdFinca(){
 
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                int state = 0;
+                String idFinca = "";
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-
                     String user = qs.getString("user");
                     if(user.equals(mAuth.getCurrentUser().getUid())){
-                        idFinca = user;
+                        idFinca = qs.getId();
                         break;
                     }
                 }
-            }
-        });
+                bovino nuevoBovino = new bovino(p_name, p_id, p_raza, p_padre, p_madre, p_fecha, p_Nacimiento,
+                p_Destete, p_Meses, idFinca);
 
+                dbBovino.add(nuevoBovino).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                @Override
+                public void onSuccess(DocumentReference documentReference) {
+                    Toast.makeText(NewBovinoActivity.this, "Bovino agregado.", Toast.LENGTH_SHORT).show();
+                }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(NewBovinoActivity.this, "Error al agregar bovino. \n" + e, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                }
+        });
     }
 }
