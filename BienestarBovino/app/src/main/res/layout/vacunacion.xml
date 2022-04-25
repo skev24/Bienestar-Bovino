@@ -6,16 +6,36 @@
     android:layout_height="match_parent"
     tools:context=".VaccineActivity">
 
+    <TextView
+        android:id="@+id/textViewDateVacunacion"
+        android:layout_width="214dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Seleccione la fecha"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.208"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.399" />
+
     <Button
-        android:id="@+id/buttonRegisterMenu"
+        android:id="@+id/buttonGuardarVacunacion"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:background="#146304"
-        android:text="Registrar"
+        android:text="Guardar"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.666"
@@ -40,26 +60,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <EditText
-        android:id="@+id/editTextDate3"
-        android:layout_width="289dp"
-        android:layout_height="48dp"
-        android:background="@drawable/rectangle_drawable"
-        android:ems="10"
-        android:hint="Ingrese la fecha"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:textAlignment="center"
+    <Button
+        android:id="@+id/buttonOpenCalendarVacunacion"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:background="#146304"
+        android:text="Abrir "
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textColorHint="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.839"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.406" />
+        app:layout_constraintVertical_bias="0.399" />
 
     <Spinner
-        android:id="@+id/spinner3"
+        android:id="@+id/spinnerBovinoVacunacion"
         android:layout_width="308dp"
         android:layout_height="53dp"
         android:contentDescription="@string/app_name"
@@ -84,7 +103,7 @@
         app:layout_constraintVertical_bias="0.158" />
 
     <EditText
-        android:id="@+id/editTextNombre2"
+        android:id="@+id/editTextEnfermedad"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -102,7 +121,7 @@
         app:layout_constraintVertical_bias="0.537" />
 
     <EditText
-        android:id="@+id/editTextPrice2"
+        android:id="@+id/editTextNotasVacunacion"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -145,5 +164,5 @@
         app:layout_constraintHorizontal_bias="0.234"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.328" />
+        app:layout_constraintVertical_bias="0.341" />
 </androidx.constraintlayout.widget.ConstraintLayout>

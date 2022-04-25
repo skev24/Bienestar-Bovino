@@ -4,42 +4,44 @@ import java.util.ArrayList;
 
 public class vacuna {
     private ArrayList<String> id;
-    private String identificacionBovino;
+    private String bovino;
     private String nombre;
-    private String raza;
     private String fecha;  //cambiar por date
     private String enfermedadATratar;
     private String notas;
 
-    public vacuna() {
+    public vacuna(String bovino, String enfermedad, String fecha, String notas) {
+        this.bovino = bovino;
+        this.enfermedadATratar = enfermedad;
+        this.fecha = fecha;
+        this.notas = notas;
+    }
+
+    public void guardarVacuna(String bovino, String fecha, String enfermedadATratar, String notas) {
 
     }
 
-    public void guardarVacuna(String fecha, String enfermedadATratar, String notas) {
 
-    }
-
-    public ArrayList<String> getId() {
-        return id;
+    public String getBovino() {
+        return bovino;
     }
 
 
-    public String getIdentificacionBovino() {
-        return identificacionBovino;
+    public String getNotas() {
+        return notas;
+    }
+
+    public String getfecha() {
+        return fecha;
     }
 
 
-    public String getNombre() {
-        return nombre;
+    public String getEnfermedadATratar() {
+        return enfermedadATratar;
+
     }
 
-
-    public String getRaza() {
-        return raza;
-    }
-
-
-    public void setNotas(String precio) {
+        public void setNotas(String precio) {
         this.notas = precio;
     }
 
@@ -49,6 +51,10 @@ public class vacuna {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public void setBovino(String bovino) {
+        this.bovino = bovino;
     }
 }
 

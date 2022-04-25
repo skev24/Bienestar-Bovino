@@ -6,17 +6,24 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class PurchaseActivity extends AppCompatActivity {
 
     private TextView textDate;
     private Button buttonOpenCalendar;
     private Button buttonCompraRegresar;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -25,7 +32,8 @@ public class PurchaseActivity extends AppCompatActivity {
         textDate = findViewById(R.id.TextViewDatePurchase);
         buttonOpenCalendar = findViewById(R.id.buttonCalendar);
         buttonCompraRegresar = findViewById(R.id.btnCompraRegresar);
-
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
         buttonOpenCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,4 +69,6 @@ public class PurchaseActivity extends AppCompatActivity {
         Intent intent = new Intent(PurchaseActivity.this, InventoryActivity.class);
         startActivity(intent);
     }
+
+
 }

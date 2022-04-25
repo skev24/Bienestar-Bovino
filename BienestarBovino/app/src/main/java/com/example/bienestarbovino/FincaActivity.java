@@ -78,7 +78,7 @@ public class FincaActivity extends AppCompatActivity {
         dbFincas.add(nuevaFinca).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(FincaActivity.this, "finca creada.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(FincaActivity.this, "Finca creada.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
