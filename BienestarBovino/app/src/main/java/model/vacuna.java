@@ -10,35 +10,38 @@ public class vacuna {
     private String enfermedadATratar;
     private String notas;
 
-    public vacuna(String enfermedad, String fecha, String bovino, String notas) {
+    public vacuna(String bovino, String enfermedad, String fecha, String notas) {
         this.bovino = bovino;
         this.enfermedadATratar = enfermedad;
         this.fecha = fecha;
         this.notas = notas;
     }
 
-    public void guardarVacuna(String fecha, String enfermedadATratar, String notas) {
+    public void guardarVacuna(String bovino, String fecha, String enfermedadATratar, String notas) {
 
     }
 
-    public ArrayList<String> getId() {
-        return id;
-    }
 
-
-    public String getIdentificacionBovino() {
+    public String getBovino() {
         return bovino;
     }
 
 
-    public String getNombre() {
-        return nombre;
+    public String getNotas() {
+        return notas;
+    }
+
+    public String getfecha() {
+        return fecha;
     }
 
 
+    public String getEnfermedadATratar() {
+        return enfermedadATratar;
 
+    }
 
-    public void setNotas(String precio) {
+        public void setNotas(String precio) {
         this.notas = precio;
     }
 
@@ -48,6 +51,10 @@ public class vacuna {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public void setBovino(String bovino) {
+        this.bovino = bovino;
     }
 }
 

@@ -3,46 +3,39 @@ package model;
 import java.util.ArrayList;
 
 public class venta {
-    private ArrayList<String> id;
-    private String identificacionBovino;
-    private String nombre;
-    private String raza;
-    private String precio;
+    private String bovino;
+    private String monto;
     private String fecha;  //cambiar por date
 
-    public venta() {
-
+    public venta(String bovino, String monto, String fecha) {
+        this.bovino = bovino;
+        this.monto = monto;
+        this.fecha = fecha;
     }
 
-    public void guardarVenta(String precio, String fecha) {
-
+    public String getbovino() {
+        return bovino;
     }
 
-    public ArrayList<String> getId() {
-        return id;
+    public String getmonto() {
+        return monto;
     }
 
-
-    public String getIdentificacionBovino() {
-        return identificacionBovino;
-    }
-
-
-    public String getNombre() {
-        return nombre;
+    public String getfecha() {
+        return fecha;
     }
 
 
-    public String getRaza() {
-        return raza;
-    }
-
-
-    public void setPrecio(String precio) {
-        this.precio = precio;
+    public void setPrecio(String monto) {
+        this.monto = monto;
     }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    public void setBovino(String bovino) {
+        this.fecha = fecha;
+    }
+
 }

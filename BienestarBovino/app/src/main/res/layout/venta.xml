@@ -117,7 +117,7 @@
         app:layout_constraintVertical_bias="0.46" />
 
     <EditText
-        android:id="@+id/editTextTextSale"
+        android:id="@+id/editMontoVenta"
         android:layout_width="312dp"
         android:layout_height="54dp"
         android:background="@drawable/rectangle_drawable"
@@ -163,7 +163,7 @@
         app:layout_constraintVertical_bias="0.672" />
 
     <EditText
-        android:id="@+id/editTextDateSale"
+        android:id="@+id/editFechaVenta"
         android:layout_width="214dp"
         android:layout_height="54dp"
         android:background="@drawable/rectangle_drawable"

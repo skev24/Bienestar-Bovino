@@ -37,12 +37,17 @@ public class VaccineActivity extends AppCompatActivity {
     private Spinner setBovino;
     private EditText textBovinoEnfermedad, textBovinoNotas;
     private Button buttonAddVacuna;
+    private FirebaseFirestore db;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vacunacion);
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         textDate = findViewById(R.id.textViewDateVacunacion);
         buttonOpenCalendar = findViewById(R.id.buttonOpenCalendarVacunacion);
@@ -57,12 +62,27 @@ public class VaccineActivity extends AppCompatActivity {
                 openVacunaRegresarActivity(view);
             }
         });
+        buttonOpenCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCalendar(view);
+            }
+        });
+
+        buttonAddVacuna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addVacunacion(view);
+            }
+        });
     }
 
     public void openVacunaRegresarActivity(View view){
         Intent intent = new Intent(VaccineActivity.this, MenuVetActivity.class);
         startActivity(intent);
     }
+
+
 
     public void openCalendar(View view){
         Calendar calendar = Calendar.getInstance();
@@ -80,9 +100,8 @@ public class VaccineActivity extends AppCompatActivity {
         }, yearD, monthD, dayD);
         dpd.show();
     }
-}
 
-//addVacunacion registra el control medico de las vacunaciones como un objeto y valida lo ingresado.
+    //addVacunacion registra el control medico de las vacunaciones como un objeto y valida lo ingresado.
     //Recibe la vista de vacunacion.xml
     public void addVacunacion(View view){
         String bovino = "toro 1";//selBovino spinner
@@ -90,25 +109,25 @@ public class VaccineActivity extends AppCompatActivity {
         String notas = textBovinoNotas.getText().toString();
         String fecha = textDate.getText().toString();
 
-        if (TextUtils.isEmpty(bovino) && TextUtils.isEmpty(enfermedad) && TextUtils.isEmpty(notas) && TextUtils.isEmpty(fecha)) {
+        if (TextUtils.isEmpty(bovino) && TextUtils.isEmpty(enfermedad) && TextUtils.isEmpty(fecha)) {
 
             Toast.makeText(VaccineActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
-            addDatatoFirebase(enfermedad, fecha, bovino, notas);
+            addDatatoFirebase(bovino, enfermedad, fecha, notas, view);
         }
     }
 
-//addDataToFirebase agrega a la base de datos el bovino creado
-    private void addDatatoFirebase(String p_enfermedad, String p_fecha, String p_bovino, String p_notas) {
+    //addDataToFirebase agrega a la base de datos el registro de vacuna
+    private void addDatatoFirebase(String p_bovino, String p_enfermedad, String p_fecha, String p_notas, View view) {
 
-        CollectionReference dbBovino = db.collection("vacunaxbovino");
-        //buscarIdFinca();
-        vacuna nuevaVacuna = new vacuna(p_enfermedad, p_fecha, p_bovino, p_notas);
+        CollectionReference dbVacuna = db.collection("vacuna");
+        vacuna nuevaVacuna = new vacuna(p_bovino, p_enfermedad, p_fecha, p_notas);
 
-        dbBovino.add(nuevaVacuna).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        dbVacuna.add(nuevaVacuna).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(VaccineActivity.this, "Registro de vacuna agregada.", Toast.LENGTH_SHORT).show();
+                openVacunaRegresarActivity(view);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -117,3 +136,8 @@ public class VaccineActivity extends AppCompatActivity {
             }
         });
     }
+
+}
+
+
+
