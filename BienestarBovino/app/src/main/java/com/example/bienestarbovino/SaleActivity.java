@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +21,9 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.google.firebase.firestore.QuerySnapshot;
 import model.venta;
 
 public class SaleActivity extends AppCompatActivity {
@@ -38,7 +40,7 @@ public class SaleActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.venta);
-        textDate = findViewById(R.id.TextViewDatePurchase);
+        textDate = findViewById(R.id.editFechaVenta);
         buttonOpenCalendar = findViewById(R.id.buttonCalendar);
         editFecha = findViewById(R.id.editFechaVenta);
         editMonto = findViewById(R.id.editMontoVenta);
