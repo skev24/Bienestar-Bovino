@@ -3,46 +3,45 @@ package model;
 import java.util.ArrayList;
 
 public class compra {
-    private ArrayList<String> id;
-    private String identificacionBovino;
-    private String nombre;
-    private String raza;
-    private String precio;
+    //Datos de bovino
+
+
+    //Datos de compra
+    private int precio;
     private String fecha;  //cambiar por date
+    private String bovinoId;
 
-    public compra() {
+    public compra( int precio, String fecha, String bovinoId) {
+
+        this.precio = precio;
+        this.fecha = fecha;
+        this.bovinoId = bovinoId;
 
     }
 
-    public void guardarCompra(String precio, String fecha) {
 
+    public int getPrecio() {
+        return precio;
     }
 
-    public ArrayList<String> getId() {
-        return id;
+    public String getFecha() {
+        return fecha;
     }
 
-
-    public String getIdentificacionBovino() {
-        return identificacionBovino;
+    public String getBovinoId() {
+        return bovinoId;
     }
 
-
-    public String getNombre() {
-        return nombre;
-    }
-
-
-    public String getRaza() {
-        return raza;
-    }
-
-
-    public void setPrecio(String precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
+
+    public void setBovinoId(String bovinoId) {
+        this.bovinoId = bovinoId;
+    }
 }
+
