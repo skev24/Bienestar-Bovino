@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Spinner Example</string>
+
+    <string-array name="numbers">
+        <item>toro2</item>
+        <item>Toro1</item>
+    </string-array>
+</resources>

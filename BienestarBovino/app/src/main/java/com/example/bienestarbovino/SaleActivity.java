@@ -30,7 +30,7 @@ public class SaleActivity extends AppCompatActivity {
 
     private TextView textDate;
     private Button buttonOpenCalendar;
-    private Button buttonVentaRegresar;
+    private Button buttonVentaRegresar, buttonGuardarVenta;
     private EditText editFecha, editMonto;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -40,13 +40,21 @@ public class SaleActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.venta);
+
         textDate = findViewById(R.id.editFechaVenta);
-        buttonOpenCalendar = findViewById(R.id.buttonCalendar);
+        textDate = findViewById(R.id.editFechaVenta);
         editFecha = findViewById(R.id.editFechaVenta);
         editMonto = findViewById(R.id.editMontoVenta);
-        buttonVentaRegresar = findViewById(R.id.btnVentaRegresar);
+
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+
+        buttonOpenCalendar = findViewById(R.id.buttonCalendarSale);
+        buttonVentaRegresar = findViewById(R.id.btnVentaRegresar);
+        buttonGuardarVenta = findViewById(R.id.buttonVentaRegister);
+
+
         buttonOpenCalendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,6 +66,12 @@ public class SaleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openVentaRegresarActivity(view);
+            }
+        });
+        buttonGuardarVenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addVenta(view);
             }
         });
     }
