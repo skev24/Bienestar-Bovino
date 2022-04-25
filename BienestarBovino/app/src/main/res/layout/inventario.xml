@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="72dp"
-        android:layout_height="64dp"
+        android:layout_width="102dp"
+        android:layout_height="105dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
@@ -69,16 +69,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.904" />
 
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:text="Inventario"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ListView
+        android:id="@+id/listViewBovinos"
+        android:layout_width="412dp"
+        android:layout_height="478dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRegresarInventory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.092" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

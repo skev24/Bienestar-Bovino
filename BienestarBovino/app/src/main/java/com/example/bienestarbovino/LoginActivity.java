@@ -24,14 +24,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
-//    private DatabaseReference db;
+
     private EditText email;
     private EditText password;
 
     private Button buttonLogin;
     private TextView textNewUser;
 
+    private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
     @Override

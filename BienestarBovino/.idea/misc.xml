@@ -17,8 +17,10 @@
         <entry key="app/src/main/res/layout/compra.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/finca.xml" value="0.25" />
         <entry key="app/src/main/res/layout/hh.xml" value="0.25677083333333334" />
+        <entry key="app/src/main/res/layout/info_bovino.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/inventario.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/inventario_vacas.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/item_row.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/menuprincipal.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/register.xml" value="0.29292929292929293" />
