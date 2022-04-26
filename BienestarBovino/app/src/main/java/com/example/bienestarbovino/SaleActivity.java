@@ -29,7 +29,6 @@ import model.venta;
 public class SaleActivity extends AppCompatActivity {
 
     private TextView textDate;
-    private Button buttonOpenCalendar;
     private Button buttonVentaRegresar, buttonGuardarVenta;
     private EditText editFecha, editMonto;
     private FirebaseFirestore db;
@@ -41,8 +40,6 @@ public class SaleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.venta);
 
-        textDate = findViewById(R.id.editFechaVenta);
-        textDate = findViewById(R.id.editFechaVenta);
         editFecha = findViewById(R.id.editFechaVenta);
         editMonto = findViewById(R.id.editMontoVenta);
 
@@ -50,17 +47,8 @@ public class SaleActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
 
-        buttonOpenCalendar = findViewById(R.id.buttonCalendarSale);
         buttonVentaRegresar = findViewById(R.id.btnVentaRegresar);
         buttonGuardarVenta = findViewById(R.id.buttonVentaRegister);
-
-
-        buttonOpenCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openCalendar(view);
-            }
-        });
 
         buttonVentaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +60,13 @@ public class SaleActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 addVenta(view);
+            }
+        });
+
+        editFecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCalendar(view);
             }
         });
     }

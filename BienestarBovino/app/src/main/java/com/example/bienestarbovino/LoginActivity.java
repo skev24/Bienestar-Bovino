@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginUser(View view){
         //Toast.makeText(getApplicationContext(), id, Toast.LENGTH_SHORT).show();
-        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+        mAuth.signInWithEmailAndPassword(email.getText().toString().trim(), password.getText().toString())
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

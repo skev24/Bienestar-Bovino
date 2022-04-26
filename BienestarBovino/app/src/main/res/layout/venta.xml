@@ -7,23 +7,6 @@
     tools:context=".SaleActivity">
 
 
-    <Button
-        android:id="@+id/buttonCalendarSale"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:background="#146304"
-        android:text="Abrir"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.876"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.747" />
-
     <ImageView
         android:id="@+id/imageView13"
         android:layout_width="72dp"
@@ -168,7 +151,7 @@
 
     <EditText
         android:id="@+id/editFechaVenta"
-        android:layout_width="214dp"
+        android:layout_width="312dp"
         android:layout_height="54dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
@@ -179,10 +162,10 @@
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintHorizontal_bias="0.353"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.752" />
+        app:layout_constraintVertical_bias="0.751" />
 
     <Spinner
         android:id="@+id/spinner"

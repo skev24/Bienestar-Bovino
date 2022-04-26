@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -34,21 +33,19 @@ import model.compra;
 
 public class PurchaseActivity extends AppCompatActivity {
 
-    private TextView textDate;
-    private EditText textNameBovino, textIdBovino, textCosto;
+    private EditText textNameBovino, textIdBovino, textCosto, textDate;
     private Spinner selRaza;
-    private Button buttonOpenCalendar;
     private Button buttonCompraRegresar;
     private Button buttonGuardarCompra;
     String idNEW = new String();
 
 
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference dbBovino = db.collection("bovino");
-    CollectionReference dbCompraBovi = db.collection("compraxbovino");
-
-    //private FirebaseFirestore db;
+    private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
+    CollectionReference dbBovino;
+    CollectionReference dbCompraBovi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,21 +54,21 @@ public class PurchaseActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-
+        dbBovino = db.collection("bovino");
+        dbCompraBovi = db.collection("compraxbovino");
 
 
         //datos de interfaz
         selRaza = findViewById(R.id.spinner2);
-        textNameBovino = findViewById(R.id.editTextId);
-        textCosto =findViewById(R.id.editTextPrice);
-        textIdBovino = findViewById(R.id.editTextNombre);
+        textNameBovino = findViewById(R.id.editTextIdCompra);
+        textCosto =findViewById(R.id.editTextPriceCompra);
+        textIdBovino = findViewById(R.id.editTextNombreCompra);
         textDate = findViewById(R.id.TextViewDatePurchase);
 
-        buttonOpenCalendar = findViewById(R.id.buttonCalendar);
         buttonCompraRegresar = findViewById(R.id.btnCompraRegresar);
         buttonGuardarCompra = findViewById(R.id.buttonRegister2);
 
-        buttonOpenCalendar.setOnClickListener(new View.OnClickListener() {
+        textDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCalendar(view);

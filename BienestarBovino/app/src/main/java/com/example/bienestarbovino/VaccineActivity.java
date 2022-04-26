@@ -32,7 +32,6 @@ import model.vacuna;
 public class VaccineActivity extends AppCompatActivity {
 
     private TextView textDate;
-    private Button buttonOpenCalendar;
     private Button buttonVacunaRegresarClass;
     private Spinner setBovino;
     private EditText textBovinoEnfermedad, textBovinoNotas;
@@ -50,7 +49,6 @@ public class VaccineActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         textDate = findViewById(R.id.textViewDateVacunacion);
-        buttonOpenCalendar = findViewById(R.id.buttonOpenCalendarVacunacion);
         buttonVacunaRegresarClass = findViewById(R.id.btnRegresarVacunacion);
         setBovino = findViewById(R.id.spinnerBovinoVacunacion);
         textBovinoEnfermedad = findViewById(R.id.editTextEnfermedad);
@@ -62,7 +60,7 @@ public class VaccineActivity extends AppCompatActivity {
                 openVacunaRegresarActivity(view);
             }
         });
-        buttonOpenCalendar.setOnClickListener(new View.OnClickListener() {
+        textDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCalendar(view);

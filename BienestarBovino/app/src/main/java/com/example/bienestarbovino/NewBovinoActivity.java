@@ -33,7 +33,6 @@ public class NewBovinoActivity extends AppCompatActivity {
     private EditText textNameBovino, textIdBovino, textAlNacer, textAlDestete, text12Meses;
     private TextView textDate;
     private Spinner selRaza, selMadre, selPadre;
-    private Button buttonOpenCalendar;
     private Button buttonAddBovino, buttonBack;
 
     private FirebaseFirestore db;
@@ -58,11 +57,10 @@ public class NewBovinoActivity extends AppCompatActivity {
         selRaza = findViewById(R.id.spinnerRazaNewBovino);
         selMadre = findViewById(R.id.spinnerMadreNewBovino);
         selPadre = findViewById(R.id.spinnerPadreNewBovino);
-        buttonOpenCalendar = findViewById(R.id.buttonOpenCalendarNewBovino);
         buttonAddBovino = findViewById(R.id.buttonAddNewBovino);
         buttonBack = findViewById(R.id.buttonBackNewBovino);
 
-        buttonOpenCalendar.setOnClickListener(new View.OnClickListener() {
+        textDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCalendar(view);
