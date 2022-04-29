@@ -25,10 +25,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import control.Funciones;
 import model.bovino;
 import model.finca;
 
-public class NewBovinoActivity extends AppCompatActivity {
+public class NewBovinoActivity extends AppCompatActivity implements Funciones {
 
     private EditText textNameBovino, textIdBovino, textAlNacer, textAlDestete, text12Meses;
     private TextView textDate;
@@ -77,12 +78,12 @@ public class NewBovinoActivity extends AppCompatActivity {
         buttonBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openVentaRegresarActivity();
+                goBack();
             }
         });
     }
 
-    public void openVentaRegresarActivity(){
+    public void goBack(){
         Intent intent = new Intent(NewBovinoActivity.this, MenuActivity.class);
         startActivity(intent);
     }

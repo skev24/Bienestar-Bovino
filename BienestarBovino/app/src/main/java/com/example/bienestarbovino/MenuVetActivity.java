@@ -8,7 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class MenuVetActivity extends AppCompatActivity {
+import control.Funciones;
+
+public class MenuVetActivity extends AppCompatActivity implements Funciones {
 
     private ImageButton buttonVacunaClass;
     private Button btnRegresar;
@@ -32,7 +34,7 @@ public class MenuVetActivity extends AppCompatActivity {
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                returnMenuPrincipal();
+                goBack();
             }
         });
     }
@@ -42,7 +44,7 @@ public class MenuVetActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void returnMenuPrincipal(){
+    public void goBack(){
         Intent intent = new Intent(MenuVetActivity.this, MenuActivity.class);
         startActivity(intent);
     }

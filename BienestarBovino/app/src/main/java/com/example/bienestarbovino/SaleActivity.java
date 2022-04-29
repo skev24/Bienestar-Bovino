@@ -24,9 +24,11 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import control.Funciones;
 import model.venta;
 
-public class SaleActivity extends AppCompatActivity {
+public class SaleActivity extends AppCompatActivity implements Funciones {
 
     private TextView textDate;
     private Button buttonVentaRegresar, buttonGuardarVenta;
@@ -53,7 +55,7 @@ public class SaleActivity extends AppCompatActivity {
         buttonVentaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openVentaRegresarActivity(view);
+                goBack();
             }
         });
         buttonGuardarVenta.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +89,7 @@ public class SaleActivity extends AppCompatActivity {
         dpd.show();
     }
 
-    public void openVentaRegresarActivity(View view){
+    public void goBack(){
         Intent intent = new Intent(SaleActivity.this, InventoryActivity.class);
         startActivity(intent);
     }
@@ -117,7 +119,7 @@ public class SaleActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(SaleActivity.this, "Registro de bovino vendido.", Toast.LENGTH_SHORT).show();
-                openVentaRegresarActivity(view);
+                goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

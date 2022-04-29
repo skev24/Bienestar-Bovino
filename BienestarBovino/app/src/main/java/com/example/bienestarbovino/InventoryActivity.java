@@ -24,9 +24,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import control.Funciones;
 import model.bovino;
 
-public class InventoryActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class InventoryActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, Funciones {
 
     private Button btnVentaClass;
     private Button btnCompraClass;
@@ -71,7 +72,7 @@ public class InventoryActivity extends AppCompatActivity implements AdapterView.
         btnRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openRegresarActivity();
+                goBack();
             }
         });
 
@@ -88,7 +89,7 @@ public class InventoryActivity extends AppCompatActivity implements AdapterView.
         startActivity(intent);
     }
 
-    public void openRegresarActivity(){
+    public void goBack(){
         Intent intent = new Intent(InventoryActivity.this, MenuActivity.class);
         startActivity(intent);
     }

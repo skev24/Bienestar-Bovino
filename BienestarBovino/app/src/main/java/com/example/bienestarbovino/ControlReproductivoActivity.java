@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ControlReproductivoActivity extends AppCompatActivity {
+import control.Funciones;
+
+public class ControlReproductivoActivity extends AppCompatActivity implements Funciones {
 
     Button btnRegresar;
 
@@ -21,14 +23,14 @@ public class ControlReproductivoActivity extends AppCompatActivity {
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                returnMenuPrincipal();
+                goBack();
             }
         });
 
 
     }
 
-    public void returnMenuPrincipal(){
+    public void goBack(){
         Intent intent = new Intent(ControlReproductivoActivity.this, MenuActivity.class);
         startActivity(intent);
     }

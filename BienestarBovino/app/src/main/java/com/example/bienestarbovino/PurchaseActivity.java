@@ -28,10 +28,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import control.Funciones;
 import model.bovino;
 import model.compra;
 
-public class PurchaseActivity extends AppCompatActivity {
+public class PurchaseActivity extends AppCompatActivity implements Funciones {
 
     private EditText textNameBovino, textIdBovino, textCosto, textDate;
     private Spinner selRaza;
@@ -78,7 +79,7 @@ public class PurchaseActivity extends AppCompatActivity {
         buttonCompraRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openVentaRegresarActivity();
+                goBack();
             }
         });
 
@@ -110,7 +111,7 @@ public class PurchaseActivity extends AppCompatActivity {
         });
     }
 
-    public void openVentaRegresarActivity(){
+    public void goBack(){
         Intent intent = new Intent(PurchaseActivity.this, InventoryActivity.class);
         startActivity(intent);
     }

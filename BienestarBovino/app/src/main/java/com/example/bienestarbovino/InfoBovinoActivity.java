@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class InfoBovinoActivity extends AppCompatActivity {
+import control.Funciones;
+
+public class InfoBovinoActivity extends AppCompatActivity implements Funciones {
 
     private Button backToInventory;
     private TextView name;
@@ -25,12 +27,12 @@ public class InfoBovinoActivity extends AppCompatActivity {
         backToInventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openInventory();
+                goBack();
             }
         });
     }
 
-    public void openInventory(){
+    public void goBack(){
         Intent intent = new Intent(InfoBovinoActivity.this, InventoryActivity.class);
         startActivity(intent);
     }
