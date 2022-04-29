@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 public class MenuActivity extends AppCompatActivity {
 
     private Button btnSincronizar, btnAddBovino;
-    ImageButton btnGanado, btnPesaje, btnChequeo;
+    ImageButton btnGanado, btnPesaje, btnChequeo, btnControlReproductivo;
 
     //pruebas
     //private TextView nombre;
@@ -29,6 +29,7 @@ public class MenuActivity extends AppCompatActivity {
         //btnPesaje = findViewById(R.id.imageButtonPesaje);
         btnChequeo = findViewById(R.id.botonchequeo);
         btnAddBovino = findViewById(R.id.buttonGuardarVacunacion);
+        btnControlReproductivo = findViewById(R.id.imageButtonControlReproductivo);
 
 // pruebas
         //db = FirebaseDatabase.getInstance().getReference();
@@ -68,6 +69,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        btnControlReproductivo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openControlReproductivo();
+            }
+        });
     }
 
     /*public void getData(View view){
@@ -94,7 +101,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     /*public void openPesaje(){
-        //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        //Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
         //startActivity(intent);
     }*/
 
@@ -105,6 +112,11 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openAddBovino(){
         Intent intent = new Intent(MenuActivity.this, NewBovinoActivity.class);
+        startActivity(intent);
+    }
+
+    public void openControlReproductivo(){
+        Intent intent = new Intent(MenuActivity.this, ControlReproductivoActivity.class);
         startActivity(intent);
     }
 }

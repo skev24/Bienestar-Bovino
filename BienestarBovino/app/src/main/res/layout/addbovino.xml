@@ -86,7 +86,7 @@
         android:layout_height="49dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
-        android:hint="Seleccione la fecha"
+        android:hint="Ingrese la fecha de nacimiento"
         android:inputType="date"
         android:minHeight="48dp"
         android:textAlignment="center"
