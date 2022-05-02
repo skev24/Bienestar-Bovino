@@ -6,17 +6,43 @@
     android:layout_height="match_parent"
     tools:context=".NewBovinoActivity">
 
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="72dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007"
+        app:srcCompat="@drawable/_2459_1" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="188dp"
+        android:layout_height="37dp"
+        android:text="Agregar bovino"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.668"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.076" />
+
     <Spinner
         android:id="@+id/spinnerRazaNewBovino"
-        android:layout_width="411dp"
-        android:layout_height="48dp"
+        android:layout_width="272dp"
+        android:layout_height="50dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.279" />
+        app:layout_constraintVertical_bias="0.361" />
 
     <EditText
         android:id="@+id/editTextNameNewBovino"
@@ -32,10 +58,10 @@
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.067"
+        app:layout_constraintHorizontal_bias="0.078"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.375" />
+        app:layout_constraintVertical_bias="0.199" />
 
     <EditText
         android:id="@+id/editTextIdNewBovino"
@@ -51,10 +77,10 @@
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.967"
+        app:layout_constraintHorizontal_bias="0.926"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.375" />
+        app:layout_constraintVertical_bias="0.199" />
 
     <Spinner
         android:id="@+id/spinnerPadreNewBovino"
@@ -66,7 +92,41 @@
         app:layout_constraintHorizontal_bias="0.91"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintVertical_bias="0.62" />
+
+    <TextView
+        android:id="@+id/textaddbovino6"
+        android:layout_width="104dp"
+        android:layout_height="24dp"
+        android:background="#FFFFFF"
+        android:text="Madre"
+        android:textAlignment="center"
+        android:textColor="#BF360C"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.558" />
+
+    <TextView
+        android:id="@+id/textaddbovino"
+        android:layout_width="136dp"
+        android:layout_height="20dp"
+        android:background="#FFFFFF"
+        android:text="Padre"
+        android:textAlignment="center"
+        android:textColor="#BF360C"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.561" />
 
     <Spinner
         android:id="@+id/spinnerMadreNewBovino"
@@ -78,7 +138,7 @@
         app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.54" />
+        app:layout_constraintVertical_bias="0.62" />
 
     <EditText
         android:id="@+id/textViewDateNewBovino"
@@ -86,7 +146,7 @@
         android:layout_height="49dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
-        android:hint="Ingrese la fecha de nacimiento"
+        android:hint="Fecha de nacimiento"
         android:inputType="date"
         android:minHeight="48dp"
         android:textAlignment="center"
@@ -97,54 +157,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
-
-    <ImageView
-        android:id="@+id/imageViewaddbovino"
-        android:layout_width="127dp"
-        android:layout_height="141dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.044"
-        app:srcCompat="@drawable/imgvacas" />
-
-    <EditText
-        android:id="@+id/editTextDesteteNewBovino"
-        android:layout_width="112dp"
-        android:layout_height="48dp"
-        android:background="@drawable/rectangle_drawable"
-        android:ems="10"
-        android:hint="Al destete"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.796" />
-
-    <EditText
-        android:id="@+id/editTextNacimientoNewBovino"
-        android:layout_width="90dp"
-        android:layout_height="48dp"
-        android:background="@drawable/rectangle_drawable"
-        android:ems="10"
-        android:hint="Al nacer"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <EditText
         android:id="@+id/editTextMesesNewBovino"
@@ -162,22 +175,74 @@
         app:layout_constraintHorizontal_bias="0.927"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.795" />
+        app:layout_constraintVertical_bias="0.767" />
+
+    <EditText
+        android:id="@+id/editTextNacimientoNewBovino"
+        android:layout_width="90dp"
+        android:layout_height="48dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Al nacer"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.767" />
+
+    <TextView
+        android:id="@+id/textViewaddbovino7"
+        android:layout_width="412dp"
+        android:layout_height="28dp"
+        android:background="#FFFFFF"
+        android:text="Peso"
+        android:textAlignment="center"
+        android:textColor="#BF360C"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.698" />
+
+    <EditText
+        android:id="@+id/editTextDesteteNewBovino"
+        android:layout_width="112dp"
+        android:layout_height="48dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Al destete"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.768" />
 
     <Button
         android:id="@+id/buttonBackNewBovino"
-        android:layout_width="417dp"
-        android:layout_height="46dp"
-        android:background="#146304"
+        android:layout_width="412dp"
+        android:layout_height="59dp"
+        android:background="#092E02"
         android:text="Regresar"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddNewBovino"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
@@ -185,7 +250,7 @@
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:layout_marginTop="608dp"
-        android:background="#146304"
+        android:background="#0A3E00"
         android:text="Agregar Bovino"
         android:textAlignment="center"
         android:textAllCaps="false"
@@ -198,37 +263,20 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textaddbovino6"
-        android:layout_width="412dp"
-        android:layout_height="29dp"
-        android:background="#7AD268"
-        android:text="Origen"
+        android:id="@+id/textaddbovino2"
+        android:layout_width="136dp"
+        android:layout_height="20dp"
+        android:background="#FFFFFF"
+        android:text="Raza"
         android:textAlignment="center"
         android:textColor="#BF360C"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.229"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.458" />
-
-    <TextView
-        android:id="@+id/textViewaddbovino7"
-        android:layout_width="412dp"
-        android:layout_height="28dp"
-        android:background="#7AD268"
-        android:text="Peso"
-        android:textAlignment="center"
-        android:textColor="#BF360C"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.726" />
+        app:layout_constraintVertical_bias="0.317" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

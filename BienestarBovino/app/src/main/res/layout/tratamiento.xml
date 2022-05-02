@@ -4,7 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VaccineActivity">
+    tools:context=".TreatmentActivity">
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="72dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007"
+        app:srcCompat="@drawable/_2459_1" />
 
     <EditText
         android:id="@+id/entryFechaTratamiento"
@@ -12,7 +24,7 @@
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
-        android:hint="Ingrese la fecha"
+        android:hint="Fecha de tratamiento"
         android:inputType="date"
         android:minHeight="48dp"
         android:textAlignment="center"
@@ -91,17 +103,35 @@
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
-        android:hint="Enfremedad a tratar"
+        android:hint="Diagnostico"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintVertical_bias="0.515" />
+
+    <EditText
+        android:id="@+id/entryDiasTratamiento"
+        android:layout_width="304dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Días de tratamiento"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.631" />
 
     <EditText
         android:id="@+id/editNotasTratamiento"
@@ -116,16 +146,16 @@
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.687" />
+        app:layout_constraintVertical_bias="0.738" />
 
     <TextView
         android:id="@+id/textView8"
         android:layout_width="100dp"
         android:layout_height="37dp"
-        android:text="Vacunación"
+        android:text="Tratamiento"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -133,7 +163,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.07" />
 
     <TextView
         android:id="@+id/textView5"

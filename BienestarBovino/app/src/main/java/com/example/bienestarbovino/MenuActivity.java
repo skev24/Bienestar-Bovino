@@ -24,11 +24,11 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menuprincipal);
 
-        btnSincronizar = findViewById(R.id.btnRegresarVacunacion);
+        btnSincronizar = findViewById(R.id.btnRegresarTratamiento);
         btnGanado = findViewById(R.id.imageButtonGanado);
         //btnPesaje = findViewById(R.id.imageButtonPesaje);
         btnChequeo = findViewById(R.id.botonchequeo);
-        btnAddBovino = findViewById(R.id.buttonGuardarVacunacion);
+        btnAddBovino = findViewById(R.id.buttonGuardarTratamiento);
         btnControlReproductivo = findViewById(R.id.imageButtonControlReproductivo);
 
 // pruebas
