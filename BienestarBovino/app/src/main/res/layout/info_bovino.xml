@@ -7,7 +7,7 @@
     tools:context=".InfoBovinoActivity">
 
     <Button
-        android:id="@+id/btnInfoRegresar"
+        android:id="@+id/btnInfoBovinoRegresar"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#146304"

@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import control.Funciones;
@@ -21,7 +20,7 @@ public class InfoBovinoActivity extends AppCompatActivity implements Funciones {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_bovino);
 
-        backToInventory = findViewById(R.id.btnInfoRegresar);
+        backToInventory = findViewById(R.id.btnInfoBovinoRegresar);
         name = findViewById(R.id.textViewInfoBovinoName);
 
         backToInventory.setOnClickListener(new View.OnClickListener() {
