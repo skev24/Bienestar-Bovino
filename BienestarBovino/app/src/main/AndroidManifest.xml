@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".GestacionActivity"
+            android:exported="false" />
+        <activity
             android:name=".ControlReproductivoActivity"
             android:exported="false" />
         <activity

@@ -3,14 +3,17 @@ package com.example.bienestarbovino;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -63,18 +66,30 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
 
         bovinosHash = new HashMap<>();
 
+        btnGuardar.setEnabled(false); // valorar si cambiarlo
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                goBack();
-            }
+            public void onClick(View view) { goBack(); }
         });
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                guardarEstado();
-            }
+            public void onClick(View view) { guardarEstado(); }
+        });
+
+        terneraDestete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openCalendar(view,1); }
+        });
+
+        terneraNovillo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openCalendar(view,2); }
+        });
+
+        terneraAdulta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openCalendar(view,3); }
         });
 
         ternera.setOnClickListener(new View.OnClickListener() {
@@ -186,7 +201,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
                         terneraDestete.setText(fechaDestete);
                         terneraNovillo.setText(fechaNovillo);
                         terneraAdulta.setText(fechaAdulto);
-                        //btnGuardar.setEnabled(false);
+                        btnGuardar.setEnabled(false);
                         break;
                     }
                 }
@@ -207,11 +222,11 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
                         String novillo = terneraNovillo.getText().toString();
                         String adulta = terneraAdulta.getText().toString();
 
-                        db.collection("estadoReproductivo").document(qs.getId()).update("destete", "prueba2");
+                        db.collection("estadoReproductivo").document(qs.getId()).update("destete", destete);
                         db.collection("estadoReproductivo").document(qs.getId()).update("novilla", novillo);
                         db.collection("estadoReproductivo").document(qs.getId()).update("adulta", adulta);
                         Toast.makeText(EstadoReproductivoActivity.this, "Estado actualizado.", Toast.LENGTH_SHORT).show();
-                        //btnGuardar.setEnabled(false);
+                        btnGuardar.setEnabled(false);
                         break;
                     }
                 }
@@ -239,6 +254,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
     }
 
     private String calcularDestete(String pFecha){
+       // String date = dayOfMonth + "/" + (month + 1) + "/" + year;
         return "prueba";
     }
 
@@ -248,5 +264,25 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
 
     private String calcularAdulta(String pFecha){
         return "prueba";
+    }
+
+    public void openCalendar(View view, int tipoFecha){
+
+        Calendar calendar = Calendar.getInstance();
+        int yearD = calendar.get(Calendar.YEAR);
+        int monthD = calendar.get(Calendar.MONTH);
+        int dayD = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dpd = new DatePickerDialog(EstadoReproductivoActivity.this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                String date = dayOfMonth + "/" + (month + 1) + "/" + year;
+                if(tipoFecha == 1) terneraDestete.setText(date);
+                else if(tipoFecha == 2) terneraNovillo.setText(date);
+                else if(tipoFecha == 3) terneraAdulta.setText(date);
+                btnGuardar.setEnabled(true);
+            }
+        }, yearD, monthD, dayD);
+        dpd.show();
     }
 }
