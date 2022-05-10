@@ -1,12 +1,12 @@
 package model;
 
-public class listaInventario {
+public class lista_Inventario {
 
     private String name;
     private String id;
     private int image;
 
-    public listaInventario(String name, String id, int image) {
+    public lista_Inventario(String name, String id, int image) {
         this.name = name;
         this.id = id;
         this.image = image;

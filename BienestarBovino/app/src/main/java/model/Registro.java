@@ -1,9 +1,9 @@
 package model;
 
-public class Register {
+public class Registro {
     private String editTextUserRegister, editTextEmailRegister, editTextTextPasswordRegister, editTextTextConfirmPasswordRegister;
 
-    public Register(String editTextUserRegister, String editTextEmailRegister, String editTextTextPasswordRegister) {
+    public Registro(String editTextUserRegister, String editTextEmailRegister, String editTextTextPasswordRegister) {
         this.editTextUserRegister = editTextUserRegister;
         this.editTextEmailRegister = editTextEmailRegister;
         this.editTextTextPasswordRegister = editTextTextPasswordRegister;

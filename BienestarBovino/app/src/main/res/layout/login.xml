@@ -46,24 +46,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.928" />
 
-    <EditText
-        android:id="@+id/editTextPasswordLogin"
-        android:layout_width="320dp"
-        android:layout_height="52dp"
-        android:background="@drawable/rectangle_drawable"
-        android:ems="10"
-        android:hint="Ingrese su contraseña"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.658" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -91,12 +73,12 @@
 
     <Button
         android:id="@+id/buttonAccept"
-        android:layout_width="317dp"
-        android:layout_height="68dp"
-        android:background="#146304"
-        android:text="Aceptar"
-        android:textColor="#FFFFFF"
+        android:layout_width="228dp"
+        android:layout_height="54dp"
+        android:background="#656642"
+        android:text="Iniciar Sesión"
         android:textAllCaps="false"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.531"
@@ -120,10 +102,28 @@
         android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.553" />
+        app:layout_constraintVertical_bias="0.469" />
+
+    <EditText
+        android:id="@+id/editTextPasswordLogin"
+        android:layout_width="320dp"
+        android:layout_height="52dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Ingrese su contraseña"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.574" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

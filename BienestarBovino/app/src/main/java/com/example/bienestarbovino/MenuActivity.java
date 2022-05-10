@@ -22,7 +22,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menuprincipal);
+        setContentView(R.layout.menu_principal);
 
         btnSincronizar = findViewById(R.id.btnRegresarTratamiento);
         btnGanado = findViewById(R.id.imageButtonGanado);

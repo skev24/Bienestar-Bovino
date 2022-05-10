@@ -30,27 +30,60 @@
         app:layout_constraintVertical_bias="0.142"
         app:srcCompat="@drawable/inicio_sesion" />
 
+    <Button
+        android:id="@+id/buttonRegisterNew"
+        android:layout_width="251dp"
+        android:layout_height="52dp"
+        android:background="#656642"
+        android:text="Registrar"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.832" />
+
     <EditText
-        android:id="@+id/editTextUserRegister"
-        android:layout_width="250dp"
-        android:layout_height="51dp"
+        android:id="@+id/editTextTextPasswordRegister"
+        android:layout_width="301dp"
+        android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
-        android:hint="Ingrese su usuario"
-        android:inputType="textPersonName"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintVertical_bias="0.543" />
+
+    <EditText
+        android:id="@+id/editTextTextConfirmPasswordRegister"
+        android:layout_width="308dp"
+        android:layout_height="54dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Confirmar contraseña"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.563"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.635" />
 
     <EditText
         android:id="@+id/editTextEmailRegister"
-        android:layout_width="252dp"
+        android:layout_width="304dp"
         android:layout_height="52dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
@@ -64,58 +97,25 @@
         app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.512" />
-
-    <Button
-        android:id="@+id/buttonRegisterNew"
-        android:layout_width="251dp"
-        android:layout_height="52dp"
-        android:background="#146304"
-        android:text="Registrar"
-        android:textColor="#FFFFFF"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.804" />
+        app:layout_constraintVertical_bias="0.449" />
 
     <EditText
-        android:id="@+id/editTextTextConfirmPasswordRegister"
-        android:layout_width="251dp"
-        android:layout_height="51dp"
+        android:id="@+id/editTextUserRegister"
+        android:layout_width="304dp"
+        android:layout_height="56dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
-        android:hint="Confirmar contraseña"
-        android:inputType="textPassword"
+        android:hint="Ingrese su usuario"
+        android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.54"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7" />
-
-    <EditText
-        android:id="@+id/editTextTextPasswordRegister"
-        android:layout_width="251dp"
-        android:layout_height="48dp"
-        android:background="@drawable/rectangle_drawable"
-        android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.606" />
+        app:layout_constraintVertical_bias="0.352" />
 
     <TextView
         android:id="@+id/textView2"

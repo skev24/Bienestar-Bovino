@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +22,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import model.Register;
+import model.Registro;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -38,7 +37,7 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.register);
+        setContentView(R.layout.registro);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -97,7 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         CollectionReference dbCourses = db.collection("usuario");
 
-        Register nuevoUsuario = new Register(userReg, emailReg, passwordReg);
+        Registro nuevoUsuario = new Registro(userReg, emailReg, passwordReg);
 
         dbCourses.add(nuevoUsuario).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
