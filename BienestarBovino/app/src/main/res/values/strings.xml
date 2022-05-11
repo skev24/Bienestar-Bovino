@@ -3,4 +3,11 @@
 
     <string name="invalid_mail">Ingrese un email válido.</string>
     <string name="invalid_password">Ingrese un contraseña con 6 dígitos o más.</string>
+
+    <string name="app_name2">Navigation Drawer</string>
+
+    <!--to toggle the open close button
+        of the navigation drawer-->
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>
