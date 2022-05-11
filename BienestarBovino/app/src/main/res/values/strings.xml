@@ -10,4 +10,18 @@
         of the navigation drawer-->
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+
+    <string name="app_name3">Spinner Example</string>
+
+    <string-array name="raza">
+        <item>HOLSTEIN</item>
+        <item>SALES</item>
+    </string-array>
+
+    <string name="app_name4">Spinner Example</string>
+
+    <string-array name="fem_Mas">
+        <item>Femenino</item>
+        <item>Masculino</item>
+    </string-array>
 </resources>

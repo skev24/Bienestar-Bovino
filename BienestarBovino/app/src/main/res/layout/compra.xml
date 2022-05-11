@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PurchaseActivity"
-    android:background="#E1E0E0">
+    tools:context=".PurchaseActivity">
 
     <ImageView
         android:id="@+id/imageView9"
@@ -80,25 +79,25 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <EditText
+    <TextView
         android:id="@+id/TextViewDatePurchase"
-        android:layout_width="304dp"
+        android:layout_width="214dp"
         android:layout_height="49dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
-        android:hint="Ingrese la fecha"
+        android:hint="Seleccione la fecha"
         android:inputType="date"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textColorHint="@android:color/white"
         android:textSize="20sp"
-        android:textStyle="normal"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.258"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintVertical_bias="0.777" />
 
     <TextView
         android:id="@+id/textView12"
@@ -115,7 +114,7 @@
         app:layout_constraintVertical_bias="0.696" />
 
     <EditText
-        android:id="@+id/editTextPriceCompra"
+        android:id="@+id/editTextPrice"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -133,7 +132,7 @@
         app:layout_constraintVertical_bias="0.629" />
 
     <EditText
-        android:id="@+id/editTextNombreCompra"
+        android:id="@+id/editTextNombre"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:ems="10"
@@ -204,7 +203,7 @@
         app:layout_constraintVertical_bias="0.269" />
 
     <EditText
-        android:id="@+id/editTextIdCompra"
+        android:id="@+id/editTextId"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -220,5 +219,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.33" />
+
+    <Button
+        android:id="@+id/buttonCalendar"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Abrir "
+        android:background="#146304"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.776" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
