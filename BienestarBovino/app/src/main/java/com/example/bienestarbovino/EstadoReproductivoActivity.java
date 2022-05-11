@@ -250,7 +250,6 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
                 Toast.makeText(EstadoReproductivoActivity.this, "Error al guardar estado reproductivo. \n" + e, Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private String calcularDestete(String pFecha){

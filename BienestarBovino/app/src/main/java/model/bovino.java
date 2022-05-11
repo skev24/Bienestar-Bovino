@@ -8,6 +8,7 @@ public class bovino {
     private String fecha;
     private String fincaId;
 
+
     public bovino(String name, String id, String raza, String padre, String madre, String fecha,
                   String pesoNacemiento, String pesoDestete, String peso12Meses, String fincaId) {
         this.name = name;
