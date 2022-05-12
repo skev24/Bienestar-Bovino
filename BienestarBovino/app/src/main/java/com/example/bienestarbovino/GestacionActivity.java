@@ -67,7 +67,6 @@ public class GestacionActivity extends AppCompatActivity implements Funciones {
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //getInfoVaca();
                 goBack();
             }
         });
@@ -77,7 +76,6 @@ public class GestacionActivity extends AppCompatActivity implements Funciones {
             public void onClick(View view) { guardarEstado(); }
         });
         cargarDatos();
-        //prueba();
     }
 
     @Override
@@ -107,6 +105,8 @@ public class GestacionActivity extends AppCompatActivity implements Funciones {
                         break;
                     }
                     else {
+                        db.collection("bovino").document(idVaca).update("estadoGestacion", true);
+                        db.collection("bovino").document(idToro).update("estadoGestacion", true);
                         addDatatoFirebase(idVaca, idToro, tipo, fechaGestacion);
                     }
                 }

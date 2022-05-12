@@ -28,6 +28,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.HashMap;
 
 import control.Funciones;
@@ -110,6 +113,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
     }
 
     private void cambiarColorEstadoActual(View view){
+
         view.setBackgroundColor(Color.argb(128,122,210,104));
     }
 
@@ -160,9 +164,9 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
                 if(documentSnapshot.exists()){
                     if(documentSnapshot.getBoolean("EstadoReproductivo") == false){
                         String fechaNacimiento = documentSnapshot.getString("fecha");
-                        String fechaDestete = calcularDestete(fechaNacimiento);
-                        String fechaNovillo = calcularNovilla(fechaNacimiento);
-                        String fechaAdulto = calcularAdulta(fechaNacimiento);
+                        String fechaDestete = calcularFecha(fechaNacimiento, 1);
+                        String fechaNovillo = calcularFecha(fechaNacimiento, 2);
+                        String fechaAdulto = calcularFecha(fechaNacimiento, 4);
 
                         terneraFecha.setText(fechaNacimiento);
                         terneraDestete.setText(fechaDestete);
@@ -181,6 +185,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
                         getFechasCreadas(id, view);
                     }
                 }
+
             }
         });
     }
@@ -252,17 +257,19 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
         });
     }
 
-    private String calcularDestete(String pFecha){
-       // String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-        return "prueba";
-    }
-
-    private String calcularNovilla(String pFecha){
-        return "prueba";
-    }
-
-    private String calcularAdulta(String pFecha){
-        return "prueba";
+    private String calcularFecha(String pFecha, int anno) {
+        String fechaDestete = "";
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+            Calendar c = Calendar.getInstance();
+            c.setTime(sdf.parse(pFecha));
+            c.add(Calendar.YEAR, anno);
+            fechaDestete = sdf.format(c.getTime());
+            //Toast.makeText(EstadoReproductivoActivity.this, fechaDestete, Toast.LENGTH_SHORT).show();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return fechaDestete;
     }
 
     public void openCalendar(View view, int tipoFecha){
