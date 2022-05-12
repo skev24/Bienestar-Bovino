@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -19,6 +21,8 @@ public class MenuActivity extends AppCompatActivity {
     ImageButton btnGanado, btnPesaje, btnChequeo, btnControlReproductivo;
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
+    private FirebaseAuth mAuth;
+
 
     //pruebas
     //private TextView nombre;
@@ -30,6 +34,7 @@ public class MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_principal);
 
+        mAuth = FirebaseAuth.getInstance();
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
         drawerLayout = findViewById(R.id.my_drawer_layout);
@@ -41,9 +46,9 @@ public class MenuActivity extends AppCompatActivity {
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //btnSincronizar = findViewById(R.id.btnRegresarVacunacion);
+        btnSincronizar = findViewById(R.id.btnSincronizar);
         btnGanado = findViewById(R.id.imageButtonGanado);
-        //btnPesaje = findViewById(R.id.imageButtonPesaje);
+        btnPesaje = findViewById(R.id.imageButtonPesaje);
         btnChequeo = findViewById(R.id.botonchequeo);
         btnAddBovino = findViewById(R.id.buttonGuardarVacunacion);
         btnControlReproductivo = findViewById(R.id.imageButtonControlReproductivo);
@@ -65,12 +70,12 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
-        /*btnPesaje.setOnClickListener(new View.OnClickListener() {
+        btnPesaje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openPesaje();
             }
-        });*/
+        });
 
         btnChequeo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +95,13 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 openControlReproductivo();
+            }
+        });
+
+        btnSincronizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cerrarSesion();
             }
         });
     }
@@ -129,10 +141,10 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    /*public void openPesaje(){
-        //Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
-        //startActivity(intent);
-    }*/
+    public void openPesaje(){
+        Intent intent = new Intent(MenuActivity.this, WeightProductionActivity.class);
+        startActivity(intent);
+    }
 
     public void openChequeo(){
         Intent intent = new Intent(MenuActivity.this, MenuVetActivity.class);
@@ -146,6 +158,12 @@ public class MenuActivity extends AppCompatActivity {
 
     public void openControlReproductivo(){
         Intent intent = new Intent(MenuActivity.this, ControlReproductivoActivity.class);
+        startActivity(intent);
+    }
+
+    public void cerrarSesion(){
+        mAuth.signOut();
+        Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
         startActivity(intent);
     }
 }

@@ -23,17 +23,19 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import control.Funciones;
 import model.produccionPeso;
 
-public class WeightProductionActivity extends AppCompatActivity {
+public class WeightProductionActivity extends AppCompatActivity implements Funciones {
 
-    private TextView textDate;
+    private EditText textDate;
     private Button buttonPesoRegresarClass;
     private Spinner setBovino;
     private EditText textPesoBovino, textPesoNotas;
     private Button buttonAddPeso;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,17 +44,17 @@ public class WeightProductionActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        textDate = findViewById(R.id.entryFechaTratamiento);
-        buttonPesoRegresarClass = findViewById(R.id.btnRegresarTratamiento);
-        setBovino = findViewById(R.id.spinnerBovinoVacunacion);
-        textPesoBovino = findViewById(R.id.entryDiagnosticoTratamiento);
-        textPesoNotas = findViewById(R.id.editNotasTratamiento);
-        buttonAddPeso = findViewById(R.id.buttonGuardarTratamiento);
+        textDate = findViewById(R.id.editFechaPeso);
+        buttonPesoRegresarClass = findViewById(R.id.buttonPesoRegresar);
+        setBovino = findViewById(R.id.spinnerBovinoPeso);
+        textPesoBovino = findViewById(R.id.editPesoVaca);
+        textPesoNotas = findViewById(R.id.editTextNotasPeso);
+        buttonAddPeso = findViewById(R.id.buttonPesoRegister);
 
         buttonPesoRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPesoRegresarActivity(view);
+                goBack();
             }
         });
         textDate.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +72,8 @@ public class WeightProductionActivity extends AppCompatActivity {
         });
     }
 
-    public void openPesoRegresarActivity(View view){
-        Intent intent = new Intent(WeightProductionActivity.this, MenuVetActivity.class);
+    public void goBack(){
+        Intent intent = new Intent(WeightProductionActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 
@@ -101,7 +103,6 @@ public class WeightProductionActivity extends AppCompatActivity {
         String dieta = "Forrajes";
 
         if (TextUtils.isEmpty(bovino) && TextUtils.isEmpty(peso) && TextUtils.isEmpty(fecha)) {
-
             Toast.makeText(WeightProductionActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
             addDatatoFirebase(bovino, peso, fecha, dieta, notas, view);
@@ -118,7 +119,7 @@ public class WeightProductionActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(WeightProductionActivity.this, "Registro de pesaje agregado.", Toast.LENGTH_SHORT).show();
-                openPesoRegresarActivity(view);
+                goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

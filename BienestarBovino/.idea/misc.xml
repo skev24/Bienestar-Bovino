@@ -8,34 +8,19 @@
         <entry key="..\:/Users/Ghost/AndroidStudioProjects/BienestarBovino/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Ghost/AndroidStudioProjects/BienestarBovino/app/src/main/res/layout/register.xml" value="0.296195652173913" />
         <entry key="..\:/Users/Ghost/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/venta.xml" value="0.31567028985507245" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/activity_production.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/activity_tratamiento.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/addbovino.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/bienvenida.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/compra.xml" value="0.25" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/control_reproductivo.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/finca.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/info_bovino.xml" value="0.25" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/info_estado_reproductivo.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/inventario.xml" value="0.25" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/item_row.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/login.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/menu_chequeo.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/menu_principal.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/produccion.xml" value="0.33" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/produccionPeso.xml" value="0.1" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/produccion_peso.xml" value="0.33" />
+        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/addbovino.xml" value="0.25" />
+        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/compra.xml" value="0.22" />
+        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/inventario.xml" value="0.153125" />
         <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/register.xml" value="0.25" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/registro.xml" value="0.2" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/tratamiento.xml" value="0.22" />
         <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/vacunacion.xml" value="0.25" />
-        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/venta.xml" value="0.2" />
+        <entry key="..\:/Users/Nakisha/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/layout/venta.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/rectangle_drawable.xml" value="0.229" />
         <entry key="app/src/main/res/layout/activity_finca.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.17239583333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16980692545572923" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.125" />
         <entry key="app/src/main/res/layout/addbovino.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/bienvenida.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/chequeo_menu.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/compra.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/control_reproductivo.xml" value="0.24583333333333332" />
@@ -48,8 +33,12 @@
         <entry key="app/src/main/res/layout/inventario_vacas.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/item_row.xml" value="0.246875" />
         <entry key="app/src/main/res/layout/login.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/menu_principal.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/menuprincipal.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/parto.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/produccion_peso.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/register.xml" value="0.29292929292929293" />
+        <entry key="app/src/main/res/layout/tratamiento.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/vacunacion.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/venta.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/welcome.xml" value="0.2035536171733469" />
