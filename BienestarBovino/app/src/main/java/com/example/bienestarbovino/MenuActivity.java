@@ -28,7 +28,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menuprincipal);
+        setContentView(R.layout.menu_principal);
 
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
@@ -41,7 +41,7 @@ public class MenuActivity extends AppCompatActivity {
         // to make the Navigation drawer icon always appear on the action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        btnSincronizar = findViewById(R.id.btnRegresarVacunacion);
+        //btnSincronizar = findViewById(R.id.btnRegresarVacunacion);
         btnGanado = findViewById(R.id.imageButtonGanado);
         //btnPesaje = findViewById(R.id.imageButtonPesaje);
         btnChequeo = findViewById(R.id.botonchequeo);

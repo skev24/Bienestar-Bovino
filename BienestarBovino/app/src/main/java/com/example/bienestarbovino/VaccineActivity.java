@@ -23,9 +23,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import control.Funciones;
 import model.vacuna;
 
-public class VaccineActivity extends AppCompatActivity {
+public class VaccineActivity extends AppCompatActivity implements Funciones {
 
     private TextView textDate;
     private Button buttonVacunaRegresarClass;
@@ -51,10 +52,11 @@ public class VaccineActivity extends AppCompatActivity {
         textBovinoEnfermedad = findViewById(R.id.entryDiagnosticoTratamiento);
         textBovinoNotas = findViewById(R.id.editNotasTratamiento);
         buttonAddVacuna = findViewById(R.id.buttonGuardarTratamiento);
+
         buttonVacunaRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openVacunaRegresarActivity(view);
+                goBack();
             }
         });
         textDate.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +74,7 @@ public class VaccineActivity extends AppCompatActivity {
         });
     }
 
-    public void openVacunaRegresarActivity(View view){
+    public void goBack(){
         Intent intent = new Intent(VaccineActivity.this, MenuVetActivity.class);
         startActivity(intent);
     }
@@ -122,7 +124,7 @@ public class VaccineActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(VaccineActivity.this, "Registro de vacuna agregada.", Toast.LENGTH_SHORT).show();
-                openVacunaRegresarActivity(view);
+                goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

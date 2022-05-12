@@ -48,6 +48,7 @@ public class WeightProductionActivity extends AppCompatActivity {
         textPesoBovino = findViewById(R.id.entryDiagnosticoTratamiento);
         textPesoNotas = findViewById(R.id.editNotasTratamiento);
         buttonAddPeso = findViewById(R.id.buttonGuardarTratamiento);
+
         buttonPesoRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
