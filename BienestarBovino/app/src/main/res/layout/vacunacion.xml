@@ -111,7 +111,7 @@
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
         android:hint="Notas"
-        android:inputType="textPersonName"
+        android:inputType="text"
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"

@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MenuTest">
         <activity
+            android:name=".PartoActivity"
+            android:exported="false" />
+        <activity
             android:name=".GestacionActivity"
             android:exported="false" />
         <activity

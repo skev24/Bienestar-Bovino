@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -79,7 +78,7 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
         textDate = findViewById(R.id.TextViewDatePurchase);
 
         buttonCompraRegresar = findViewById(R.id.btnCompraRegresar);
-        buttonGuardarCompra = findViewById(R.id.buttonRegister2);
+        buttonGuardarCompra = findViewById(R.id.buttonCompraRegister);
 
         textDate.setOnClickListener(new View.OnClickListener() {
             @Override

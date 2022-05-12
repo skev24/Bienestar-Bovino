@@ -66,7 +66,7 @@ public class ControlReproductivoActivity extends AppCompatActivity implements Fu
     }
 
     public void openSetParto(){
-        Intent intent = new Intent(ControlReproductivoActivity.this, GestacionActivity.class);
+        Intent intent = new Intent(ControlReproductivoActivity.this, PartoActivity.class);
         startActivity(intent);
     }
 

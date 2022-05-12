@@ -181,7 +181,6 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
                         btnGuardar.setEnabled(false);
                     }
                     else{
-                        Toast.makeText(EstadoReproductivoActivity.this, "Ingreso aca.", Toast.LENGTH_SHORT).show();
                         getFechasCreadas(id, view);
                     }
                 }

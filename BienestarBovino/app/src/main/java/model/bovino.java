@@ -4,27 +4,44 @@ public class bovino {
     private String name, id;
     private String raza;
     private String padre, madre;
-    private String pesoNacemiento, pesoDestete, peso12Meses;
+    private String pesoNacimiento, pesoDestete, peso12Meses;
     private String fecha;
     private String fincaId;
     private Boolean EstadoReproductivo, EstadoGestacion, sexo;
 
 
     public bovino(String name, String id, String raza, String padre, String madre, String fecha,
-                  String pesoNacemiento, String pesoDestete, String peso12Meses, String fincaId) {
+                  String pesoNacimiento, String pesoDestete, String peso12Meses, String fincaId) {
         this.name = name;
         this.id = id;
         this.raza = raza;
         this.padre = padre;
         this.madre = madre;
         this.fecha = fecha;
-        this.pesoNacemiento = pesoNacemiento;
+        this.pesoNacimiento = pesoNacimiento;
         this.pesoDestete = pesoDestete;
         this.peso12Meses = peso12Meses;
         this.fincaId = fincaId;
         this.EstadoGestacion = false;
         this.EstadoReproductivo = false;
         this.sexo = false;
+    }
+
+    //Sobre carga de constructor para registrar parto
+    public bovino(String name, String id, String raza, String padre, String madre, String fecha, String pesoNacimiento, String fincaId, Boolean sexo){
+        this.name = name;
+        this.id = id;
+        this.raza = raza;
+        this.padre = padre;
+        this.madre = madre;
+        this.fecha = fecha;
+        this.pesoNacimiento = pesoNacimiento;
+        this.pesoDestete = "0";
+        this.peso12Meses = "0";
+        this.fincaId = fincaId;
+        this.EstadoGestacion = false;
+        this.EstadoReproductivo = false;
+        this.sexo = sexo;
     }
 
     public String getFincaId() {
@@ -83,12 +100,12 @@ public class bovino {
         this.madre = madre;
     }
 
-    public String getPesoNacemiento() {
-        return pesoNacemiento;
+    public String getPesoNacimiento() {
+        return pesoNacimiento;
     }
 
-    public void setPesoNacemiento(String pesoNacemiento) {
-        this.pesoNacemiento = pesoNacemiento;
+    public void setPesoNacimiento(String pesoNacimiento) {
+        this.pesoNacimiento = pesoNacimiento;
     }
 
     public String getPesoDestete() {

@@ -105,8 +105,8 @@ public class GestacionActivity extends AppCompatActivity implements Funciones {
                         break;
                     }
                     else {
-                        db.collection("bovino").document(idVaca).update("estadoGestacion", true);
-                        db.collection("bovino").document(idToro).update("estadoGestacion", true);
+                        db.collection("bovino").document(idVaca).update("EstadoGestacion", true);
+                        db.collection("bovino").document(idToro).update("EstadoGestacion", true); // se puede quitar porque seguro no se usa
                         addDatatoFirebase(idVaca, idToro, tipo, fechaGestacion);
                     }
                 }
