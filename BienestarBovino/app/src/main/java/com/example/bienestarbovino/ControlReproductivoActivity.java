@@ -13,7 +13,7 @@ import control.Funciones;
 public class ControlReproductivoActivity extends AppCompatActivity implements Funciones {
 
     Button btnRegresar;
-    ImageButton btnEstadoReproductivo, btnGestacion;
+    ImageButton btnEstadoReproductivo, btnGestacion, btnPartos;
 
 
     @Override
@@ -24,6 +24,7 @@ public class ControlReproductivoActivity extends AppCompatActivity implements Fu
         btnRegresar = findViewById(R.id.btnControlReproductivoRegresar);
         btnEstadoReproductivo = findViewById(R.id.imageButtonEstadoReproductivo);
         btnGestacion = findViewById(R.id.imageButtonGestacion);
+        btnPartos = findViewById(R.id.imageButtonPartos);
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +43,11 @@ public class ControlReproductivoActivity extends AppCompatActivity implements Fu
             public void onClick(View view) { openSetGestacion(); }
         });
 
+        btnPartos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openSetParto(); }
+        });
+
     }
 
     public void goBack(){
@@ -55,6 +61,11 @@ public class ControlReproductivoActivity extends AppCompatActivity implements Fu
     }
 
     public void openSetGestacion(){
+        Intent intent = new Intent(ControlReproductivoActivity.this, GestacionActivity.class);
+        startActivity(intent);
+    }
+
+    public void openSetParto(){
         Intent intent = new Intent(ControlReproductivoActivity.this, GestacionActivity.class);
         startActivity(intent);
     }

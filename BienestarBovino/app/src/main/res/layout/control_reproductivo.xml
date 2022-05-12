@@ -162,7 +162,7 @@
         app:layout_constraintVertical_bias="0.492" />
 
     <ImageButton
-        android:id="@+id/buttonPartos"
+        android:id="@+id/imageButtonPartos"
         android:layout_width="157dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
