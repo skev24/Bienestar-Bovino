@@ -9,6 +9,8 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -26,15 +28,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import control.Funciones;
 import model.vacuna;
 
-public class VaccineActivity extends AppCompatActivity implements Funciones {
+public class VaccineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
     private TextView textDate;
     private Button buttonVacunaRegresarClass;
     private Spinner setBovino;
     private EditText textBovinoEnfermedad, textBovinoNotas;
     private Button buttonAddVacuna;
+
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
+    private String bovinoSpin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +76,33 @@ public class VaccineActivity extends AppCompatActivity implements Funciones {
                 addVacunacion(view);
             }
         });
+
+        cargarSpinners();
     }
 
     public void goBack(){
         Intent intent = new Intent(VaccineActivity.this, MenuVetActivity.class);
         startActivity(intent);
+    }
+
+    public void cargarSpinners(){
+        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
+                R.array.Bovinos, android.R.layout.simple_spinner_item);
+        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        setBovino.setAdapter(adapterVacas);
+        setBovino.setOnItemSelectedListener(this);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        bovinoSpin = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
 

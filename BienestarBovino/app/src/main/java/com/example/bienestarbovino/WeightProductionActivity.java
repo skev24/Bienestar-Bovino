@@ -9,6 +9,8 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -26,15 +28,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import control.Funciones;
 import model.produccionPeso;
 
-public class WeightProductionActivity extends AppCompatActivity implements Funciones {
+public class WeightProductionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
     private EditText textDate;
     private Button buttonPesoRegresarClass;
-    private Spinner setBovino;
+    private Spinner vacasSpinner, dietaSpinner;
     private EditText textPesoBovino, textPesoNotas;
     private Button buttonAddPeso;
+
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
+    private String vacaSpin = "";
+    private String dietaSpin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +52,8 @@ public class WeightProductionActivity extends AppCompatActivity implements Funci
 
         textDate = findViewById(R.id.editFechaPeso);
         buttonPesoRegresarClass = findViewById(R.id.buttonPesoRegresar);
-        setBovino = findViewById(R.id.spinnerBovinoPeso);
+        vacasSpinner = findViewById(R.id.spinnerBovinoPeso);
+        dietaSpinner = findViewById(R.id.spinnerDieta);
         textPesoBovino = findViewById(R.id.editPesoVaca);
         textPesoNotas = findViewById(R.id.editTextNotasPeso);
         buttonAddPeso = findViewById(R.id.buttonPesoRegister);
@@ -70,6 +77,34 @@ public class WeightProductionActivity extends AppCompatActivity implements Funci
                 addPeso(view);
             }
         });
+
+        cargarSpinners();
+    }
+
+    public void cargarSpinners(){
+        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
+                R.array.Bovinos, android.R.layout.simple_spinner_item);
+        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vacasSpinner.setAdapter(adapterVacas);
+        vacasSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapterDieta = ArrayAdapter.createFromResource(this,
+                R.array.Dieta, android.R.layout.simple_spinner_item);
+        adapterDieta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dietaSpinner.setAdapter(adapterDieta);
+        dietaSpinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        vacaSpin = parent.getItemAtPosition(position).toString();
+        dietaSpin = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     public void goBack(){

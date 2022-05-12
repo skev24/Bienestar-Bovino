@@ -9,6 +9,8 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -25,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import control.Funciones;
 import model.tratamiento;
 
-public class TreatmentActivity extends AppCompatActivity implements Funciones {
+public class TreatmentActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
     private EditText textDate;
     private Button buttonTratamientoRegresarClass;
@@ -34,6 +36,8 @@ public class TreatmentActivity extends AppCompatActivity implements Funciones {
     private Button buttonAddTratamiento;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
+    private String bovinoSpin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,28 @@ public class TreatmentActivity extends AppCompatActivity implements Funciones {
                 addTratamiento(view);
             }
         });
+
+        cargarSpinners();
+    }
+
+    public void cargarSpinners(){
+        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
+                R.array.Bovinos, android.R.layout.simple_spinner_item);
+        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        setBovino.setAdapter(adapterVacas);
+        setBovino.setOnItemSelectedListener(this);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        bovinoSpin = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     public void goBack(){

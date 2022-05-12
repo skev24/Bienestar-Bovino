@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,18 +31,22 @@ import control.Funciones;
 import model.estadoGestacion;
 import model.estadoReproductivo;
 
-public class GestacionActivity extends AppCompatActivity implements Funciones {
+public class GestacionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
     private Button btnRegresar, btnGuardar;
     private EditText fecha;
     private TextView idGestacion, nameGestacion, razaGestacion;
     private HashMap<String, String> bovinosVacasHash, bovinosTorosHash;
+    private Spinner vacasSpinner, torosSpinner, tipoGestacionSpinner;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
     private String vacaActual = "test1";
     private String toroActual = "lalo";
+    private String vacaSpin = "";
+    private String toroSpin = "";
+    private String tipoSpin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +55,12 @@ public class GestacionActivity extends AppCompatActivity implements Funciones {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+        vacasSpinner = findViewById(R.id.spinnerGestacionVaca);
+        torosSpinner = findViewById(R.id.spinnerGestacionToro);
+        tipoGestacionSpinner = findViewById(R.id.spinnerGestacionTipo);
+
+        cargarSpinners();
 
         btnRegresar = findViewById(R.id.btnRegresarGestacion);
         btnGuardar = findViewById(R.id.buttonGuardarGestacion);
@@ -76,6 +89,39 @@ public class GestacionActivity extends AppCompatActivity implements Funciones {
             public void onClick(View view) { guardarEstado(); }
         });
         cargarDatos();
+    }
+
+    public void cargarSpinners(){
+        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
+                R.array.Vacas, android.R.layout.simple_spinner_item);
+        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vacasSpinner.setAdapter(adapterVacas);
+        vacasSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapterToros = ArrayAdapter.createFromResource(this,
+        R.array.Toros, android.R.layout.simple_spinner_item);
+        adapterToros.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        torosSpinner.setAdapter(adapterToros);
+        torosSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapterTipo = ArrayAdapter.createFromResource(this,
+                R.array.Tipo, android.R.layout.simple_spinner_item);
+        adapterTipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tipoGestacionSpinner.setAdapter(adapterTipo);
+        tipoGestacionSpinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        vacaSpin = parent.getItemAtPosition(position).toString();
+        toroSpin = parent.getItemAtPosition(position).toString();
+        tipoSpin = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     @Override

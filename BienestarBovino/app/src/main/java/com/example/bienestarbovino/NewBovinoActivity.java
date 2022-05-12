@@ -9,6 +9,8 @@ import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -29,7 +31,7 @@ import control.Funciones;
 import model.bovino;
 import model.finca;
 
-public class NewBovinoActivity extends AppCompatActivity implements Funciones {
+public class NewBovinoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
     private EditText textNameBovino, textIdBovino, textAlNacer, textAlDestete, text12Meses;
     private TextView textDate;
@@ -38,6 +40,10 @@ public class NewBovinoActivity extends AppCompatActivity implements Funciones {
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
+    private String razaSpin = "";
+    private String vacaSpin = "";
+    private String toroSpin = "";
 
 
     @Override
@@ -81,7 +87,43 @@ public class NewBovinoActivity extends AppCompatActivity implements Funciones {
                 goBack();
             }
         });
+
+        cargarSpinners();
     }
+
+    public void cargarSpinners(){
+        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
+                R.array.Vacas, android.R.layout.simple_spinner_item);
+        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selMadre.setAdapter(adapterVacas);
+        selMadre.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapterToros = ArrayAdapter.createFromResource(this,
+                R.array.Toros, android.R.layout.simple_spinner_item);
+        adapterToros.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selPadre.setAdapter(adapterToros);
+        selPadre.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapterRaza = ArrayAdapter.createFromResource(this,
+                R.array.raza, android.R.layout.simple_spinner_item);
+        adapterRaza.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selRaza.setAdapter(adapterRaza);
+        selRaza.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        vacaSpin = parent.getItemAtPosition(position).toString();
+        toroSpin = parent.getItemAtPosition(position).toString();
+        razaSpin = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(), vacaSpin, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
 
     public void goBack(){
         Intent intent = new Intent(NewBovinoActivity.this, MenuActivity.class);

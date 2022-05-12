@@ -50,6 +50,7 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
 
     //private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,21 +58,18 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
         setContentView(R.layout.compra);
 
         //spiner
-        Spinner spinner = findViewById(R.id.spinner2);
+        selRaza = findViewById(R.id.spinnerBovinoCompra);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.raza, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        selRaza.setAdapter(adapter);
+        selRaza.setOnItemSelectedListener(this);
         //spiner end
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-
-
         //datos de interfaz
-        selRaza = findViewById(R.id.spinner2);
         textNameBovino = findViewById(R.id.editTextId);
         textCosto =findViewById(R.id.editTextPrice);
         textIdBovino = findViewById(R.id.editTextNombre);

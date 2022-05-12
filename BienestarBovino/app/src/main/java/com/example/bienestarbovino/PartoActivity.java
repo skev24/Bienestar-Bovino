@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,11 +32,12 @@ import model.bovino;
 import model.estadoGestacion;
 import model.parto;
 
-public class PartoActivity extends AppCompatActivity implements Funciones {
+public class PartoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
     private Button btnRegresar, btnGuardar;
     private EditText fecha, nombreParto, idParto, pesoParto;
     private TextView idVacaParto, nameVacaParto, razaVacaParto;
+    private Spinner vacasSpinner, sexoSpinner;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -42,6 +46,8 @@ public class PartoActivity extends AppCompatActivity implements Funciones {
 
     private String vacaActual = "test1";
     private String idFincaGlobal = "";
+    private String vacaSpin = "";
+    private String sexoSpin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +57,9 @@ public class PartoActivity extends AppCompatActivity implements Funciones {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+        vacasSpinner = findViewById(R.id.spinnerVacaParto);
+        sexoSpinner = findViewById(R.id.spinnerSexoParto);
 
         btnRegresar = findViewById(R.id.buttonPartoRegresar);
         btnGuardar = findViewById(R.id.buttonPartoRegister);
@@ -80,7 +89,35 @@ public class PartoActivity extends AppCompatActivity implements Funciones {
                 guardarEstado();
             }
         });
+        cargarSpinners();
         cargarDatos();
+    }
+
+    public void cargarSpinners(){
+        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
+                R.array.Vacas, android.R.layout.simple_spinner_item);
+        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vacasSpinner.setAdapter(adapterVacas);
+        vacasSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapterGenero = ArrayAdapter.createFromResource(this,
+                R.array.genero, android.R.layout.simple_spinner_item);
+        adapterGenero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sexoSpinner.setAdapter(adapterGenero);
+        sexoSpinner.setOnItemSelectedListener(this);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        vacaSpin = parent.getItemAtPosition(position).toString();
+        sexoSpin = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     @Override

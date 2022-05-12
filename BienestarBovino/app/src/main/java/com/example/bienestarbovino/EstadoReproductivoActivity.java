@@ -6,23 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TextClock;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,23 +28,24 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.HashMap;
 
 import control.Funciones;
-import model.bovino;
 import model.estadoReproductivo;
 
-public class EstadoReproductivoActivity extends AppCompatActivity implements Funciones {
+public class EstadoReproductivoActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
     private Button btnRegresar, btnGuardar;
     private TextView ternera, destete, novilla, adulta;
     private EditText terneraFecha, terneraDestete, terneraNovillo, terneraAdulta;
     private HashMap<String, String> bovinosHash;
+    private Spinner vacasSpinner;
+
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
     private String bovinoActual = "test1";
+    private String vacaSpin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +54,10 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+
+        vacasSpinner = findViewById(R.id.spinnerEstadoReproductivo);
+
+        cargarSpinners();
 
         btnRegresar = findViewById(R.id.btnRegresarEstadoRep);
         btnGuardar = findViewById(R.id.buttonEstadoRepGuardar);
@@ -104,6 +107,25 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Fun
         });
 
         cargarDatos();
+    }
+
+    public void cargarSpinners(){
+        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
+                R.array.Bovinos, android.R.layout.simple_spinner_item);
+        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vacasSpinner.setAdapter(adapterVacas);
+        vacasSpinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        vacaSpin = parent.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
     @Override

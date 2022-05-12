@@ -18,10 +18,35 @@
         <item>SALES</item>
     </string-array>
 
+    <string-array name="genero">
+        <item>MACHO</item>
+        <item>HEMBRA</item>
+    </string-array>
+
     <string name="app_name4">Spinner Example</string>
 
-    <string-array name="fem_Mas">
-        <item>Femenino</item>
-        <item>Masculino</item>
+    <string-array name="Vacas">
+        <item>test1</item>
+        <item>vaquita</item>
+    </string-array>
+
+    <string-array name="Toros">
+        <item>papito</item>
+        <item>lalo</item>
+    </string-array>
+
+    <string-array name="Bovinos">
+        <item>papito</item>
+        <item>lalo</item>
+        <item>test1</item>
+        <item>vaquita</item>
+    </string-array>
+
+    <string-array name="Tipo">
+        <item>monta</item>
+    </string-array>
+
+    <string-array name="Dieta">
+        <item>normal</item>
     </string-array>
 </resources>
