@@ -12,7 +12,7 @@ import control.Funciones;
 
 public class MenuVetActivity extends AppCompatActivity implements Funciones {
 
-    private ImageButton buttonVacunaClass;
+    private ImageButton buttonVacunaClass, buttonTratamientoClass;
     private Button btnRegresar;
 
     @Override
@@ -21,6 +21,7 @@ public class MenuVetActivity extends AppCompatActivity implements Funciones {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_chequeo);
 
+        buttonTratamientoClass = findViewById(R.id.btnTratamiento);
         buttonVacunaClass = findViewById(R.id.btnVacuna);
         btnRegresar = findViewById(R.id.buttonBackVet);
 
@@ -28,6 +29,13 @@ public class MenuVetActivity extends AppCompatActivity implements Funciones {
             @Override
             public void onClick(View view) {
                 openVaccineActivity();
+            }
+        });
+
+        buttonTratamientoClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openTreatmentActivity();
             }
         });
 
@@ -46,6 +54,11 @@ public class MenuVetActivity extends AppCompatActivity implements Funciones {
 
     public void goBack(){
         Intent intent = new Intent(MenuVetActivity.this, MenuActivity.class);
+        startActivity(intent);
+    }
+
+    public void openTreatmentActivity(){
+        Intent intent = new Intent(MenuVetActivity.this, TreatmentActivity.class);
         startActivity(intent);
     }
 }

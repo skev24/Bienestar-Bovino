@@ -17,7 +17,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.313"
+        app:layout_constraintVertical_bias="0.301"
+        app:srcCompat="@drawable/image_1" />
+
+    <ImageButton
+        android:id="@+id/btnTratamiento"
+        android:layout_width="157dp"
+        android:layout_height="105dp"
+        android:background="@drawable/rectangle_drawable"
+        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/image_1.png"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.618"
         app:srcCompat="@drawable/image_1" />
 
     <Button
@@ -51,6 +64,32 @@
 
     <TextView
         android:id="@+id/textView17"
+        android:layout_width="97dp"
+        android:layout_height="47dp"
+        android:text="Vacunación"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
+
+    <TextView
+        android:id="@+id/textView41"
+        android:layout_width="97dp"
+        android:layout_height="47dp"
+        android:text="Tratamiento"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.733" />
+
+    <TextView
+        android:id="@+id/textView40"
         android:layout_width="80dp"
         android:layout_height="40dp"
         android:text="Chequeo "
