@@ -79,10 +79,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
+    <EditText
         android:id="@+id/TextViewDatePurchase"
-        android:layout_width="214dp"
-        android:layout_height="49dp"
+        android:layout_width="304dp"
+        android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
         android:ems="10"
         android:hint="Seleccione la fecha"
@@ -94,10 +94,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777" />
+        app:layout_constraintVertical_bias="0.776" />
 
     <TextView
         android:id="@+id/textView12"
@@ -219,22 +219,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.33" />
-
-    <Button
-        android:id="@+id/buttonCalendar"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Abrir "
-        android:background="#146304"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.879"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.776" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

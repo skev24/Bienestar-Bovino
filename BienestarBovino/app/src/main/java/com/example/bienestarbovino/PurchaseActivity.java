@@ -31,15 +31,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import control.Funciones;
 import model.bovino;
 import model.compra;
 
-public class PurchaseActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class PurchaseActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
-    private TextView textDate;
-    private EditText textNameBovino, textIdBovino, textCosto;
+    private EditText textNameBovino, textIdBovino, textCosto, textDate;
     private Spinner selRaza;
-    private Button buttonOpenCalendar;
     private Button buttonCompraRegresar;
     private Button buttonGuardarCompra;
     String idNEW = new String();
@@ -79,11 +78,10 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
         textIdBovino = findViewById(R.id.editTextNombre);
         textDate = findViewById(R.id.TextViewDatePurchase);
 
-        buttonOpenCalendar = findViewById(R.id.buttonCalendar);
         buttonCompraRegresar = findViewById(R.id.btnCompraRegresar);
         buttonGuardarCompra = findViewById(R.id.buttonRegister2);
 
-        buttonOpenCalendar.setOnClickListener(new View.OnClickListener() {
+        textDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openCalendar(view);
@@ -93,7 +91,7 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
         buttonCompraRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openVentaRegresarActivity();
+                goBack();
             }
         });
 
@@ -127,7 +125,7 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         raz = parent.getItemAtPosition(position).toString();
-        Toast.makeText(parent.getContext(), raz, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(parent.getContext(), raz, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -135,7 +133,7 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
 
     }
 
-    public void openVentaRegresarActivity(){
+    public void goBack(){
         Intent intent = new Intent(PurchaseActivity.this, InventoryActivity.class);
         startActivity(intent);
     }
@@ -212,7 +210,7 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(PurchaseActivity.this, "Bovino agregado.", Toast.LENGTH_SHORT).show();
-                openVentaRegresarActivity();
+                goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
