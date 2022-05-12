@@ -59,7 +59,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
-            android:id="@+id/buttonGuardarVacunacion"
+            android:id="@+id/buttonAgregarBovino"
             android:layout_width="414dp"
             android:layout_height="54dp"
             android:background="#146304"

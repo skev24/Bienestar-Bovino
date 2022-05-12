@@ -6,37 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".TreatmentActivity">
 
-    <ImageView
-        android:id="@+id/imageView16"
-        android:layout_width="72dp"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.007"
-        app:srcCompat="@drawable/_2459_1" />
-
-    <EditText
-        android:id="@+id/entryFechaTratamiento"
-        android:layout_width="304dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rectangle_drawable"
-        android:ems="10"
-        android:hint="Fecha de tratamiento"
-        android:inputType="date"
-        android:minHeight="48dp"
-        android:textAlignment="center"
+    <Button
+        android:id="@+id/btnRegresarTratamiento"
+        android:layout_width="417dp"
+        android:layout_height="49dp"
+        android:background="#656642"
+        android:text="Regresar"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textColorHint="@android:color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.399" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonGuardarTratamiento"
@@ -55,25 +40,64 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.914" />
 
-    <Button
-        android:id="@+id/btnRegresarTratamiento"
-        android:layout_width="417dp"
-        android:layout_height="49dp"
-        android:background="#656642"
-        android:text="Regresar"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
+    <EditText
+        android:id="@+id/editNotasTratamiento"
+        android:layout_width="304dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Notas"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.75" />
+
+    <EditText
+        android:id="@+id/entryDiagnosticoTratamiento"
+        android:layout_width="304dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Diagnóstico"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.512" />
+
+    <EditText
+        android:id="@+id/entryFechaTratamiento"
+        android:layout_width="304dp"
+        android:layout_height="50dp"
+        android:background="@drawable/rectangle_drawable"
+        android:ems="10"
+        android:hint="Ingrese la fecha"
+        android:inputType="date"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textColorHint="@android:color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.399" />
 
     <Spinner
-        android:id="@+id/spinnerBovinoVacunacion"
+        android:id="@+id/spinnerBovinoTratamiento"
         android:layout_width="308dp"
         android:layout_height="53dp"
         android:contentDescription="@string/app_name"
@@ -82,7 +106,19 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.215" />
+        app:layout_constraintVertical_bias="0.24" />
+
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="72dp"
+        android:layout_height="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007"
+        app:srcCompat="@drawable/_2459_1" />
 
     <TextView
         android:id="@+id/textView16"
@@ -96,24 +132,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.158" />
-
-    <EditText
-        android:id="@+id/entryDiagnosticoTratamiento"
-        android:layout_width="304dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rectangle_drawable"
-        android:ems="10"
-        android:hint="Diagnostico"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.515" />
 
     <EditText
         android:id="@+id/entryDiasTratamiento"
@@ -132,24 +150,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.631" />
-
-    <EditText
-        android:id="@+id/editNotasTratamiento"
-        android:layout_width="304dp"
-        android:layout_height="50dp"
-        android:background="@drawable/rectangle_drawable"
-        android:ems="10"
-        android:hint="Notas"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.476"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.738" />
 
     <TextView
         android:id="@+id/textView8"

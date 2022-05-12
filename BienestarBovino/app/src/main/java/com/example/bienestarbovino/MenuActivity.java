@@ -50,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
         btnGanado = findViewById(R.id.imageButtonGanado);
         btnPesaje = findViewById(R.id.imageButtonPesaje);
         btnChequeo = findViewById(R.id.botonchequeo);
-        btnAddBovino = findViewById(R.id.buttonGuardarVacunacion);
+        btnAddBovino = findViewById(R.id.buttonAgregarBovino);
         btnControlReproductivo = findViewById(R.id.imageButtonControlReproductivo);
 
 // pruebas

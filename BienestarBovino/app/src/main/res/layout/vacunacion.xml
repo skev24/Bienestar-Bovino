@@ -8,7 +8,7 @@
     android:background="#E1E0E0">
 
     <EditText
-        android:id="@+id/entryFechaTratamiento"
+        android:id="@+id/entryFechaVacunacion"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="0.399" />
 
     <Button
-        android:id="@+id/buttonGuardarTratamiento"
+        android:id="@+id/buttonGuardarVacunacion"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:background="#656642"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.914" />
 
     <Button
-        android:id="@+id/btnRegresarTratamiento"
+        android:id="@+id/btnRegresarVacunacion"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#656642"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.158" />
 
     <EditText
-        android:id="@+id/entryDiagnosticoTratamiento"
+        android:id="@+id/entryEnfermedadVacunacion"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.537" />
 
     <EditText
-        android:id="@+id/editNotasTratamiento"
+        android:id="@+id/editNotasVacunacion"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -120,7 +120,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.687" />
+        app:layout_constraintVertical_bias="0.676" />
 
     <TextView
         android:id="@+id/textView8"

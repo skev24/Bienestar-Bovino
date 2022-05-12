@@ -30,7 +30,7 @@ public class VaccineActivity extends AppCompatActivity implements Funciones {
 
     private TextView textDate;
     private Button buttonVacunaRegresarClass;
-    private Spinner setBovino, setDieta;
+    private Spinner setBovino;
     private EditText textBovinoEnfermedad, textBovinoNotas;
     private Button buttonAddVacuna;
     private FirebaseFirestore db;
@@ -45,13 +45,12 @@ public class VaccineActivity extends AppCompatActivity implements Funciones {
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        setDieta = findViewById(R.id.spinnerDieta);
-        textDate = findViewById(R.id.entryFechaTratamiento);
-        buttonVacunaRegresarClass = findViewById(R.id.btnRegresarTratamiento);
+        textDate = findViewById(R.id.entryFechaVacunacion);
+        buttonVacunaRegresarClass = findViewById(R.id.btnRegresarVacunacion);
         setBovino = findViewById(R.id.spinnerBovinoVacunacion);
-        textBovinoEnfermedad = findViewById(R.id.entryDiagnosticoTratamiento);
-        textBovinoNotas = findViewById(R.id.editNotasTratamiento);
-        buttonAddVacuna = findViewById(R.id.buttonGuardarTratamiento);
+        textBovinoEnfermedad = findViewById(R.id.entryEnfermedadVacunacion);
+        textBovinoNotas = findViewById(R.id.editNotasVacunacion);
+        buttonAddVacuna = findViewById(R.id.buttonGuardarVacunacion);
 
         buttonVacunaRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -23,11 +22,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import control.Funciones;
 import model.tratamiento;
 
-public class TreatmentActivity extends AppCompatActivity {
+public class TreatmentActivity extends AppCompatActivity implements Funciones {
 
-    private TextView textDate;
+    private EditText textDate;
     private Button buttonTratamientoRegresarClass;
     private Spinner setBovino;
     private EditText textDiasTratamiento, textBovinoNotas, textBovinoDiagnostico;
@@ -39,22 +39,23 @@ public class TreatmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vacunacion);
+        setContentView(R.layout.tratamiento);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         textDate = findViewById(R.id.entryFechaTratamiento);
         buttonTratamientoRegresarClass = findViewById(R.id.btnRegresarTratamiento);
-        setBovino = findViewById(R.id.spinnerBovinoVacunacion);
+        setBovino = findViewById(R.id.spinnerBovinoTratamiento);
         textBovinoDiagnostico = findViewById(R.id.entryDiagnosticoTratamiento);
-        textBovinoNotas = findViewById(R.id.editNotasTratamiento);
+        textBovinoNotas = findViewById(R.id.editNotasVacunacion);
         textDiasTratamiento = findViewById(R.id.editNotasTratamiento);
         buttonAddTratamiento = findViewById(R.id.buttonGuardarTratamiento);
+
         buttonTratamientoRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openTratamientoRegresarActivity(view);
+                goBack();
             }
         });
         textDate.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +73,7 @@ public class TreatmentActivity extends AppCompatActivity {
         });
     }
 
-    public void openTratamientoRegresarActivity(View view){
+    public void goBack(){
         Intent intent = new Intent(TreatmentActivity.this, MenuVetActivity.class);
         startActivity(intent);
     }
@@ -123,7 +124,7 @@ public class TreatmentActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(TreatmentActivity.this, "Registro de vacuna agregada.", Toast.LENGTH_SHORT).show();
-                openTratamientoRegresarActivity(view);
+            goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
