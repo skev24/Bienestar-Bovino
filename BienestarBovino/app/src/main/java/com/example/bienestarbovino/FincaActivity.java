@@ -19,7 +19,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import model.Register;
 import model.finca;
 
 public class FincaActivity extends AppCompatActivity {

@@ -8,7 +8,7 @@
     android:background="#E1E0E0">
 
     <EditText
-        android:id="@+id/textViewDateVacunacion"
+        android:id="@+id/entryFechaTratamiento"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -28,10 +28,10 @@
         app:layout_constraintVertical_bias="0.399" />
 
     <Button
-        android:id="@+id/buttonGuardarVacunacion"
+        android:id="@+id/buttonGuardarTratamiento"
         android:layout_width="414dp"
         android:layout_height="54dp"
-        android:background="#146304"
+        android:background="#656642"
         android:text="Guardar"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
@@ -45,15 +45,15 @@
         app:layout_constraintVertical_bias="0.914" />
 
     <Button
-        android:id="@+id/btnRegresarVacunacion"
+        android:id="@+id/btnRegresarTratamiento"
         android:layout_width="417dp"
         android:layout_height="49dp"
-        android:background="#146304"
+        android:background="#656642"
         android:text="Regresar"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.158" />
 
     <EditText
-        android:id="@+id/editTextEnfermedad"
+        android:id="@+id/entryDiagnosticoTratamiento"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.537" />
 
     <EditText
-        android:id="@+id/editTextNotasVacunacion"
+        android:id="@+id/editNotasTratamiento"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"

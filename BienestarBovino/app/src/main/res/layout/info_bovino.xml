@@ -11,7 +11,7 @@
         android:id="@+id/btnInfoBovinoRegresar"
         android:layout_width="417dp"
         android:layout_height="49dp"
-        android:background="#146304"
+        android:background="#656642"
         android:text="Regresar"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"

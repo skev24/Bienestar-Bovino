@@ -41,7 +41,7 @@ public class vacuna {
 
     }
 
-        public void setNotas(String precio) {
+    public void setNotas(String precio) {
         this.notas = precio;
     }
 

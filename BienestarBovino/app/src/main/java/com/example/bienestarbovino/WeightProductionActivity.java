@@ -23,38 +23,35 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import model.vacuna;
+import model.produccionPeso;
 
-public class VaccineActivity extends AppCompatActivity {
+public class WeightProductionActivity extends AppCompatActivity {
 
     private TextView textDate;
-    private Button buttonVacunaRegresarClass;
-    private Spinner setBovino, setDieta;
-    private EditText textBovinoEnfermedad, textBovinoNotas;
-    private Button buttonAddVacuna;
+    private Button buttonPesoRegresarClass;
+    private Spinner setBovino;
+    private EditText textPesoBovino, textPesoNotas;
+    private Button buttonAddPeso;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vacunacion);
+        setContentView(R.layout.produccion_peso);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        setDieta = findViewById(R.id.spinnerDieta);
         textDate = findViewById(R.id.entryFechaTratamiento);
-        buttonVacunaRegresarClass = findViewById(R.id.btnRegresarTratamiento);
+        buttonPesoRegresarClass = findViewById(R.id.btnRegresarTratamiento);
         setBovino = findViewById(R.id.spinnerBovinoVacunacion);
-        textBovinoEnfermedad = findViewById(R.id.entryDiagnosticoTratamiento);
-        textBovinoNotas = findViewById(R.id.editNotasTratamiento);
-        buttonAddVacuna = findViewById(R.id.buttonGuardarTratamiento);
-        buttonVacunaRegresarClass.setOnClickListener(new View.OnClickListener() {
+        textPesoBovino = findViewById(R.id.entryDiagnosticoTratamiento);
+        textPesoNotas = findViewById(R.id.editNotasTratamiento);
+        buttonAddPeso = findViewById(R.id.buttonGuardarTratamiento);
+        buttonPesoRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openVacunaRegresarActivity(view);
+                openPesoRegresarActivity(view);
             }
         });
         textDate.setOnClickListener(new View.OnClickListener() {
@@ -64,19 +61,18 @@ public class VaccineActivity extends AppCompatActivity {
             }
         });
 
-        buttonAddVacuna.setOnClickListener(new View.OnClickListener() {
+        buttonAddPeso.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addVacunacion(view);
+                addPeso(view);
             }
         });
     }
 
-    public void openVacunaRegresarActivity(View view){
-        Intent intent = new Intent(VaccineActivity.this, MenuVetActivity.class);
+    public void openPesoRegresarActivity(View view){
+        Intent intent = new Intent(WeightProductionActivity.this, MenuVetActivity.class);
         startActivity(intent);
     }
-
 
 
     public void openCalendar(View view){
@@ -85,7 +81,7 @@ public class VaccineActivity extends AppCompatActivity {
         int monthD = calendar.get(Calendar.MONTH);
         int dayD = calendar.get(Calendar.DAY_OF_MONTH);
 
-        DatePickerDialog dpd = new DatePickerDialog(VaccineActivity.this, new DatePickerDialog.OnDateSetListener() {
+        DatePickerDialog dpd = new DatePickerDialog(WeightProductionActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
@@ -96,43 +92,39 @@ public class VaccineActivity extends AppCompatActivity {
         dpd.show();
     }
 
-    //addVacunacion registra el control medico de las vacunaciones como un objeto y valida lo ingresado.
-    //Recibe la vista de vacunacion.xml
-    public void addVacunacion(View view){
+    public void addPeso(View view){
         String bovino = "toro 1";//selBovino spinner
-        String enfermedad = textBovinoEnfermedad.getText().toString();
-        String notas = textBovinoNotas.getText().toString();
+        String peso = textPesoBovino.getText().toString();
+        String notas = textPesoNotas.getText().toString();
         String fecha = textDate.getText().toString();
+        String dieta = "Forrajes";
 
-        if (TextUtils.isEmpty(bovino) && TextUtils.isEmpty(enfermedad) && TextUtils.isEmpty(fecha)) {
+        if (TextUtils.isEmpty(bovino) && TextUtils.isEmpty(peso) && TextUtils.isEmpty(fecha)) {
 
-            Toast.makeText(VaccineActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(WeightProductionActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
-            addDatatoFirebase(bovino, enfermedad, fecha, notas, view);
+            addDatatoFirebase(bovino, peso, fecha, dieta, notas, view);
         }
     }
 
     //addDataToFirebase agrega a la base de datos el registro de vacuna
-    private void addDatatoFirebase(String p_bovino, String p_enfermedad, String p_fecha, String p_notas, View view) {
+    private void addDatatoFirebase(String p_bovino, String p_peso, String p_fecha, String p_dieta, String p_notas, View view) {
 
-        CollectionReference dbVacuna = db.collection("vacuna");
-        vacuna nuevaVacuna = new vacuna(p_bovino, p_enfermedad, p_fecha, p_notas);
+        CollectionReference dbVacuna = db.collection("produccionPeso");
+        produccionPeso nuevoPesaje = new produccionPeso(p_bovino, p_peso, p_fecha, p_dieta, p_notas);
 
-        dbVacuna.add(nuevaVacuna).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        dbVacuna.add(nuevoPesaje).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(VaccineActivity.this, "Registro de vacuna agregada.", Toast.LENGTH_SHORT).show();
-                openVacunaRegresarActivity(view);
+                Toast.makeText(WeightProductionActivity.this, "Registro de pesaje agregado.", Toast.LENGTH_SHORT).show();
+                openPesoRegresarActivity(view);
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(VaccineActivity.this, "Error al agregar registro de vacuna. \n" + e, Toast.LENGTH_SHORT).show();
+                Toast.makeText(WeightProductionActivity.this, "Error al agregar registro de pesaje. \n" + e, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
 }
-
-
-

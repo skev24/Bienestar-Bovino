@@ -1,24 +1,20 @@
 package com.example.bienestarbovino;
 
 import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.util.List;
 
-import model.listaInventario;
+import model.lista_Inventario;
 
-public class listAdapter  extends ArrayAdapter<listaInventario> {
+public class listAdapter  extends ArrayAdapter<lista_Inventario> {
 
-    private List<listaInventario> inventario;
+    private List<lista_Inventario> inventario;
     private Context context;
     private int resourceLayout;
 
-    public listAdapter(@NonNull Context context, int resource, @NonNull List<listaInventario> objects){
+    public listAdapter(@NonNull Context context, int resource, @NonNull List<lista_Inventario> objects){
         super(context, resource, objects);
         this.inventario = objects;
         this.context = context;

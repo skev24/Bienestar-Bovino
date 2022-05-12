@@ -16,6 +16,12 @@
             android:name=".GestacionActivity"
             android:exported="false" />
         <activity
+            android:name=".WeightProductionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TreatmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".ControlReproductivoActivity"
             android:exported="false" />
         <activity

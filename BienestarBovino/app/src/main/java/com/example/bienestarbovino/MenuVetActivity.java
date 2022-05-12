@@ -19,7 +19,7 @@ public class MenuVetActivity extends AppCompatActivity implements Funciones {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.chequeo_menu);
+        setContentView(R.layout.menu_chequeo);
 
         buttonVacunaClass = findViewById(R.id.btnVacuna);
         btnRegresar = findViewById(R.id.buttonBackVet);
