@@ -45,7 +45,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
     private FirebaseAuth mAuth;
 
     private String bovinoActual = "test1";
-    private String vacaSpin = "";
+    //private String vacaSpin = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +119,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        vacaSpin = parent.getItemAtPosition(position).toString();
+        bovinoActual = parent.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
     }
 

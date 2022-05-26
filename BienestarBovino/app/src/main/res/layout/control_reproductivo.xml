@@ -40,13 +40,14 @@
         android:layout_width="157dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
-        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/produccion.png"
+        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/aborto.png"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.602"
+        app:srcCompat="@drawable/aborto"/>
 
     <TextView
         android:id="@+id/textView26"
@@ -68,13 +69,14 @@
         android:layout_width="157dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
-        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/produccion.png"
+        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/embarazo.png"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.364"
+        app:srcCompat="@drawable/embarazo"/>
 
     <TextView
         android:id="@+id/textView27"
@@ -111,13 +113,14 @@
         android:layout_width="158dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
-        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/vaca.png"
+        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/estadorep.png"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.364"
+        app:srcCompat="@drawable/estadorep"/>
 
     <TextView
         android:id="@+id/textView29"
@@ -166,11 +169,12 @@
         android:layout_width="157dp"
         android:layout_height="105dp"
         android:background="@drawable/rectangle_drawable"
-        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/image_1.png"
+        android:contentDescription="/Users/kev/Documents/GitHub/Bienestar-Bovino/BienestarBovino/app/src/main/res/drawable/parto.png"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.602"
+        app:srcCompat="@drawable/parto"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

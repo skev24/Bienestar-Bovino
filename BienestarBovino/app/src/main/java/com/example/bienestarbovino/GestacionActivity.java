@@ -43,7 +43,7 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     private FirebaseAuth mAuth;
 
     private String vacaActual = "test1";
-    private String toroActual = "lalo";
+    private String toroActual = "papito";
     private String vacaSpin = "";
     private String toroSpin = "";
     private String tipoSpin = "";
@@ -68,6 +68,7 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
         idGestacion = findViewById(R.id.textViewIdGestacion);
         nameGestacion = findViewById(R.id.textViewNombreGestacion);
         razaGestacion = findViewById(R.id.textViewRazaGestacion);
+
 
         bovinosVacasHash = new HashMap<>();
         bovinosTorosHash = new HashMap<>();
