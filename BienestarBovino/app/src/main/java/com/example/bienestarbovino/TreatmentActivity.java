@@ -149,13 +149,13 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
         dbTratamiento.add(nuevoTratamiento).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(TreatmentActivity.this, "Registro de tratamiento agregado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TreatmentActivity.this, "Registro de vacuna agregada.", Toast.LENGTH_SHORT).show();
             goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(TreatmentActivity.this, "Error al agregar registro de tratamiento. \n" + e, Toast.LENGTH_SHORT).show();
+                Toast.makeText(TreatmentActivity.this, "Error al agregar registro de vacuna. \n" + e, Toast.LENGTH_SHORT).show();
             }
         });
     }
