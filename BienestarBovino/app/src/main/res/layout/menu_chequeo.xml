@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.301"
-        app:srcCompat="@drawable/image_1" />
+        app:srcCompat="@drawable/vacuna" />
 
     <ImageButton
         android:id="@+id/btnTratamiento"
@@ -31,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.618"
-        app:srcCompat="@drawable/image_1" />
+        app:srcCompat="@drawable/tratamiento" />
 
     <Button
         android:id="@+id/buttonBackVet"

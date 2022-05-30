@@ -46,7 +46,9 @@
         app:layout_constraintHorizontal_bias="0.846"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.602"
+        app:srcCompat="@drawable/aborto"
+        />
 
     <TextView
         android:id="@+id/textView26"
@@ -74,7 +76,8 @@
         app:layout_constraintHorizontal_bias="0.85"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.364"
+        app:srcCompat="@drawable/Gestacion"/>
 
     <TextView
         android:id="@+id/textView27"
@@ -117,7 +120,8 @@
         app:layout_constraintHorizontal_bias="0.138"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.364"
+        app:srcCompat="@drawable/ControlReproductivo"/>
 
     <TextView
         android:id="@+id/textView29"
@@ -172,5 +176,7 @@
         app:layout_constraintHorizontal_bias="0.141"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.602"
+        app:srcCompat="@drawable/parto"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
