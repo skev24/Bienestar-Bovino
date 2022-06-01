@@ -25,6 +25,7 @@ public class ControlReproductivoActivity extends AppCompatActivity implements Fu
         btnEstadoReproductivo = findViewById(R.id.imageButtonEstadoReproductivo);
         btnGestacion = findViewById(R.id.imageButtonGestacion);
         btnPartos = findViewById(R.id.imageButtonPartos);
+        btnAbortos = findViewById(R.id.imageButtonAbortos);
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override

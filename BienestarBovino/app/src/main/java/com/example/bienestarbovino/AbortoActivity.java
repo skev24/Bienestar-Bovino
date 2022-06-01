@@ -55,35 +55,35 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        //vacasSpinner = findViewById(R.id.);
+        vacasSpinner = findViewById(R.id.spinnerVacaAborto);
 
-//        btnRegresar = findViewById(R.id.);
-//        btnGuardar = findViewById(R.id.);
-//        fecha = findViewById(R.id.);
-//        idVacaAborto = findViewById(R.id.);
-//        nameVacaAborto = findViewById(R.id.);
-//        razaVacaAborto = findViewById(R.id.);
+        btnRegresar = findViewById(R.id.btnAbortoRegresar);
+        btnGuardar = findViewById(R.id.buttonAbortoRegister);
+        fecha = findViewById(R.id.editFechaAborto);
+        idVacaAborto = findViewById(R.id.textViewIdVacaAborto);
+        nameVacaAborto = findViewById(R.id.textViewNombreVacaAborto);
+        razaVacaAborto = findViewById(R.id.textViewRazaVacaAborto);
 
         bovinosVacasHash = new HashMap<>();
 
-//        fecha.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) { openCalendar(view); }
-//        });
+        fecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { openCalendar(view); }
+        });
 
-//        btnRegresar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) { goBack(); }
-//        });
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { goBack(); }
+        });
 
-//        btnGuardar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                guardarEstado();
-//            }
-//        });
-        cargarSpinners();
-        cargarDatos();
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                guardarEstado();
+            }
+        });
+//        cargarSpinners();
+//        cargarDatos();
     }
 
     public void cargarSpinners(){
