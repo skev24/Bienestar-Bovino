@@ -60,8 +60,6 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
         torosSpinner = findViewById(R.id.spinnerGestacionToro);
         tipoGestacionSpinner = findViewById(R.id.spinnerGestacionTipo);
 
-        cargarSpinners();
-
         btnRegresar = findViewById(R.id.btnRegresarGestacion);
         btnGuardar = findViewById(R.id.buttonGuardarGestacion);
         fecha = findViewById(R.id.editTextCalendarioGestacion);
@@ -88,6 +86,8 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
             @Override
             public void onClick(View view) { guardarEstado(); }
         });
+
+        cargarSpinners();
         cargarDatos();
     }
 
@@ -151,9 +151,10 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                         break;
                     }
                     else {
-                        db.collection("bovino").document(idVaca).update("EstadoGestacion", true);
-                        db.collection("bovino").document(idToro).update("EstadoGestacion", true); // se puede quitar porque seguro no se usa
+                        db.collection("bovino").document(idVaca).update("estadoGestacion", true);
+                        db.collection("bovino").document(idToro).update("estadoGestacion", true); // se puede quitar porque seguro no se usa
                         addDatatoFirebase(idVaca, idToro, tipo, fechaGestacion);
+                        break;
                     }
                 }
             }

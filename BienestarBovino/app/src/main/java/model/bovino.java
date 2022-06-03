@@ -7,7 +7,7 @@ public class bovino {
     private String pesoNacimiento, pesoDestete, peso12Meses;
     private String fecha;
     private String fincaId;
-    private Boolean EstadoReproductivo, EstadoGestacion, sexo;
+    private Boolean estadoReproductivo, estadoGestacion, sexo;
 
 
     public bovino(String name, String id, String raza, String padre, String madre, String fecha,
@@ -22,8 +22,8 @@ public class bovino {
         this.pesoDestete = pesoDestete;
         this.peso12Meses = peso12Meses;
         this.fincaId = fincaId;
-        this.EstadoGestacion = false;
-        this.EstadoReproductivo = false;
+        this.estadoGestacion = false;
+        this.estadoReproductivo = false;
         this.sexo = false;
     }
 
@@ -39,8 +39,8 @@ public class bovino {
         this.pesoDestete = "0";
         this.peso12Meses = "0";
         this.fincaId = fincaId;
-        this.EstadoGestacion = false;
-        this.EstadoReproductivo = false;
+        this.estadoGestacion = false;
+        this.estadoReproductivo = false;
         this.sexo = sexo;
     }
 
@@ -124,13 +124,13 @@ public class bovino {
         this.peso12Meses = peso12Meses;
     }
 
-    public Boolean getEstadoReproductivo() { return EstadoReproductivo; }
+    public Boolean getEstadoReproductivo() { return estadoReproductivo; }
 
-    public void setEstadoReproductivo(Boolean estadoReproductivo) { EstadoReproductivo = estadoReproductivo; }
+    public void setEstadoReproductivo(Boolean estadoReproductivo) { this.estadoReproductivo = estadoReproductivo; }
 
-    public Boolean getEstadoGestacion() { return EstadoGestacion; }
+    public Boolean getEstadoGestacion() { return estadoGestacion; }
 
-    public void setEstadoGestacion(Boolean estadoGestacion) { EstadoGestacion = estadoGestacion; }
+    public void setEstadoGestacion(Boolean estadoGestacion) { this.estadoGestacion = estadoGestacion; }
 
     public Boolean getSexo() { return sexo; }
 

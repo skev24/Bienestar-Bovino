@@ -172,11 +172,15 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
                         String name = qs.getString("name");
                         String id = qs.getId();
                         Boolean sexo = qs.getBoolean("sexo");
-                        Boolean enGestacion = qs.getBoolean("EstadoGestacion");
+                        Boolean enGestacion = qs.getBoolean("estadoGestacion");
                         if(!sexo && enGestacion) bovinosVacasHash.put(name,id);
                     }
                 }
-                getInfoVaca();
+                if(bovinosVacasHash.isEmpty()){
+                    Toast.makeText(PartoActivity.this, "No hay vacas en gestación.", Toast.LENGTH_SHORT).show();
+                }
+                else
+                    getInfoVaca();
             }
         });
     }

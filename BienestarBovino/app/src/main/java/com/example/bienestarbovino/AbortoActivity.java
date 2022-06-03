@@ -157,13 +157,13 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                         String name = qs.getString("name");
                         String id = qs.getId();
                         Boolean sexo = qs.getBoolean("sexo");
-                        Boolean enGestacion = qs.getBoolean("EstadoGestacion");
+                        Boolean enGestacion = qs.getBoolean("estadoGestacion");
                         if(!sexo && enGestacion) bovinosVacasHash.put(name,id);
                     }
                 }
                 if(bovinosVacasHash.isEmpty()){
                     Toast.makeText(AbortoActivity.this, "No hay vacas en gestación.", Toast.LENGTH_SHORT).show();
-                    goBack();
+                    //goBack();
                 }
                 else
                     getInfoVaca();
@@ -199,8 +199,8 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                     Boolean estadoGestacion = qs.getBoolean("estadoFinalizado");
                     String fechaAborto = fecha.getText().toString();
                     if(idBovinoVaca.equals(idVaca) && estadoGestacion.equals(false)){
-                        db.collection("estadoGestacion").document(idVaca).update("estadoFinalizado", true);
-                        db.collection("bovino").document(idVaca).update("EstadoGestacion", false);
+                        db.collection("estadoGestacion").document(qs.getId()).update("estadoFinalizado", true);
+                        db.collection("bovino").document(idVaca).update("estadoGestacion", false);
                         Toast.makeText(AbortoActivity.this, "Gestación actualizada.", Toast.LENGTH_SHORT).show();
                         addDatatoFirebase(idVaca, fechaAborto);
                         btnGuardar.setEnabled(false);
