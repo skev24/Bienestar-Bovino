@@ -4,7 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Github/BB/BienestarBovino/app/src/main/res/layout/menu_chequeo.xml" value="0.18" />
-        <entry key="..\:/Github/BB/BienestarBovino/app/src/main/res/layout/menu_principal.xml" value="0.2" />
         <entry key="..\:/Users/Ghost/AndroidStudioProjects/BienestarBovino/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2955" />
         <entry key="..\:/Users/Ghost/AndroidStudioProjects/BienestarBovino/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2955" />
         <entry key="..\:/Users/Ghost/AndroidStudioProjects/BienestarBovino/app/src/main/res/layout/activity_main.xml" value="0.33" />
@@ -19,6 +18,7 @@
         <entry key="app/src/main/res/drawable/rectangle_drawable.xml" value="0.229" />
         <entry key="app/src/main/res/layout/activity_aborto.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/activity_finca.xml" value="0.25885416666666666" />
+        <entry key="app/src/main/res/layout/activity_informe_produccion.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/activity_login2.xml" value="0.17239583333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16980692545572923" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.125" />
