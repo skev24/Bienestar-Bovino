@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.HashMap;
 
 import control.Funciones;
+import model.aborto;
 import model.bovino;
 import model.parto;
 
@@ -82,8 +84,8 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                 guardarEstado();
             }
         });
-//        cargarSpinners();
-//        cargarDatos();
+        cargarSpinners();
+        cargarDatos();
     }
 
     public void cargarSpinners(){
@@ -159,7 +161,12 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                         if(!sexo && enGestacion) bovinosVacasHash.put(name,id);
                     }
                 }
-                getInfoVaca();
+                if(bovinosVacasHash.isEmpty()){
+                    Toast.makeText(AbortoActivity.this, "No hay vacas en gestación.", Toast.LENGTH_SHORT).show();
+                    goBack();
+                }
+                else
+                    getInfoVaca();
             }
         });
     }
@@ -188,35 +195,27 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-//                    String idBovinoVaca = qs.getString("idBovinoVaca");
-//                    String idBovinoToro = qs.getString("idBovinoToro");
-//                    Boolean estadoGestacion = qs.getBoolean("estadoFinalizado");
-//                    Boolean sexo = false; // spinnerGenero
-//                    String idNuevoBovino = idParto.getText().toString();
-//                    String nombreNuevoBovino = nombreParto.getText().toString();
-//                    String pesoNuevoBovino = pesoParto.getText().toString();
-//                    String fechaN = fecha.getText().toString();
-//                    String raza = razaVacaParto.getText().toString();
-//
-//                    if(idBovinoVaca.equals(idVaca) && estadoGestacion.equals(false)){
-//                        db.collection("estadoGestacion").document(qs.getId()).update("estadoFinalizado", true);
-//                        db.collection("bovino").document(idVaca).update("EstadoGestacion", false);
-//
-//                        addDatatoFirebase(nombreNuevoBovino, idNuevoBovino, raza, idBovinoToro, idVaca, fechaN, pesoNuevoBovino, idFincaGlobal, sexo);
-//                        btnGuardar.setEnabled(false);
-//                        break;
-//                    }
+                    String idBovinoVaca = qs.getString("idBovinoVaca");
+                    Boolean estadoGestacion = qs.getBoolean("estadoFinalizado");
+                    String fechaAborto = fecha.getText().toString();
+                    if(idBovinoVaca.equals(idVaca) && estadoGestacion.equals(false)){
+                        db.collection("estadoGestacion").document(idVaca).update("estadoFinalizado", true);
+                        db.collection("bovino").document(idVaca).update("EstadoGestacion", false);
+                        Toast.makeText(AbortoActivity.this, "Gestación actualizada.", Toast.LENGTH_SHORT).show();
+                        addDatatoFirebase(idVaca, fechaAborto);
+                        btnGuardar.setEnabled(false);
+                        break;
+                    }
                 }
             }
         });
     }
 
-    private void addDatatoFirebase(String name, String id, String raza, String padre, String madre, String fecha, String pesoNacimiento, String fincaId, Boolean sexo) {
+    private void addDatatoFirebase(String id, String fecha) {
 
-        // String idVaca, String idCria, String fecha, String sexo
-        bovino nuevoBovino = new bovino(name, id, raza, padre, madre, fecha, pesoNacimiento, fincaId, sexo);
+        aborto nuevoAborto = new aborto(id, fecha);
 
-        db.collection("bovino").add(nuevoBovino).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection("aborto").add(nuevoAborto).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(AbortoActivity.this, "Nuevo aborto guardado.", Toast.LENGTH_SHORT).show();
@@ -227,44 +226,5 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                 Toast.makeText(AbortoActivity.this, "Error al guardar el aborto. \n" + e, Toast.LENGTH_SHORT).show();
             }
         });
-        guardarAborto(id, name, madre, fincaId, fecha, sexo);
-        btnGuardar.setEnabled(false);
-    }
-
-    private void guardarAborto(String id, String name, String madre, String fincaId, String fecha, Boolean sexo){
-        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-//                    String finca = qs.getString("fincaId");
-//                    String nameBovino = qs.getString("name");
-//                    String madreBovino = qs.getString("madre");
-//                    String fechaBovino = qs.getString("fecha");
-//                    String idBov = qs.getString("id");
-//                    if(idBov.equals(id) && finca.equals(fincaId) && nameBovino.equals(name) && madreBovino.equals(madre) && fechaBovino.equals(fecha)){
-//                        String idBovino = qs.getId();
-//                        addPartotoFirebase(idBovino, madre, fecha, sexo);
-//                    }
-                }
-            }
-        });
-    }
-
-    private void addPartotoFirebase(String id, String madre, String fecha, Boolean sexo) {
-
-        parto nuevoParto = new parto(madre, id, fecha, sexo);
-
-        db.collection("partos").add(nuevoParto).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-            @Override
-            public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(AbortoActivity.this, "Nuevo aborto guardado.", Toast.LENGTH_SHORT).show();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AbortoActivity.this, "Error al guardar aborto. \n" + e, Toast.LENGTH_SHORT).show();
-            }
-        });
-        btnGuardar.setEnabled(false);
     }
 }
