@@ -81,7 +81,7 @@
         app:layout_constraintVertical_bias="0.345" />
 
     <TextView
-        android:id="@+id/textViewIniciarSesion"
+        android:id="@+id/textViewNombreVenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nombre: "
@@ -93,7 +93,7 @@
         app:layout_constraintVertical_bias="0.403" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewRazaVenta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Raza: "
@@ -169,7 +169,7 @@
         app:layout_constraintVertical_bias="0.751" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerVenta"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:contentDescription="@string/app_name"

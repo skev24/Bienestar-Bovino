@@ -38,4 +38,6 @@ public class venta {
         this.fecha = fecha;
     }
 
+    @Override
+    public String toString(){return bovino;}
 }
