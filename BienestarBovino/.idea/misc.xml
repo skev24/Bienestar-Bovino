@@ -28,7 +28,8 @@
         <entry key="app/src/main/res/layout/bienvenida.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/chequeo_menu.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/compra.xml" value="0.25885416666666666" />
-        <entry key="app/src/main/res/layout/control_reproductivo.xml" value="0.6875396728515625" />
+        <entry key="app/src/main/res/layout/control_reproductivo.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/estadistica_ventas.xml" value="0.34193840579710144" />
         <entry key="app/src/main/res/layout/finca.xml" value="0.25" />
         <entry key="app/src/main/res/layout/gestacion.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/hh.xml" value="0.25677083333333334" />
@@ -42,7 +43,7 @@
         <entry key="app/src/main/res/layout/menu_chequeo.xml" value="0.5" />
         <entry key="app/src/main/res/layout/menu_principal.xml" value="0.375" />
         <entry key="app/src/main/res/layout/menuprincipal.xml" value="0.25885416666666666" />
-        <entry key="app/src/main/res/layout/parto.xml" value="0.24583333333333332" />
+        <entry key="app/src/main/res/layout/parto.xml" value="0.375" />
         <entry key="app/src/main/res/layout/produccion_peso.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/register.xml" value="0.29292929292929293" />
         <entry key="app/src/main/res/layout/registrar_tarea.xml" value="0.34193840579710144" />
