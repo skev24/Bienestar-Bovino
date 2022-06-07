@@ -47,9 +47,9 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
 
     private HashMap<String, String> bovinosVacasHash;
 
-    private String vacaActual = "test1";
+//    private String vacaActual = "test1";
     private String idFincaGlobal = "";
-    private String vacaSpin = "";
+//    private String vacaSpin = "";
     private String sexoSpin = "";
 
     private List<venta> bovinos = new ArrayList<>();
@@ -111,7 +111,8 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
                     String id = qs.getString("id");
                     Boolean sexo = qs.getBoolean("sexo");
                     Boolean enGestacion = qs.getBoolean("estadoGestacion");
-                    if(!sexo && enGestacion && qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.FALSE) &&
+                            qs.getBoolean("activoEnFinca").equals(Boolean.TRUE) && enGestacion.equals(Boolean.TRUE))
                         bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(PartoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
@@ -219,7 +220,7 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
                 }
                 else {
                     spinnerBovino();
-                    getInfoVaca();
+                    //getInfoVaca();
                 }
             }
         });
@@ -227,7 +228,7 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     public void getInfoVaca(){
-        String id = bovinosVacasHash.get(vacaActual);
+        String id = bovinosVacasHash.get(bovinoSeleccionado);
         db.collection("bovino").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -246,7 +247,7 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
     }
 
     private void guardarEstado(){
-        String idVaca = bovinosVacasHash.get(vacaActual);
+        String idVaca = bovinosVacasHash.get(bovinoSeleccionado);
         db.collection("estadoGestacion").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -254,7 +255,7 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
                     String idBovinoVaca = qs.getString("idBovinoVaca");
                     String idBovinoToro = qs.getString("idBovinoToro");
                     Boolean estadoGestacion = qs.getBoolean("estadoFinalizado");
-                    Boolean sexo = false; // spinnerGenero
+                    Boolean sexo = getSexo();
                     String idNuevoBovino = idParto.getText().toString();
                     String nombreNuevoBovino = nombreParto.getText().toString();
                     String pesoNuevoBovino = pesoParto.getText().toString();
@@ -329,5 +330,10 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
             }
         });
         btnGuardar.setEnabled(false);
+    }
+
+    private Boolean getSexo(){
+        if(sexoSpin.equals("Macho")) return true;
+        else return false;
     }
 }

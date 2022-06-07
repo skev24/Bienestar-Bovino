@@ -48,9 +48,9 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
 
     private HashMap<String, String> bovinosVacasHash;
 
-    private String vacaActual = "test1";
+//    private String vacaActual = "";
     private String idFincaGlobal = "";
-    private String vacaSpin = "";
+//    private String vacaSpin = "";
 
     private List<venta> bovinos = new ArrayList<>();
     private String bovinoSeleccionado = "";
@@ -105,7 +105,8 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                     String id = qs.getString("id");
                     Boolean sexo = qs.getBoolean("sexo");
                     Boolean enGestacion = qs.getBoolean("estadoGestacion");
-                    if(!sexo && enGestacion && qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.FALSE) &&
+                            qs.getBoolean("activoEnFinca").equals(Boolean.TRUE) && enGestacion.equals(Boolean.TRUE))
                         bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(AbortoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
@@ -201,14 +202,14 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                 }
                 else {
                     spinnerBovino();
-                    getInfoVaca();
+                    //getInfoVaca();
                 }
             }
         });
     }
 
     public void getInfoVaca(){
-        String id = bovinosVacasHash.get(vacaActual);
+        String id = bovinosVacasHash.get(bovinoSeleccionado);
         db.collection("bovino").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -226,7 +227,7 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
     }
 
     private void guardarEstado(){
-        String idVaca = bovinosVacasHash.get(vacaActual);
+        String idVaca = bovinosVacasHash.get(bovinoSeleccionado);
         db.collection("estadoGestacion").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {

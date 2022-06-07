@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import control.Funciones;
@@ -41,6 +42,7 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
     private Spinner vacasSpinner, dietaSpinner;
     private EditText textPesoBovino, textPesoNotas;
     private Button buttonAddPeso;
+    private HashMap<String, String> bovinosHash;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -50,6 +52,7 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
 
     private List<venta> bovinos = new ArrayList<>();
     private String bovinoSeleccionado = "";
+    private String idFincaGlobal = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,7 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
         textPesoBovino = findViewById(R.id.editPesoVaca);
         textPesoNotas = findViewById(R.id.editTextNotasPeso);
         buttonAddPeso = findViewById(R.id.buttonPesoRegister);
+        bovinosHash = new HashMap<>();
 
         buttonPesoRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,8 +91,9 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
             }
         });
 
+        cargarDatos();
         cargarSpinners();
-        spinnerBovino();
+//        spinnerBovino();
     }
 
     public void spinnerBovino(){
@@ -100,22 +105,22 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinos.add(new venta(name,id,raza));
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                        bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(WeightProductionActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 vacasSpinner.setAdapter(arrayAdapter);
                 vacasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                           @Override
-                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                               bovinoSeleccionado = bovinos.get(position).getbovino();
-                                                           }
+                       @Override
+                       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                           bovinoSeleccionado = bovinos.get(position).getbovino();
+                       }
 
-                                                           @Override
-                                                           public void onNothingSelected(AdapterView<?> parent) {
+                       @Override
+                       public void onNothingSelected(AdapterView<?> parent) {
 
-                                                           }
-                                                       }
-
+                       }
+                   }
                 );
 
             }
@@ -133,7 +138,7 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        vacaSpin = parent.getItemAtPosition(position).toString();
+//        vacaSpin = parent.getItemAtPosition(position).toString();
         dietaSpin = parent.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
     }
@@ -198,6 +203,41 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
                 Toast.makeText(WeightProductionActivity.this, "Error al agregar registro de pesaje. \n" + e, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void cargarDatos(){
+        db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                String idFinca = "";
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String user = qs.getString("user");
+                    if(user.equals(mAuth.getCurrentUser().getUid())){
+                        idFinca = qs.getId();
+                        break;
+                    }
+                }
+                getDataBovino(idFinca);
+            }
+        });
+    }
+
+    public void getDataBovino(String idFinca){
+        idFincaGlobal = idFinca;
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String finca = qs.getString("fincaId");
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
+                        String name = qs.getString("name");
+                        String id = qs.getId();
+                        bovinosHash.put(name,id);
+                    }
+                }
+            }
+        });
+        spinnerBovino();
     }
 
 }

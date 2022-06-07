@@ -45,8 +45,8 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    private String vacaActual = "test1";
-    private String toroActual = "lalo";
+    private String vacaActual = "";
+    private String toroActual = "";
     private String vacaSpin = "";
     private String toroSpin = "";
     private String tipoSpin = "";
@@ -96,7 +96,7 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
             public void onClick(View view) { guardarEstado(); }
         });
 
-//        cargarSpinners();
+        cargarSpinners();
         cargarDatos();
 //        spinnerBovinoVaca();
 //        spinnerBovinoToro();
@@ -112,7 +112,9 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
                     Boolean sexo = qs.getBoolean("sexo");
-                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.FALSE)  && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                    Boolean enGestacion = qs.getBoolean("estadoGestacion");
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.FALSE) &&
+                            qs.getBoolean("activoEnFinca").equals(Boolean.TRUE) && enGestacion.equals(Boolean.FALSE))
                         bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(GestacionActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
@@ -205,8 +207,8 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     }
 
     private void guardarEstado(){
-        String idVaca = bovinosVacasHash.get(vacaActual);
-        String idToro = bovinosTorosHash.get(toroActual);
+        String idVaca = bovinosVacasHash.get(bovinoSeleccionado);
+        String idToro = bovinosTorosHash.get(bovinoSeleccionadoToro);
         db.collection("estadoGestacion").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -304,7 +306,7 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                         else bovinosVacasHash.put(name,id);
                     }
                 }
-                getInfoVaca();
+                //getInfoVaca();
             }
         });
         spinnerBovinoVaca();
@@ -312,7 +314,7 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     }
 
     public void getInfoVaca(){
-        String id = bovinosVacasHash.get(vacaActual);
+        String id = bovinosVacasHash.get(bovinoSeleccionado);
         db.collection("bovino").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
