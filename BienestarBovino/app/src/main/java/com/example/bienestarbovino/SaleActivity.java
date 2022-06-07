@@ -37,7 +37,6 @@ import model.venta;
 
 public class SaleActivity extends AppCompatActivity implements Funciones {
 
-    private TextView textDate;
     private TextView textID;
     private TextView textRaza;
     private TextView textName;
@@ -62,7 +61,6 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
         textID = findViewById(R.id.textView4);
         textName = findViewById(R.id.textViewNombreVenta);
         textRaza = findViewById(R.id.textViewRazaVenta);
-
 
         editFecha = findViewById(R.id.editFechaVenta);
         editMonto = findViewById(R.id.editMontoVenta);
@@ -145,7 +143,7 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-                textDate.setText(date);
+                editFecha.setText(date);
             }
         }, yearD, monthD, dayD);
         dpd.show();
