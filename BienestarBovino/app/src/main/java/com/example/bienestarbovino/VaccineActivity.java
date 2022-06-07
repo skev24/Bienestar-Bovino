@@ -23,10 +23,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import control.Funciones;
 import model.vacuna;
+import model.venta;
 
 public class VaccineActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
@@ -40,6 +46,9 @@ public class VaccineActivity extends AppCompatActivity implements AdapterView.On
     private FirebaseAuth mAuth;
 
     private String bovinoSpin = "";
+
+    private List<venta> bovinos = new ArrayList<>();
+    private String bovinoSeleccionado = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +86,7 @@ public class VaccineActivity extends AppCompatActivity implements AdapterView.On
             }
         });
 
-        cargarSpinners();
+        spinnerBovino();
     }
 
     public void goBack(){
@@ -85,14 +94,37 @@ public class VaccineActivity extends AppCompatActivity implements AdapterView.On
         startActivity(intent);
     }
 
-    public void cargarSpinners(){
-        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
-                R.array.Bovinos, android.R.layout.simple_spinner_item);
-        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        setBovino.setAdapter(adapterVacas);
-        setBovino.setOnItemSelectedListener(this);
+    public void spinnerBovino(){
 
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String name = qs.getString("name");
+                    String raza = qs.getString("raza");
+                    String id = qs.getString("id");
+                    bovinos.add(new venta(name,id,raza));
+                }
+                ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(VaccineActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
+                setBovino.setAdapter(arrayAdapter);
+                setBovino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                           @Override
+                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                               bovinoSeleccionado = bovinos.get(position).getbovino();
+                                                           }
+
+                                                           @Override
+                                                           public void onNothingSelected(AdapterView<?> parent) {
+
+                                                           }
+                                                       }
+
+                );
+
+            }
+        });
     }
+
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -127,7 +159,7 @@ public class VaccineActivity extends AppCompatActivity implements AdapterView.On
     //addVacunacion registra el control medico de las vacunaciones como un objeto y valida lo ingresado.
     //Recibe la vista de vacunacion.xml
     public void addVacunacion(View view){
-        String bovino = "toro 1";//selBovino spinner
+        String bovino = bovinoSeleccionado;//selBovino spinner
         String enfermedad = textBovinoEnfermedad.getText().toString();
         String notas = textBovinoNotas.getText().toString();
         String fecha = textDate.getText().toString();

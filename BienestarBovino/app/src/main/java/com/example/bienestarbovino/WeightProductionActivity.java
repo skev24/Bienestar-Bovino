@@ -23,10 +23,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import control.Funciones;
 import model.produccionPeso;
+import model.venta;
 
 public class WeightProductionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
@@ -41,6 +47,9 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
 
     private String vacaSpin = "";
     private String dietaSpin = "";
+
+    private List<venta> bovinos = new ArrayList<>();
+    private String bovinoSeleccionado = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,14 +88,41 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
         });
 
         cargarSpinners();
+        spinnerBovino();
+    }
+
+    public void spinnerBovino(){
+
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String name = qs.getString("name");
+                    String raza = qs.getString("raza");
+                    String id = qs.getString("id");
+                    bovinos.add(new venta(name,id,raza));
+                }
+                ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(WeightProductionActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
+                vacasSpinner.setAdapter(arrayAdapter);
+                vacasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                           @Override
+                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                               bovinoSeleccionado = bovinos.get(position).getbovino();
+                                                           }
+
+                                                           @Override
+                                                           public void onNothingSelected(AdapterView<?> parent) {
+
+                                                           }
+                                                       }
+
+                );
+
+            }
+        });
     }
 
     public void cargarSpinners(){
-        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
-                R.array.Bovinos, android.R.layout.simple_spinner_item);
-        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vacasSpinner.setAdapter(adapterVacas);
-        vacasSpinner.setOnItemSelectedListener(this);
 
         ArrayAdapter<CharSequence> adapterDieta = ArrayAdapter.createFromResource(this,
                 R.array.Dieta, android.R.layout.simple_spinner_item);
@@ -131,7 +167,7 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
     }
 
     public void addPeso(View view){
-        String bovino = "toro 1";//selBovino spinner
+        String bovino = bovinoSeleccionado;//selBovino spinner
         String peso = textPesoBovino.getText().toString();
         String notas = textPesoNotas.getText().toString();
         String fecha = textDate.getText().toString();

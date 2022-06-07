@@ -25,11 +25,14 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import control.Funciones;
 import model.estadoGestacion;
 import model.estadoReproductivo;
+import model.venta;
 
 public class GestacionActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
@@ -47,6 +50,11 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     private String vacaSpin = "";
     private String toroSpin = "";
     private String tipoSpin = "";
+
+    private List<venta> bovinos = new ArrayList<>();
+    private List<venta> bovinosToro = new ArrayList<>();
+    private String bovinoSeleccionado = "";
+    private String bovinoSeleccionadoToro = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,20 +97,83 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
 
         cargarSpinners();
         cargarDatos();
+        spinnerBovinoVaca();
+        spinnerBovinoToro();
+
+    }
+    public void spinnerBovinoVaca(){
+
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String name = qs.getString("name");
+                    String raza = qs.getString("raza");
+                    String id = qs.getString("id");
+                    bovinos.add(new venta(name,id,raza));
+                }
+                ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(GestacionActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
+                vacasSpinner.setAdapter(arrayAdapter);
+                vacasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                         @Override
+                                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                             //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                                                             idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
+                                                             nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
+                                                             bovinoSeleccionado = bovinos.get(position).getbovino();
+                                                             razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
+                                                         }
+
+                                                         @Override
+                                                         public void onNothingSelected(AdapterView<?> parent) {
+
+                                                         }
+                                                     }
+
+                );
+
+            }
+        });
     }
 
-    public void cargarSpinners(){
-        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
-                R.array.Vacas, android.R.layout.simple_spinner_item);
-        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        vacasSpinner.setAdapter(adapterVacas);
-        vacasSpinner.setOnItemSelectedListener(this);
+    public void spinnerBovinoToro(){
 
-        ArrayAdapter<CharSequence> adapterToros = ArrayAdapter.createFromResource(this,
-        R.array.Toros, android.R.layout.simple_spinner_item);
-        adapterToros.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        torosSpinner.setAdapter(adapterToros);
-        torosSpinner.setOnItemSelectedListener(this);
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String name = qs.getString("name");
+                    String raza = qs.getString("raza");
+                    String id = qs.getString("id");
+                    bovinosToro.add(new venta(name,id,raza));
+                }
+                ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(GestacionActivity.this, android.R.layout.simple_dropdown_item_1line, bovinosToro);
+                torosSpinner.setAdapter(arrayAdapter);
+                torosSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                           @Override
+                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                               //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                                                               //idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
+                                                               //nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
+                                                               bovinoSeleccionadoToro = bovinosToro.get(position).getbovino();
+                                                               //razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
+                                                           }
+
+                                                           @Override
+                                                           public void onNothingSelected(AdapterView<?> parent) {
+
+                                                           }
+                                                       }
+
+                );
+
+            }
+        });
+    }
+
+
+
+    public void cargarSpinners(){
 
         ArrayAdapter<CharSequence> adapterTipo = ArrayAdapter.createFromResource(this,
                 R.array.Tipo, android.R.layout.simple_spinner_item);
@@ -113,8 +184,8 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        vacaSpin = parent.getItemAtPosition(position).toString();
-        toroSpin = parent.getItemAtPosition(position).toString();
+        //vacaSpin = parent.getItemAtPosition(position).toString();
+        //toroSpin = parent.getItemAtPosition(position).toString();
         tipoSpin = parent.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
     }

@@ -8,7 +8,10 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -19,11 +22,19 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import control.Funciones;
 import model.venta;
@@ -31,10 +42,17 @@ import model.venta;
 public class SaleActivity extends AppCompatActivity implements Funciones {
 
     private TextView textDate;
+    private TextView textID;
+    private TextView textRaza;
+    private TextView textName;
     private Button buttonVentaRegresar, buttonGuardarVenta;
     private EditText editFecha, editMonto;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+    private Spinner bovinoName;
+
+    private List<venta> bovinos = new ArrayList<>();
+    private String bovinoSeleccionado = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,15 +60,22 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.venta);
 
+        bovinoName = findViewById(R.id.spinnerVenta);
+        textID = findViewById(R.id.textView4);
+        textName = findViewById(R.id.textViewNombreVenta);
+        textRaza = findViewById(R.id.textViewRazaVenta);
+
+
         editFecha = findViewById(R.id.editFechaVenta);
         editMonto = findViewById(R.id.editMontoVenta);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-
         buttonVentaRegresar = findViewById(R.id.btnVentaRegresar);
         buttonGuardarVenta = findViewById(R.id.buttonVentaRegister);
+
+        spinnerBovino();
 
         buttonVentaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +94,44 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
             @Override
             public void onClick(View view) {
                 openCalendar(view);
+            }
+        });
+
+
+
+    }
+
+    public void spinnerBovino(){
+
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                        String name = qs.getString("name");
+                        String raza = qs.getString("raza");
+                        String id = qs.getString("id");
+                        bovinos.add(new venta(name,id,raza));
+                }
+                ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
+                bovinoName.setAdapter(arrayAdapter);
+                bovinoName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                        textID.setText("Identificación:  " + bovinos.get(position).getmonto());
+                        textName.setText("Nombre:  " + bovinos.get(position).getbovino());
+                        bovinoSeleccionado = bovinos.get(position).getbovino();
+                        textRaza.setText("Raza:  " + bovinos.get(position).getfecha());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                }
+
+                );
+
             }
         });
     }
@@ -97,7 +160,7 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
     //addVenta registra la venta de un bovino y valida lo ingresado.
     //Recibe la vista de vacunacion.xml
     public void addVenta(View view){
-        String bovino = "toro 1";//selBovino spinner
+        String bovino = bovinoSeleccionado;//selBovino spinner
         String monto = editMonto.getText().toString();
         String fecha = editFecha.getText().toString();
 
