@@ -99,7 +99,7 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
 
     public void spinnerBovino(){
 
-        db.collection("venta").whereNotEqualTo("name","Bailey, popa").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("venta").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
@@ -111,7 +111,7 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
             }
         });
 
-        db.collection("bovino").whereNotEqualTo("name","Bailey, popa").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
