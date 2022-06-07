@@ -102,7 +102,7 @@
             app:layout_constraintVertical_bias="0.635" />
 
         <ImageButton
-            android:id="@+id/botonchequeo2"
+            android:id="@+id/botonInformes"
             android:layout_width="157dp"
             android:layout_height="100dp"
             android:background="@drawable/rectangle_drawable"
@@ -113,7 +113,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.767"
-            app:srcCompat="@drawable/tareas" />
+            app:srcCompat="@drawable/analytics" />
 
         <ImageButton
             android:id="@+id/imageButtonGanado"
@@ -159,7 +159,7 @@
             app:srcCompat="@drawable/vacuna" />
 
         <ImageButton
-            android:id="@+id/imageButtonControlReproductivo2"
+            android:id="@+id/botonPersonal"
             android:layout_width="157dp"
             android:layout_height="100dp"
             android:background="@drawable/rectangle_drawable"
@@ -235,7 +235,7 @@
             android:id="@+id/textView42"
             android:layout_width="158dp"
             android:layout_height="20dp"
-            android:text="Tarea"
+            android:text="Informes"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textStyle="bold"

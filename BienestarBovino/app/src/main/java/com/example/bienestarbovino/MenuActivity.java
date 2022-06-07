@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MenuActivity extends AppCompatActivity {
 
     private Button btnSincronizar, btnAddBovino;
-    ImageButton btnGanado, btnPesaje, btnChequeo, btnControlReproductivo;
+    ImageButton btnGanado, btnPesaje, btnChequeo, btnControlReproductivo, btnInformes, btnPersonal;
     public DrawerLayout drawerLayout;
     public ActionBarDrawerToggle actionBarDrawerToggle;
     private FirebaseAuth mAuth;
@@ -52,8 +52,10 @@ public class MenuActivity extends AppCompatActivity {
         btnChequeo = findViewById(R.id.botonchequeo);
         btnAddBovino = findViewById(R.id.buttonAgregarBovino);
         btnControlReproductivo = findViewById(R.id.imageButtonControlReproductivo);
+        btnInformes = findViewById(R.id.botonInformes);
+        btnPersonal = findViewById(R.id.botonPersonal);
 
-// pruebas
+        // pruebas
         //db = FirebaseDatabase.getInstance().getReference();
 
         /*btnSincronizar.setOnClickListener(new View.OnClickListener() {
@@ -98,6 +100,20 @@ public class MenuActivity extends AppCompatActivity {
             }
         });
 
+        btnPersonal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //openPersonal();
+            }
+        });
+
+        btnInformes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openInforme();
+            }
+        });
+
         btnSincronizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,29 +128,11 @@ public class MenuActivity extends AppCompatActivity {
     // drawer when the icon is clicked
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
-    /*public void getData(View view){
-
-        db.child("Fincas").child("a9f87f94-fbe9-40a0-83f4-ac20bf9eaa1d").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-                    String id = snapshot.child("name").getValue().toString();
-                    Toast.makeText(MenuActivity.this, id, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-    }*/
 
     public void openGanado(){
         Intent intent = new Intent(MenuActivity.this, InventoryActivity.class);
@@ -160,10 +158,18 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(MenuActivity.this, ControlReproductivoActivity.class);
         startActivity(intent);
     }
-
+    public void openPersonal(){
+        Intent intent = new Intent(MenuActivity.this, MenuPersonalActivity.class);
+        startActivity(intent);
+    }
+    public void openInforme(){
+        Intent intent = new Intent(MenuActivity.this, MenuInformesActivity.class);
+        startActivity(intent);
+    }
     public void cerrarSesion(){
         mAuth.signOut();
         Intent intent = new Intent(MenuActivity.this, LoginActivity.class);
         startActivity(intent);
     }
+
 }

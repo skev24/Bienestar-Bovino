@@ -52,6 +52,7 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
     private Spinner bovinoName;
 
     private List<venta> bovinos = new ArrayList<>();
+    private List<venta> ventasBovinos = new ArrayList<>();
     private String bovinoSeleccionado = "";
 
     @Override
@@ -103,7 +104,19 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
 
     public void spinnerBovino(){
 
-        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("venta").whereNotEqualTo("name","Bailey, popa").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String name = qs.getString("name");
+                    String raza = qs.getString("raza");
+                    String id = qs.getString("id");
+                    ventasBovinos.add(new venta(name,id,raza));
+                }
+            }
+        });
+
+        db.collection("bovino").whereNotEqualTo("name","Bailey, popa").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
@@ -111,7 +124,9 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
                         String raza = qs.getString("raza");
                         String id = qs.getString("id");
                         bovinos.add(new venta(name,id,raza));
+
                 }
+
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 bovinoName.setAdapter(arrayAdapter);
                 bovinoName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

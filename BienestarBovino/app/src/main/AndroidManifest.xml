@@ -66,6 +66,12 @@
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
+            android:name=".MenuInformesActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".MenuPersonalActivity"
+            android:exported="true"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
