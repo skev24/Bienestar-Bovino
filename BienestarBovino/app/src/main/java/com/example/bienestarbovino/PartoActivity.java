@@ -111,7 +111,7 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
                     String id = qs.getString("id");
                     Boolean sexo = qs.getBoolean("sexo");
                     Boolean enGestacion = qs.getBoolean("estadoGestacion");
-                    if(!sexo && enGestacion && qs.getString("fincaId").equals(idFincaGlobal))
+                    if(!sexo && enGestacion && qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
                         bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(PartoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
@@ -206,7 +206,7 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String finca = qs.getString("fincaId");
-                    if(finca.equals(idFinca)){
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
                         String name = qs.getString("name");
                         String id = qs.getId();
                         Boolean sexo = qs.getBoolean("sexo");

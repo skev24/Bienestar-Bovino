@@ -7,7 +7,7 @@ public class bovino {
     private String pesoNacimiento, pesoDestete, peso12Meses;
     private String fecha;
     private String fincaId;
-    private Boolean estadoReproductivo, estadoGestacion, sexo;
+    private Boolean estadoReproductivo, estadoGestacion, sexo, activoEnFinca;
 
 
     public bovino(String name, String id, String raza, String padre, String madre, String fecha,
@@ -25,6 +25,7 @@ public class bovino {
         this.estadoGestacion = false;
         this.estadoReproductivo = false;
         this.sexo = false;
+        this.activoEnFinca = true;
     }
 
     //Sobre carga de constructor para registrar parto
@@ -42,6 +43,7 @@ public class bovino {
         this.estadoGestacion = false;
         this.estadoReproductivo = false;
         this.sexo = sexo;
+        this.activoEnFinca = true;
     }
 
     public String getFincaId() {

@@ -22,11 +22,6 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -34,6 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import control.Funciones;
@@ -50,9 +46,11 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private Spinner bovinoName;
+    private HashMap<String, String> bovinosHash;
 
     private List<venta> bovinos = new ArrayList<>();
     private String bovinoSeleccionado = "";
+    private String idFincaGlobal = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +72,8 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
 
         buttonVentaRegresar = findViewById(R.id.btnVentaRegresar);
         buttonGuardarVenta = findViewById(R.id.buttonVentaRegister);
-
-        spinnerBovino();
+        bovinosHash = new HashMap<>();
+//        spinnerBovino();
 
         buttonVentaRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,8 +95,7 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
             }
         });
 
-
-
+        cargarDatos();
     }
 
     public void spinnerBovino(){
@@ -110,7 +107,9 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
                         String name = qs.getString("name");
                         String raza = qs.getString("raza");
                         String id = qs.getString("id");
-                        bovinos.add(new venta(name,id,raza));
+                        //Toast.makeText(SaleActivity.this, id, Toast.LENGTH_SHORT).show();
+                        if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                            bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 bovinoName.setAdapter(arrayAdapter);
@@ -118,10 +117,10 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-                        textID.setText("Identificación:  " + bovinos.get(position).getmonto());
-                        textName.setText("Nombre:  " + bovinos.get(position).getbovino());
+                        textID.setText(bovinos.get(position).getmonto());
+                        textName.setText(bovinos.get(position).getbovino());
                         bovinoSeleccionado = bovinos.get(position).getbovino();
-                        textRaza.setText("Raza:  " + bovinos.get(position).getfecha());
+                        textRaza.setText(bovinos.get(position).getfecha());
                     }
 
                     @Override
@@ -181,6 +180,7 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
         dbVacuna.add(nuevaVenta).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
+                db.collection("bovino").document(bovinosHash.get(bovinoSeleccionado)).update("activoEnFinca",false);
                 Toast.makeText(SaleActivity.this, "Registro de bovino vendido.", Toast.LENGTH_SHORT).show();
                 goBack();
             }
@@ -190,5 +190,40 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
                 Toast.makeText(SaleActivity.this, "Error al agregar registro de venta. \n" + e, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void cargarDatos(){
+        db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                String idFinca = "";
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String user = qs.getString("user");
+                    if(user.equals(mAuth.getCurrentUser().getUid())){
+                        idFinca = qs.getId();
+                        break;
+                    }
+                }
+                getDataBovino(idFinca);
+            }
+        });
+    }
+
+    public void getDataBovino(String idFinca){
+        idFincaGlobal = idFinca;
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String finca = qs.getString("fincaId");
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
+                        String name = qs.getString("name");
+                        String id = qs.getId();
+                        bovinosHash.put(name,id);
+                    }
+                }
+            }
+        });
+        spinnerBovino();
     }
 }

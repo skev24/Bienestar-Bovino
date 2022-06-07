@@ -124,7 +124,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    if(qs.getString("fincaId").equals(idFincaGlobal))
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
                         bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(EstadoReproductivoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
@@ -199,7 +199,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String finca = qs.getString("fincaId");
-                    if(finca.equals(idFinca)){
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
                         String name = qs.getString("name");
                         String id = qs.getId();
                         bovinosHash.put(name,id);
