@@ -91,7 +91,7 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
             }
         });
         cargarDatos();
-        spinnerBovino();
+//        spinnerBovino();
     }
 
     public void spinnerBovino(){
@@ -103,25 +103,27 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinos.add(new venta(name,id,raza));
+                    Boolean sexo = qs.getBoolean("sexo");
+                    Boolean enGestacion = qs.getBoolean("estadoGestacion");
+                    if(!sexo && enGestacion && qs.getString("fincaId").equals(idFincaGlobal))
+                        bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(AbortoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 vacasSpinner.setAdapter(arrayAdapter);
                 vacasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                           @Override
-                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                               bovinoSeleccionado = bovinos.get(position).getbovino();
-                                                               idVacaAborto.setText("Identificación:  " + bovinos.get(position).getmonto());
-                                                               nameVacaAborto.setText("Nombre:  " + bovinos.get(position).getbovino());
-                                                               razaVacaAborto.setText("Raza:  " + bovinos.get(position).getfecha());
-                                                           }
+                       @Override
+                       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                           bovinoSeleccionado = bovinos.get(position).getbovino();
+                           idVacaAborto.setText(bovinos.get(position).getmonto());
+                           nameVacaAborto.setText(bovinos.get(position).getbovino());
+                           razaVacaAborto.setText(bovinos.get(position).getfecha());
+                       }
 
-                                                           @Override
-                                                           public void onNothingSelected(AdapterView<?> parent) {
+                       @Override
+                       public void onNothingSelected(AdapterView<?> parent) {
 
-                                                           }
-                                                       }
-
+                       }
+                   }
                 );
 
             }
@@ -130,7 +132,7 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        vacaSpin = parent.getItemAtPosition(position).toString();
+        //vacaSpin = parent.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
     }
 
@@ -196,8 +198,10 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                     Toast.makeText(AbortoActivity.this, "No hay vacas en gestación.", Toast.LENGTH_SHORT).show();
                     //goBack();
                 }
-                else
+                else {
+                    spinnerBovino();
                     getInfoVaca();
+                }
             }
         });
     }
