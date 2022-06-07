@@ -45,14 +45,15 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    private String vacaActual = "test1";
-    private String toroActual = "lalo";
+    private String vacaActual = "";
+    private String toroActual = "";
     private String vacaSpin = "";
     private String toroSpin = "";
     private String tipoSpin = "";
 
     private List<venta> bovinos = new ArrayList<>();
     private List<venta> bovinosToro = new ArrayList<>();
+    private String idFincaGlobal = "";
     private String bovinoSeleccionado = "";
     private String bovinoSeleccionadoToro = "";
 
@@ -97,8 +98,8 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
 
         cargarSpinners();
         cargarDatos();
-        spinnerBovinoVaca();
-        spinnerBovinoToro();
+//        spinnerBovinoVaca();
+//        spinnerBovinoToro();
 
     }
     public void spinnerBovinoVaca(){
@@ -110,25 +111,29 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinos.add(new venta(name,id,raza));
+                    Boolean sexo = qs.getBoolean("sexo");
+                    Boolean enGestacion = qs.getBoolean("estadoGestacion");
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.FALSE) &&
+                            qs.getBoolean("activoEnFinca").equals(Boolean.TRUE) && enGestacion.equals(Boolean.FALSE))
+                        bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(GestacionActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 vacasSpinner.setAdapter(arrayAdapter);
                 vacasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                         @Override
-                                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                             //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-                                                             idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
-                                                             nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
-                                                             bovinoSeleccionado = bovinos.get(position).getbovino();
-                                                             razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
-                                                         }
+                         @Override
+                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                             //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                             idGestacion.setText(bovinos.get(position).getmonto());
+                             nameGestacion.setText( bovinos.get(position).getbovino());
+                             bovinoSeleccionado = bovinos.get(position).getbovino();
+                             razaGestacion.setText(bovinos.get(position).getfecha());
+                         }
 
-                                                         @Override
-                                                         public void onNothingSelected(AdapterView<?> parent) {
+                         @Override
+                         public void onNothingSelected(AdapterView<?> parent) {
 
-                                                         }
-                                                     }
+                         }
+                     }
 
                 );
 
@@ -145,33 +150,33 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinosToro.add(new venta(name,id,raza));
+                    Boolean sexo = qs.getBoolean("sexo");
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.TRUE))
+                        bovinosToro.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(GestacionActivity.this, android.R.layout.simple_dropdown_item_1line, bovinosToro);
                 torosSpinner.setAdapter(arrayAdapter);
                 torosSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                           @Override
-                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                               //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-                                                               //idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
-                                                               //nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
-                                                               bovinoSeleccionadoToro = bovinosToro.get(position).getbovino();
-                                                               //razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
-                                                           }
+                           @Override
+                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                               //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                               //idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
+                               //nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
+                               bovinoSeleccionadoToro = bovinosToro.get(position).getbovino();
+                               //razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
+                           }
 
-                                                           @Override
-                                                           public void onNothingSelected(AdapterView<?> parent) {
+                           @Override
+                           public void onNothingSelected(AdapterView<?> parent) {
 
-                                                           }
-                                                       }
+                           }
+                       }
 
                 );
 
             }
         });
     }
-
-
 
     public void cargarSpinners(){
 
@@ -202,8 +207,8 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     }
 
     private void guardarEstado(){
-        String idVaca = bovinosVacasHash.get(vacaActual);
-        String idToro = bovinosTorosHash.get(toroActual);
+        String idVaca = bovinosVacasHash.get(bovinoSeleccionado);
+        String idToro = bovinosTorosHash.get(bovinoSeleccionadoToro);
         db.collection("estadoGestacion").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -287,12 +292,13 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     }
 
     public void getDataBovino(String idFinca){
+        idFincaGlobal = idFinca;
         db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String finca = qs.getString("fincaId");
-                    if(finca.equals(idFinca)){
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
                         String name = qs.getString("name");
                         String id = qs.getId();
                         Boolean sexo = qs.getBoolean("sexo");
@@ -300,13 +306,15 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                         else bovinosVacasHash.put(name,id);
                     }
                 }
-                getInfoVaca();
+                //getInfoVaca();
             }
         });
+        spinnerBovinoVaca();
+        spinnerBovinoToro();
     }
 
     public void getInfoVaca(){
-        String id = bovinosVacasHash.get(vacaActual);
+        String id = bovinosVacasHash.get(bovinoSeleccionado);
         db.collection("bovino").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

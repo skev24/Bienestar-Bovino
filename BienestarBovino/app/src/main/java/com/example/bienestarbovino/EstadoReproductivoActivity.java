@@ -47,11 +47,11 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    private String bovinoActual = "test1";
+    private String bovinoActual = "";
     private String vacaSpin = "";
 
     private List<venta> bovinos = new ArrayList<>();
-    private String bovinoSeleccionado = "";
+    private String idFincaGlobal = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +62,6 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
         mAuth = FirebaseAuth.getInstance();
 
         vacasSpinner = findViewById(R.id.spinnerEstadoReproductivo);
-
-
 
         btnRegresar = findViewById(R.id.btnRegresarEstadoRep);
         btnGuardar = findViewById(R.id.buttonEstadoRepGuardar);
@@ -108,12 +106,12 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
             @Override
             public void onClick(View view) {
                 //cambiarColor(view);
-                getFechas(view);
+                //getFechas(view);
             }
         });
 
         cargarDatos();
-        spinnerBovino();
+        //spinnerBovino();
 
     }
 
@@ -126,25 +124,23 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinos.add(new venta(name,id,raza));
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                        bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(EstadoReproductivoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 vacasSpinner.setAdapter(arrayAdapter);
                 vacasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                           @Override
-                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                               //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-                                                               //idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
-                                                               //nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
-                                                               bovinoSeleccionado = bovinos.get(position).getbovino();
-                                                               //razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
-                                                           }
+                           @Override
+                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                               bovinoActual = bovinos.get(position).getbovino();
+                               getFechas(bovinoActual, view);
+                           }
 
-                                                           @Override
-                                                           public void onNothingSelected(AdapterView<?> parent) {
+                           @Override
+                           public void onNothingSelected(AdapterView<?> parent) {
 
-                                                           }
-                                                       }
+                           }
+                       }
 
                 );
 
@@ -180,7 +176,6 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
 
     // cargar datos de los bovinos
     public void cargarDatos(){
-
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -198,12 +193,13 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
     }
 
     public void getDataBovino(String idFinca){
+        idFincaGlobal = idFinca;
         db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String finca = qs.getString("fincaId");
-                    if(finca.equals(idFinca)){
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
                         String name = qs.getString("name");
                         String id = qs.getId();
                         bovinosHash.put(name,id);
@@ -211,15 +207,16 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
                 }
             }
         });
+        spinnerBovino();
     }
 
-    public void getFechas(View view){
-        String id = bovinosHash.get(bovinoActual);
+    public void getFechas(String bovino, View view){
+        String id = bovinosHash.get(bovino);
         db.collection("bovino").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
-                    if(documentSnapshot.getBoolean("EstadoReproductivo") == false){
+                    if(documentSnapshot.getBoolean("estadoReproductivo") == false){
                         String fechaNacimiento = documentSnapshot.getString("fecha");
                         String fechaDestete = calcularFecha(fechaNacimiento, 1);
                         String fechaNovillo = calcularFecha(fechaNacimiento, 2);
@@ -231,7 +228,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
                         terneraAdulta.setText(fechaAdulto);
 
                         // ponga el campo EstadoReproductivo en true
-                        db.collection("bovino").document(id).update("EstadoReproductivo",true);
+                        db.collection("bovino").document(id).update("estadoReproductivo",true);
                         // guardo automaticamente
                         addDatatoFirebase(id, fechaNacimiento, fechaDestete, fechaNovillo, fechaAdulto);
                         // bloqueo el boton guardar hasta que no haya un cambio

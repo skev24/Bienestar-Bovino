@@ -7,11 +7,14 @@ public class bovino {
     private String pesoNacimiento, pesoDestete, peso12Meses;
     private String fecha;
     private String fincaId;
-    private Boolean estadoReproductivo, estadoGestacion, sexo;
+    private Boolean estadoReproductivo;
+    private Boolean estadoGestacion;
+    private Boolean sexo;
+    private Boolean activoEnFinca;
 
 
     public bovino(String name, String id, String raza, String padre, String madre, String fecha,
-                  String pesoNacimiento, String pesoDestete, String peso12Meses, String fincaId) {
+                  String pesoNacimiento, String pesoDestete, String peso12Meses, String fincaId, Boolean genero) {
         this.name = name;
         this.id = id;
         this.raza = raza;
@@ -24,11 +27,12 @@ public class bovino {
         this.fincaId = fincaId;
         this.estadoGestacion = false;
         this.estadoReproductivo = false;
-        this.sexo = false;
+        this.sexo = genero;
+        this.activoEnFinca = true;
     }
 
     //Sobre carga de constructor para registrar parto
-    public bovino(String name, String id, String raza, String padre, String madre, String fecha, String pesoNacimiento, String fincaId, Boolean sexo){
+    public bovino(String name, String id, String raza, String padre, String madre, String fecha, String pesoNacimiento, String fincaId, Boolean genero){
         this.name = name;
         this.id = id;
         this.raza = raza;
@@ -41,7 +45,8 @@ public class bovino {
         this.fincaId = fincaId;
         this.estadoGestacion = false;
         this.estadoReproductivo = false;
-        this.sexo = sexo;
+        this.sexo = genero;
+        this.activoEnFinca = true;
     }
 
     public String getFincaId() {
@@ -135,4 +140,12 @@ public class bovino {
     public Boolean getSexo() { return sexo; }
 
     public void setSexo(Boolean sexo) { this.sexo = sexo; }
+
+    public Boolean getActivoEnFinca() {
+        return activoEnFinca;
+    }
+
+    public void setActivoEnFinca(Boolean activoEnFinca) {
+        this.activoEnFinca = activoEnFinca;
+    }
 }

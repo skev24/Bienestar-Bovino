@@ -8,13 +8,25 @@
     android:background="#E1E0E0">
 
     <Spinner
-        android:id="@+id/spinnerRazaNewBovino"
-        android:layout_width="411dp"
-        android:layout_height="48dp"
+        android:id="@+id/spinnerGeneroNewBovino"
+        android:layout_width="166dp"
+        android:layout_height="54dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.279" />
+
+    <Spinner
+        android:id="@+id/spinnerRazaNewBovino"
+        android:layout_width="166dp"
+        android:layout_height="54dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.279" />

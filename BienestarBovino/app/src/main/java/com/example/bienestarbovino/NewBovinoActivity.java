@@ -28,6 +28,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import control.Funciones;
@@ -39,13 +40,15 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
 
     private EditText textNameBovino, textIdBovino, textAlNacer, textAlDestete, text12Meses;
     private TextView textDate;
-    private Spinner selRaza, selMadre, selPadre;
+    private Spinner selRaza, selGenero, selMadre, selPadre;
     private Button buttonAddBovino, buttonBack;
+    private HashMap<String, String> bovinosVacasHash, bovinosTorosHash;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
     private String razaSpin = "";
+    private String sexoSpin = "";
     private String vacaSpin = "";
     private String toroSpin = "";
 
@@ -53,6 +56,7 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
     private List<venta> bovinosM = new ArrayList<>();//Madre
     private String bovinoSeleccionadoP = "";//Madre
     private String bovinoSeleccionadoM = "";//padre
+    private String idFincaGlobal = "";
 
 
     @Override
@@ -71,10 +75,13 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
         text12Meses = findViewById(R.id.editTextMesesNewBovino);
         textDate = findViewById(R.id.textViewDateNewBovino);
         selRaza = findViewById(R.id.spinnerRazaNewBovino);
+        selGenero = findViewById(R.id.spinnerGeneroNewBovino);
         selMadre = findViewById(R.id.spinnerMadreNewBovino);
         selPadre = findViewById(R.id.spinnerPadreNewBovino);
         buttonAddBovino = findViewById(R.id.buttonAddNewBovino);
         buttonBack = findViewById(R.id.buttonBackNewBovino);
+        bovinosVacasHash = new HashMap<>();
+        bovinosTorosHash = new HashMap<>();
 
         textDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,41 +105,42 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
         });
 
         cargarSpinners();
-        spinnerBovinoMadre();
-        spinnerBovinoPadre();
+        cargarDatos();
+//        spinnerBovinoMadre();
+//        spinnerBovinoPadre();
     }
 
     public void spinnerBovinoMadre(){
 
-        db.collection("bovino")
-                .whereEqualTo("madre", "TRUE")
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinosM.add(new venta(name,id,raza));
+                    Boolean sexo = qs.getBoolean("sexo");
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.FALSE) &&
+                            qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                        bovinosM.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(NewBovinoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinosM);
                 selMadre.setAdapter(arrayAdapter);
                 selMadre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                           @Override
-                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                               //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-                                                               //idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
-                                                               //nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
-                                                               bovinoSeleccionadoM = bovinosM.get(position).getbovino();
-                                                               //razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
-                                                           }
+                       @Override
+                       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                           //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                           //idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
+                           //nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
+                           bovinoSeleccionadoM = bovinosM.get(position).getbovino();
+                           //razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
+                       }
 
-                                                           @Override
-                                                           public void onNothingSelected(AdapterView<?> parent) {
+                       @Override
+                       public void onNothingSelected(AdapterView<?> parent) {
 
-                                                           }
-                                                       }
-
+                       }
+                   }
                 );
 
             }
@@ -141,35 +149,34 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
 
     public void spinnerBovinoPadre(){
 
-        db.collection("bovino").
-                whereEqualTo("padre", "TRUE")
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinosP.add(new venta(name,id,raza));
+                    Boolean sexo = qs.getBoolean("sexo");
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.TRUE))
+                        bovinosP.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(NewBovinoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinosP);
                 selPadre.setAdapter(arrayAdapter);
                 selPadre.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                       @Override
-                                                       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                           //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-                                                           //idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
-                                                           //nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
-                                                           bovinoSeleccionadoP = bovinosP.get(position).getbovino();
-                                                           //razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
-                                                       }
+                       @Override
+                       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                           //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                           //idGestacion.setText("Identificación:  " + bovinos.get(position).getmonto());
+                           //nameGestacion.setText("Nombre:  " + bovinos.get(position).getbovino());
+                           bovinoSeleccionadoP = bovinosP.get(position).getbovino();
+                           //razaGestacion.setText("Raza:  " + bovinos.get(position).getfecha());
+                       }
 
-                                                       @Override
-                                                       public void onNothingSelected(AdapterView<?> parent) {
+                       @Override
+                       public void onNothingSelected(AdapterView<?> parent) {
 
-                                                       }
-                                                   }
-
+                       }
+                   }
                 );
 
             }
@@ -183,13 +190,19 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
         adapterRaza.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         selRaza.setAdapter(adapterRaza);
         selRaza.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapterGenero = ArrayAdapter.createFromResource(this,
+                R.array.genero, android.R.layout.simple_spinner_item);
+        adapterGenero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selGenero.setAdapter(adapterGenero);
+        selGenero.setOnItemSelectedListener(this);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        razaSpin = parent.getItemAtPosition(position).toString();
-        //Toast.makeText(parent.getContext(), vacaSpin, Toast.LENGTH_SHORT).show();
+        razaSpin = selRaza.getItemAtPosition(position).toString();
+        sexoSpin = selGenero.getItemAtPosition(position).toString();
     }
 
     @Override
@@ -226,6 +239,7 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
         String raza = razaSpin;//selRaza spinner
         String madre = bovinoSeleccionadoM;//selMadre spinner
         String padre = bovinoSeleccionadoP;//selPadre spinner
+        Boolean sexo = getSexo();
         String fecha = textDate.getText().toString();
         String pesoNacimiento = textAlNacer.getText().toString();
         String pesonDestete = textAlDestete.getText().toString();
@@ -236,12 +250,13 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
 
             Toast.makeText(NewBovinoActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
-            addDatatoFirebase(name, id, raza, madre, padre, fecha, pesoNacimiento, pesonDestete, pesoMeses);
+            addDatatoFirebase(name, id, raza, madre, padre, fecha, pesoNacimiento, pesonDestete, pesoMeses, sexo);
         }
     }
 
     private void addDatatoFirebase(String p_name, String p_id, String p_raza, String p_madre, String p_padre,
-                                   String p_fecha, String p_Nacimiento, String p_Destete, String p_Meses) {
+                                   String p_fecha, String p_Nacimiento, String p_Destete, String p_Meses, Boolean sexo) {
+
         CollectionReference dbBovino = db.collection("bovino");
 
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -256,7 +271,7 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
                     }
                 }
                 bovino nuevoBovino = new bovino(p_name, p_id, p_raza, p_padre, p_madre, p_fecha, p_Nacimiento,
-                p_Destete, p_Meses, idFinca);
+                p_Destete, p_Meses, idFinca, sexo);
 
                 dbBovino.add(nuevoBovino).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                 @Override
@@ -271,5 +286,49 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
                 });
                 }
         });
+    }
+
+    public void cargarDatos(){
+        db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                String idFinca = "";
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String user = qs.getString("user");
+                    if(user.equals(mAuth.getCurrentUser().getUid())){
+                        idFinca = qs.getId();
+                        break;
+                    }
+                }
+                getDataBovino(idFinca);
+            }
+        });
+    }
+
+    public void getDataBovino(String idFinca){
+        idFincaGlobal = idFinca;
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String finca = qs.getString("fincaId");
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
+                        String name = qs.getString("name");
+                        String id = qs.getId();
+                        Boolean sexo = qs.getBoolean("sexo");
+                        if(sexo) bovinosTorosHash.put(name,id);
+                        else bovinosVacasHash.put(name,id);
+                    }
+                }
+                //getInfoVaca();
+            }
+        });
+        spinnerBovinoMadre();
+        spinnerBovinoPadre();
+    }
+
+    private Boolean getSexo(){
+        if(sexoSpin.equals("Macho")) return true;
+        else return false;
     }
 }

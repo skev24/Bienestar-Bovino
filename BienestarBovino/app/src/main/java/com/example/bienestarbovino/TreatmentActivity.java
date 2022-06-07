@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import control.Funciones;
@@ -42,11 +43,13 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
     private Button buttonAddTratamiento;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
+    private HashMap<String, String> bovinosHash;
 
     private String bovinoSpin = "";
 
     private List<venta> bovinos = new ArrayList<>();
     private String bovinoSeleccionado = "";
+    private String idFincaGlobal = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +67,8 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
         textBovinoNotas = findViewById(R.id.editNotasVacunacion);
         textDiasTratamiento = findViewById(R.id.editNotasTratamiento);
         buttonAddTratamiento = findViewById(R.id.buttonGuardarTratamiento);
+
+        bovinosHash = new HashMap<>();
 
         buttonTratamientoRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +89,8 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
                 addTratamiento(view);
             }
         });
-
-        spinnerBovino();
+        cargarDatos();
+//        spinnerBovino();
     }
 
     public void spinnerBovino(){
@@ -97,21 +102,22 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinos.add(new venta(name,id,raza));
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                        bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(TreatmentActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 setBovino.setAdapter(arrayAdapter);
                 setBovino.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                        @Override
-                                                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                            bovinoSeleccionado = bovinos.get(position).getbovino();
-                                                        }
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            bovinoSeleccionado = bovinos.get(position).getbovino();
+                        }
 
-                                                        @Override
-                                                        public void onNothingSelected(AdapterView<?> parent) {
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
 
-                                                        }
-                                                    }
+                        }
+                    }
 
                 );
 
@@ -191,4 +197,38 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
         });
     }
 
+    public void cargarDatos(){
+        db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                String idFinca = "";
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String user = qs.getString("user");
+                    if(user.equals(mAuth.getCurrentUser().getUid())){
+                        idFinca = qs.getId();
+                        break;
+                    }
+                }
+                getDataBovino(idFinca);
+            }
+        });
+    }
+
+    public void getDataBovino(String idFinca){
+        idFincaGlobal = idFinca;
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String finca = qs.getString("fincaId");
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
+                        String name = qs.getString("name");
+                        String id = qs.getId();
+                        bovinosHash.put(name,id);
+                    }
+                }
+            }
+        });
+        spinnerBovino();
+    }
 }

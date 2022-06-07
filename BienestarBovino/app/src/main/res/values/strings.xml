@@ -14,13 +14,13 @@
     <string name="app_name3">Spinner Example</string>
 
     <string-array name="raza">
-        <item>HOLSTEIN</item>
-        <item>SALES</item>
+        <item>Holstein</item>
+        <item>Sales</item>
     </string-array>
 
     <string-array name="genero">
-        <item>MACHO</item>
-        <item>HEMBRA</item>
+        <item>Macho</item>
+        <item>Hembra</item>
     </string-array>
 
     <string name="app_name4">Spinner Example</string>
@@ -49,10 +49,10 @@
     </string-array>
 
     <string-array name="Tipo">
-        <item>monta</item>
+        <item>Monta</item>
     </string-array>
 
     <string-array name="Dieta">
-        <item>normal</item>
+        <item>Normal</item>
     </string-array>
 </resources>

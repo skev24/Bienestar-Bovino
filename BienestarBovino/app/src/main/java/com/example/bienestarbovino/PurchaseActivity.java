@@ -37,12 +37,12 @@ import model.compra;
 public class PurchaseActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones {
 
     private EditText textNameBovino, textIdBovino, textCosto, textDate;
-    private Spinner selRaza;
+    private Spinner selRaza, sexoSpinner;
     private Button buttonCompraRegresar;
     private Button buttonGuardarCompra;
     String idNEW = new String();
     String raz ="";
-
+    private String sexoSpin = "";
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     CollectionReference dbBovino = db.collection("bovino");
@@ -57,14 +57,8 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.compra);
 
-        //spiner
         selRaza = findViewById(R.id.spinnerBovinoCompra);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.raza, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        selRaza.setAdapter(adapter);
-        selRaza.setOnItemSelectedListener(this);
-        //spiner end
+        sexoSpinner = findViewById(R.id.spinnerSexoCompra);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -98,7 +92,27 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
                 compararBovino(view);
             }
         });
+
+        cargarSpinners();
+
     }
+
+    public void cargarSpinners(){
+
+        ArrayAdapter<CharSequence> adapterGenero = ArrayAdapter.createFromResource(this,
+                R.array.genero, android.R.layout.simple_spinner_item);
+        adapterGenero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sexoSpinner.setAdapter(adapterGenero);
+        sexoSpinner.setOnItemSelectedListener(this);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.raza, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selRaza.setAdapter(adapter);
+        selRaza.setOnItemSelectedListener(this);
+    }
+
+
     @Override
     protected void onStart() {//Esta parte se activa solita y lee el ultimo Doc ID y lo retorna para saber el id del dato recientemente guardado
         super.onStart();
@@ -121,8 +135,8 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        raz = parent.getItemAtPosition(position).toString();
-        //Toast.makeText(parent.getContext(), raz, Toast.LENGTH_SHORT).show();
+        raz = selRaza.getItemAtPosition(position).toString();
+        sexoSpin = sexoSpinner.getItemAtPosition(position).toString();
     }
 
     @Override
@@ -156,11 +170,13 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
         String raza = raz;//Raza spinner
         String fecha = textDate.getText().toString();
         String precio = textCosto.getText().toString();
+        Boolean genero = getSexo();
         if (TextUtils.isEmpty(name) && TextUtils.isEmpty(id) && TextUtils.isEmpty(fecha)) { // && TextUtils.isEmpty(raza) && TextUtils.isEmpty(madre) && TextUtils.isEmpty(padre)
 
             Toast.makeText(PurchaseActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
-            addDatatoFirebase(precio, name, id, raza, fecha);
+            addDatatoFirebase(precio, name, id, raza, fecha, genero);
+            buttonGuardarCompra.setEnabled(false);
             /**try {
              Thread.sleep( 20000);
              Log.i("Tiempo", "entro");
@@ -184,24 +200,23 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
         dbCompraBovi.add(comprarBovino).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
-                Toast.makeText(PurchaseActivity.this, "Bovino agregado.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PurchaseActivity.this, "Compra agregada.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(PurchaseActivity.this, "Error al agregar bovino. \n" + e, Toast.LENGTH_SHORT).show();
+                Toast.makeText(PurchaseActivity.this, "Error al comprar bovino. \n" + e, Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    private void agregarCompraBovino(String name, String p_id, String p_raza, String idFinca){
-        String idCompra ="";
-        int cont = 0;
-        final String[] idbovi = {new String("")};
-
-
+    private void agregarCompraBovino(String name, String p_id, String p_raza, String idFinca, String fecha, Boolean genero){
+        //String idCompra ="";
+        //int cont = 0;
+        //final String[] idbovi = {new String("")};
         //Esto es un print en consola Log.i("TAG", "MENSAJE");
-        bovino crearBovino = new bovino(p_id, name, p_raza, "", "", "", "", "", "", idFinca);
+
+        bovino crearBovino = new bovino(p_id, name, p_raza, "N/A", "N/A", fecha, "0", "0", "0", idFinca, genero);
 
         dbBovino.add(crearBovino).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
@@ -220,7 +235,7 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
 
 
 
-    private void addDatatoFirebase(String p_precio, String p_name, String p_id, String p_raza, String p_fecha) {
+    private void addDatatoFirebase(String p_precio, String p_name, String p_id, String p_raza, String p_fecha, Boolean genero) {
 
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -234,8 +249,13 @@ public class PurchaseActivity extends AppCompatActivity implements AdapterView.O
                     }
                 }
 
-                agregarCompraBovino(p_name, p_id, p_raza,idFinca);
+                agregarCompraBovino(p_name, p_id, p_raza, idFinca, p_fecha, genero);
             }
         });
+    }
+
+    private Boolean getSexo(){
+        if(sexoSpin.equals("Macho")) return true;
+        else return false;
     }
 }

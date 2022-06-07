@@ -48,9 +48,9 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
 
     private HashMap<String, String> bovinosVacasHash;
 
-    private String vacaActual = "test1";
+//    private String vacaActual = "";
     private String idFincaGlobal = "";
-    private String vacaSpin = "";
+//    private String vacaSpin = "";
 
     private List<venta> bovinos = new ArrayList<>();
     private String bovinoSeleccionado = "";
@@ -91,7 +91,7 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
             }
         });
         cargarDatos();
-        spinnerBovino();
+//        spinnerBovino();
     }
 
     public void spinnerBovino(){
@@ -103,25 +103,28 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    bovinos.add(new venta(name,id,raza));
+                    Boolean sexo = qs.getBoolean("sexo");
+                    Boolean enGestacion = qs.getBoolean("estadoGestacion");
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.FALSE) &&
+                            qs.getBoolean("activoEnFinca").equals(Boolean.TRUE) && enGestacion.equals(Boolean.TRUE))
+                        bovinos.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(AbortoActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 vacasSpinner.setAdapter(arrayAdapter);
                 vacasSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                           @Override
-                                                           public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                               bovinoSeleccionado = bovinos.get(position).getbovino();
-                                                               idVacaAborto.setText("Identificación:  " + bovinos.get(position).getmonto());
-                                                               nameVacaAborto.setText("Nombre:  " + bovinos.get(position).getbovino());
-                                                               razaVacaAborto.setText("Raza:  " + bovinos.get(position).getfecha());
-                                                           }
+                       @Override
+                       public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                           bovinoSeleccionado = bovinos.get(position).getbovino();
+                           idVacaAborto.setText(bovinos.get(position).getmonto());
+                           nameVacaAborto.setText(bovinos.get(position).getbovino());
+                           razaVacaAborto.setText(bovinos.get(position).getfecha());
+                       }
 
-                                                           @Override
-                                                           public void onNothingSelected(AdapterView<?> parent) {
+                       @Override
+                       public void onNothingSelected(AdapterView<?> parent) {
 
-                                                           }
-                                                       }
-
+                       }
+                   }
                 );
 
             }
@@ -130,7 +133,7 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        vacaSpin = parent.getItemAtPosition(position).toString();
+        //vacaSpin = parent.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
     }
 
@@ -184,26 +187,29 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String finca = qs.getString("fincaId");
-                    if(finca.equals(idFinca)){
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
                         String name = qs.getString("name");
                         String id = qs.getId();
                         Boolean sexo = qs.getBoolean("sexo");
                         Boolean enGestacion = qs.getBoolean("estadoGestacion");
-                        if(!sexo && enGestacion) bovinosVacasHash.put(name,id);
+                        if(!sexo && enGestacion)
+                            bovinosVacasHash.put(name,id);
                     }
                 }
                 if(bovinosVacasHash.isEmpty()){
                     Toast.makeText(AbortoActivity.this, "No hay vacas en gestación.", Toast.LENGTH_SHORT).show();
                     //goBack();
                 }
-                else
-                    getInfoVaca();
+                else {
+                    spinnerBovino();
+                    //getInfoVaca();
+                }
             }
         });
     }
 
     public void getInfoVaca(){
-        String id = bovinosVacasHash.get(vacaActual);
+        String id = bovinosVacasHash.get(bovinoSeleccionado);
         db.collection("bovino").document(id).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -221,7 +227,7 @@ public class AbortoActivity extends AppCompatActivity implements  AdapterView.On
     }
 
     private void guardarEstado(){
-        String idVaca = bovinosVacasHash.get(vacaActual);
+        String idVaca = bovinosVacasHash.get(bovinoSeleccionado);
         db.collection("estadoGestacion").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
