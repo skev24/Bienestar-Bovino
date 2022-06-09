@@ -94,7 +94,7 @@ public class PersonalActivity extends AppCompatActivity implements AdapterView.O
 
 
     public void goBack() {
-        Intent intent = new Intent(PersonalActivity.this, MenuPersonalActivity.class);
+        Intent intent = new Intent(PersonalActivity.this, ListPersonalActivity.class);
         startActivity(intent);
     }
 

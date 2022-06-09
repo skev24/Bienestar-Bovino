@@ -75,11 +75,6 @@ public class ListPersonalActivity extends AppCompatActivity implements AdapterVi
         startActivity(intent);
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-        Toast.makeText(ListPersonalActivity.this, "Tipo: "+listTipoPersonal.get(position), Toast.LENGTH_SHORT).show();
-    }
-
     public void cargarDatos(){
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -102,7 +97,7 @@ public class ListPersonalActivity extends AppCompatActivity implements AdapterVi
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-                    String finca = qs.getString("fincaId");
+                    String finca = qs.getString("idFinca");
                     if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
                         String name = qs.getString("nombre");
                         String lastname = qs.getString("apellido");
@@ -111,9 +106,18 @@ public class ListPersonalActivity extends AppCompatActivity implements AdapterVi
                         listTipoPersonal.add(tipo);
                     }
                 }
-                listAdapter = new ArrayAdapter<>(ListPersonalActivity.this, android.R.layout.simple_list_item_1, listNombrePersonal);
-                listViewPersonal.setAdapter(listAdapter);
+                if(listNombrePersonal.isEmpty() && listTipoPersonal.isEmpty())
+                    Toast.makeText(ListPersonalActivity.this, "No hay trabajadores registrados", Toast.LENGTH_SHORT).show();
+                else{
+                    listAdapter = new ArrayAdapter<>(ListPersonalActivity.this, android.R.layout.simple_list_item_1, listNombrePersonal);
+                    listViewPersonal.setAdapter(listAdapter);
+                }
             }
         });
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        Toast.makeText(ListPersonalActivity.this, "Tipo: "+listTipoPersonal.get(position), Toast.LENGTH_SHORT).show();
     }
 }
