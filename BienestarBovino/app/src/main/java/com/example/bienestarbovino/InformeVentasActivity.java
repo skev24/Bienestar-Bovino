@@ -1,19 +1,36 @@
+
+
 package com.example.bienestarbovino;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -33,7 +50,7 @@ import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 //Fin
 
-public class InformeVentasActivity extends AppCompatActivity implements Funciones {
+public class InformeVentasActivity extends AppCompatActivity implements Funciones, AdapterView.OnItemSelectedListener {
 
     private Spinner seleccionarInfoVenta;
     private Button btnRegresar;
@@ -45,18 +62,18 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
     private FirebaseAuth mAuth;
 
     private List<venta> bovinos = new ArrayList<>();
-    private List<venta> ventasBovinos = new ArrayList<>();
+    private List<String> ventasBovinos = new ArrayList<>();
 
 
     //Variables necesarias para la grafica
     // variable for our bar chart
-    private BarChart barChart;
+    BarChart barChart;
 
     // variable for our bar data.
-    private BarData barData;
+    BarData barData;
 
     // variable for our bar data set.
-    private BarDataSet barDataSet;
+    BarDataSet barDataSet;
 
     // array list for storing entries.
     ArrayList barEntriesArrayList;
@@ -73,38 +90,9 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
 
         seleccionarInfoVenta = findViewById(R.id.spinnerEstadisticaVenta);
         btnRegresar = findViewById(R.id.btnRegVen);
+        bovinosHash = new HashMap<>();
 
-
-        //DATOS PARA LA GRAFICA
-
-        // initializing variable for bar chart.
-        barChart = findViewById(R.id.idBarChart);
-
-        // calling method to get bar entries.
-        getBarEntries();
-
-        // creating a new bar data set.
-        barDataSet = new BarDataSet(barEntriesArrayList, "Bienestar Bovino");
-
-        // creating a new bar data and
-        // passing our bar data set.
-        barData = new BarData(barDataSet);
-
-        // below line is to set data
-        // to our bar chart.
-        barChart.setData(barData);
-
-        // adding color to our bar data set.
-        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
-        // setting text color.
-        barDataSet.setValueTextColor(Color.BLACK);
-
-        // setting text size
-        barDataSet.setValueTextSize(16f);
-        barChart.getDescription().setEnabled(false);
-
-        //FIN DATOS PARA LA GRAFICA
+        cargarDatos();
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,54 +101,193 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
             }
         });
 
-        cargarSpinners();
+
     }
-
-    private void getBarEntries() {
-        // creating a new array list
-        barEntriesArrayList = new ArrayList<>();
-
-        // adding new entry to our array list with bar
-        // entry and passing x and y axis value to it.
-        barEntriesArrayList.add(new BarEntry(1f, 4));
-        barEntriesArrayList.add(new BarEntry(2f, 6));
-        barEntriesArrayList.add(new BarEntry(3f, 8));
-        barEntriesArrayList.add(new BarEntry(4f, 2));
-        barEntriesArrayList.add(new BarEntry(5f, 4));
-        barEntriesArrayList.add(new BarEntry(6f, 1));
-    }
-
     public void cargarSpinners(){
 
-        db.collection("venta").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        ArrayAdapter<CharSequence> adapterGenero = ArrayAdapter.createFromResource(this,
+                R.array.VentaEstadisticas, android.R.layout.simple_spinner_item);
+        adapterGenero.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        seleccionarInfoVenta.setAdapter(adapterGenero);
+        seleccionarInfoVenta.setOnItemSelectedListener(this);
+
+    }
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if(position == 0){
+            bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+            // creating a new array list
+            //DATOS PARA LA GRAFICA
+
+            // initializing variable for bar chart.
+            barChart = findViewById(R.id.idBarChart);
+
+            // calling method to get bar entries.
+            //getBarEntries();
+            barEntriesArrayList = new ArrayList<>();
+
+            // adding new entry to our array list with bar
+            // entry and passing x and y axis value to it.
+            Log.e("HERE",""+position);
+            barEntriesArrayList.add(new BarEntry(1F, position+4));
+            barEntriesArrayList.add(new BarEntry(2f, position+3));
+            barEntriesArrayList.add(new BarEntry(3f, position+2));
+            barEntriesArrayList.add(new BarEntry(4f, position+1));
+
+
+            // creating a new bar data set.
+            barDataSet = new BarDataSet(barEntriesArrayList, "Bienestar Bovino");
+
+            // creating a new bar data and
+            // passing our bar data set.
+            barData = new BarData(barDataSet);
+
+            // below line is to set data
+            // to our bar chart.
+            barChart.setData(barData);
+
+            // adding color to our bar data set.
+            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+            // setting text color.
+            barDataSet.setValueTextColor(Color.BLACK);
+
+            // setting text size
+            barDataSet.setValueTextSize(16f);
+            barChart.getDescription().setEnabled(false);
+
+            //FIN DATOS PARA LA GRAFICA
+
+
+        }else if(position == 1){
+            bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+            // creating a new array list
+            //DATOS PARA LA GRAFICA
+
+            // initializing variable for bar chart.
+            barChart = findViewById(R.id.idBarChart);
+
+            // calling method to get bar entries.
+            //getBarEntries();
+            barEntriesArrayList = new ArrayList<>();
+
+            // adding new entry to our array list with bar
+            // entry and passing x and y axis value to it.
+            Log.e("HERE",""+position);
+            barEntriesArrayList.add(new BarEntry(1F, 44));
+            barEntriesArrayList.add(new BarEntry(2f, 43));
+            barEntriesArrayList.add(new BarEntry(3f, 2));
+            barEntriesArrayList.add(new BarEntry(4f, 1));
+
+
+            // creating a new bar data set.
+            barDataSet = new BarDataSet(barEntriesArrayList, "Bienestar Bovino");
+
+            // creating a new bar data and
+            // passing our bar data set.
+            barData = new BarData(barDataSet);
+
+            // below line is to set data
+            // to our bar chart.
+            barChart.setData(barData);
+
+            // adding color to our bar data set.
+            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+            // setting text color.
+            barDataSet.setValueTextColor(Color.BLACK);
+
+            // setting text size
+            barDataSet.setValueTextSize(16f);
+            barChart.getDescription().setEnabled(false);
+
+
+
+        }else if(position == 2){
+            bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+            // creating a new array list
+            //DATOS PARA LA GRAFICA
+
+            // initializing variable for bar chart.
+            barChart = findViewById(R.id.idBarChart);
+
+            // calling method to get bar entries.
+            //getBarEntries();
+            barEntriesArrayList = new ArrayList<>();
+
+            // adding new entry to our array list with bar
+            // entry and passing x and y axis value to it.
+            Log.e("HERE",""+position);
+            barEntriesArrayList.add(new BarEntry(1F, 1));
+            barEntriesArrayList.add(new BarEntry(2f, 2));
+            barEntriesArrayList.add(new BarEntry(3f, 3));
+            barEntriesArrayList.add(new BarEntry(4f, 1));
+
+
+            // creating a new bar data set.
+            barDataSet = new BarDataSet(barEntriesArrayList, "Bienestar Bovino");
+
+            // creating a new bar data and
+            // passing our bar data set.
+            barData = new BarData(barDataSet);
+
+            // below line is to set data
+            // to our bar chart.
+            barChart.setData(barData);
+
+            // adding color to our bar data set.
+            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+
+            // setting text color.
+            barDataSet.setValueTextColor(Color.BLACK);
+
+            // setting text size
+            barDataSet.setValueTextSize(16f);
+            barChart.getDescription().setEnabled(false);
+        }
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
+
+
+    public void cargarDatos(){
+        db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                String idFinca = "";
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String user = qs.getString("user");
+                    if(user.equals(mAuth.getCurrentUser().getUid())){
+                        idFinca = qs.getId();
+                        break;
+                    }
+                }
+                getDataBovino(idFinca);
+            }
+        });
+    }
+
+    public void getDataBovino(String idFinca){
+        idFincaGlobal = idFinca;
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-                    String name = qs.getString("name");
-                    String raza = qs.getString("raza");
-                    String id = qs.getString("id");
-                    //if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
-                        bovinos.add(new venta(name,id,raza));
+                    String finca = qs.getString("fincaId");
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
+                        String name = qs.getString("name");
+                        String id = qs.getId();
+                        bovinosHash.put(name,id);
+                    }
                 }
             }
         });
-
-        ArrayAdapter<CharSequence> adapterVacas = ArrayAdapter.createFromResource(this,
-                R.array.VentaEstadisticas, android.R.layout.simple_spinner_item);
-        adapterVacas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        seleccionarInfoVenta.setAdapter(adapterVacas);
-        seleccionarInfoVenta.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        }
-        );
+        cargarSpinners();
     }
 
 
@@ -168,4 +295,5 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
         Intent intent = new Intent(InformeVentasActivity.this, MenuInformesActivity.class);
         startActivity(intent);
     }
+
 }
