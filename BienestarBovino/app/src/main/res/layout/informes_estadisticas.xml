@@ -55,7 +55,7 @@
         android:id="@+id/imgInformes"
         android:layout_width="157dp"
         android:layout_height="45dp"
-        android:text="Informes Produccion "
+        android:text="Informes Producción "
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

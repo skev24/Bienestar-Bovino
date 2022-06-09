@@ -42,7 +42,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Spinner
-        android:id="@+id/spinnerSexoInfoProduccion"
+        android:id="@+id/spinnerDietaInfoProduccion"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_marginTop="256dp"
@@ -61,7 +61,7 @@
         android:id="@+id/textView55"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seleccione el género"
+        android:text="Seleccione el tipo de dieta"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="0.31" />
 
     <Spinner
-        android:id="@+id/spinnerDietaInfoProduccion"
+        android:id="@+id/spinnerBovinoInfoProduccion"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_marginTop="136dp"
@@ -90,7 +90,7 @@
         android:id="@+id/textView54"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seleccione tipo de dieta"
+        android:text="Seleccione el bovino"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

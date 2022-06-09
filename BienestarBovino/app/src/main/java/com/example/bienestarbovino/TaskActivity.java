@@ -105,8 +105,7 @@ public class TaskActivity extends AppCompatActivity implements Funciones {
 
             addDatatoFirebase(fecha, encargadoTarea, descripcion, concluida);
 
-            });
-        }
+            };
     }
 
 
