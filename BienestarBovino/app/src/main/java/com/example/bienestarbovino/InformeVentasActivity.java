@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,13 +50,13 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
 
     //Variables necesarias para la grafica
     // variable for our bar chart
-    BarChart barChart;
+    private BarChart barChart;
 
     // variable for our bar data.
-    BarData barData;
+    private BarData barData;
 
     // variable for our bar data set.
-    BarDataSet barDataSet;
+    private BarDataSet barDataSet;
 
     // array list for storing entries.
     ArrayList barEntriesArrayList;
@@ -140,7 +139,7 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
+                    //if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
                         bovinos.add(new venta(name,id,raza));
                 }
             }

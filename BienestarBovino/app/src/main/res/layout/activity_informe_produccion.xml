@@ -51,7 +51,6 @@
         android:outlineSpotShadowColor="#FFFFFF"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVentaRegresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +80,6 @@
         android:outlineSpotShadowColor="#FFFFFF"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVentaRegresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,4 +124,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.067" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:context=".InformeProduccionActivity"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/idLinearChart"
+            android:layout_width="match_parent"
+            android:layout_height="268dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="325dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="67dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
