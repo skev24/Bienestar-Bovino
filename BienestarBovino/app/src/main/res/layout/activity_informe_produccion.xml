@@ -8,7 +8,7 @@
     android:background="#E1E0E0">
 
     <Button
-        android:id="@+id/buttonInfoGenerar"
+        android:id="@+id/buttonInforPrudGenerar"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:background="#656642"
@@ -42,7 +42,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Spinner
-        android:id="@+id/spinnerSexoInfoProduccion"
+        android:id="@+id/spinnerDietaInfoProduccion"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_marginTop="256dp"
@@ -51,7 +51,6 @@
         android:outlineSpotShadowColor="#FFFFFF"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVentaRegresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,7 +61,7 @@
         android:id="@+id/textView55"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seleccione el género"
+        android:text="Seleccione el tipo de dieta"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +71,7 @@
         app:layout_constraintVertical_bias="0.31" />
 
     <Spinner
-        android:id="@+id/spinnerDietaInfoProduccion"
+        android:id="@+id/spinnerBovinoInfoProduccion"
         android:layout_width="324dp"
         android:layout_height="60dp"
         android:layout_marginTop="136dp"
@@ -81,7 +80,6 @@
         android:outlineSpotShadowColor="#FFFFFF"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/btnVentaRegresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.425"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +90,7 @@
         android:id="@+id/textView54"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Seleccione tipo de dieta"
+        android:text="Seleccione el bovino"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -126,4 +124,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.067" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:context=".InformeProduccionActivity"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/idLinearChart"
+            android:layout_width="match_parent"
+            android:layout_height="268dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="325dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="67dp" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

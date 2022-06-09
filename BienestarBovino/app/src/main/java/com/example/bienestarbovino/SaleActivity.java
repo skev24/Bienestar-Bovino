@@ -114,20 +114,20 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 bovinoName.setAdapter(arrayAdapter);
                 bovinoName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                                                         @Override
-                                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                                             //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-                                                             textID.setText(bovinos.get(position).getmonto());
-                                                             textName.setText(bovinos.get(position).getbovino());
-                                                             bovinoSeleccionado = bovinos.get(position).getbovino();
-                                                             textRaza.setText(bovinos.get(position).getfecha());
-                                                         }
+                         @Override
+                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                             //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                             textID.setText(bovinos.get(position).getmonto());
+                             textName.setText(bovinos.get(position).getbovino());
+                             bovinoSeleccionado = bovinos.get(position).getbovino();
+                             textRaza.setText(bovinos.get(position).getfecha());
+                         }
 
-                                                         @Override
-                                                         public void onNothingSelected(AdapterView<?> parent) {
+                         @Override
+                         public void onNothingSelected(AdapterView<?> parent) {
 
-                                                         }
-                                                     }
+                         }
+                     }
 
                 );
 

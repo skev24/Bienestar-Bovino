@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".InformeVentasActivity"
+    android:background="#E1E0E0">
 
     <TextView
         android:id="@+id/textView52"
@@ -39,7 +41,7 @@
         android:id="@+id/textView51"
         android:layout_width="252dp"
         android:layout_height="22dp"
-        android:text="Seleccione Tipo De Estadistica"
+        android:text="Seleccione el tipo de estadística"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -63,7 +65,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".InformeVentasActivity">
 
         <!--Ui component for our bar chart-->
         <com.github.mikephil.charting.charts.BarChart

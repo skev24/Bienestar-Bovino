@@ -143,8 +143,6 @@ public class VaccineActivity extends AppCompatActivity implements AdapterView.On
 
     }
 
-
-
     public void openCalendar(View view){
         Calendar calendar = Calendar.getInstance();
         int yearD = calendar.get(Calendar.YEAR);
@@ -169,20 +167,21 @@ public class VaccineActivity extends AppCompatActivity implements AdapterView.On
         String enfermedad = textBovinoEnfermedad.getText().toString();
         String notas = textBovinoNotas.getText().toString();
         String fecha = textDate.getText().toString();
+        String id = bovinosHash.get(bovinoSeleccionado);
 
         if (TextUtils.isEmpty(bovino) && TextUtils.isEmpty(enfermedad) && TextUtils.isEmpty(fecha)) {
 
             Toast.makeText(VaccineActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
-            addDatatoFirebase(bovino, enfermedad, fecha, notas, view);
+            addDatatoFirebase(bovino, enfermedad, fecha, notas, id, view);
         }
     }
 
     //addDataToFirebase agrega a la base de datos el registro de vacuna
-    private void addDatatoFirebase(String p_bovino, String p_enfermedad, String p_fecha, String p_notas, View view) {
+    private void addDatatoFirebase(String p_bovino, String p_enfermedad, String p_fecha, String p_notas, String id,View view) {
 
         CollectionReference dbVacuna = db.collection("vacuna");
-        vacuna nuevaVacuna = new vacuna(p_bovino, p_enfermedad, p_fecha, p_notas);
+        vacuna nuevaVacuna = new vacuna(p_bovino, p_enfermedad, p_fecha, p_notas, id);
 
         dbVacuna.add(nuevaVacuna).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
