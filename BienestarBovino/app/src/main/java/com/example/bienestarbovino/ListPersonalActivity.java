@@ -22,14 +22,14 @@ import java.util.List;
 
 import control.Funciones;
 
-public class ListTaskActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, Funciones {
+public class ListPersonalActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, Funciones {
 
-    private Button btnAddTask;
-    private Button btnReturn;
+    private Button btnAgregarPersonal;
+    private Button btnRegresar;
 
-    private ListView listViewBovino;
-    private List<String> listDescripcion = new ArrayList<>();
-    private List<String> listEstado = new ArrayList<>();
+    private ListView listViewPersonal;
+    private List<String> listNombrePersonal = new ArrayList<>();
+    private List<String> listIdPersonal = new ArrayList<>();
     private ArrayAdapter<String> listAdapter;
 
     private FirebaseAuth mAuth;
@@ -38,23 +38,24 @@ public class ListTaskActivity extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inventario);
+        setContentView(R.layout.lista_personal);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        btnAddTask = findViewById(R.id.btnAgregarTarea);
-        btnReturn = findViewById(R.id.btnRegresarListaTareas);
-        listViewBovino = findViewById(R.id.listViewPersonal);
-        listViewBovino.setOnItemClickListener(this);
+        btnAgregarPersonal = findViewById(R.id.btnAgregarListaPersonal);
+        btnRegresar = findViewById(R.id.btnRegresarListaPersonal);
+        listViewPersonal = findViewById(R.id.listViewPersonal);
+        listViewPersonal.setOnItemClickListener(this);
 
-        btnAddTask.setOnClickListener(new View.OnClickListener() {
+        btnAgregarPersonal.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { openAddTaskActivity();
+            public void onClick(View view) {
+                openTaskActivity();
             }
         });
 
-        btnReturn.setOnClickListener(new View.OnClickListener() {
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goBack();
@@ -64,18 +65,23 @@ public class ListTaskActivity extends AppCompatActivity implements AdapterView.O
         cargarDatos();
     }
 
-    public void openAddTaskActivity(){
-        Intent intent = new Intent(ListTaskActivity.this, TaskActivity.class);
+    public void openTaskActivity(){
+        Intent intent = new Intent(ListPersonalActivity.this, TaskActivity.class);
         startActivity(intent);
     }
 
     public void goBack(){
-        Intent intent = new Intent(ListTaskActivity.this, MenuActivity.class);
+        Intent intent = new Intent(ListPersonalActivity.this, MenuPersonalActivity.class);
         startActivity(intent);
     }
 
-    public void cargarDatos(){
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
+        Toast.makeText(ListPersonalActivity.this, "id: "+listIdPersonal.get(position), Toast.LENGTH_SHORT).show();
+    }
+
+    public void cargarDatos(){
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -87,38 +93,30 @@ public class ListTaskActivity extends AppCompatActivity implements AdapterView.O
                         break;
                     }
                 }
-                getDataBovino(idFinca);
+                getDataPersonal(idFinca);
             }
         });
     }
 
-    public void getDataBovino(String idFinca){
-        db.collection("tarea").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+    public void getDataPersonal(String idFinca){
+        db.collection("personal").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-                    String finca = qs.getString("idFinca");
-                    if(finca.equals(idFinca)){
-                        String  descripcion = qs.getString("description");
-                        String estado = qs.getString("status");
-                        listDescripcion.add(descripcion);
-                        listEstado.add(estado);
+                    String finca = qs.getString("fincaId");
+                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
+                        String name = qs.getString("nombre");
+                        String lastname = qs.getString("apellido");
+                        String id = qs.getId();
+                        listNombrePersonal.add(name+""+lastname);
+                        listIdPersonal.add(id);
                     }
                 }
-                listAdapter = new ArrayAdapter<>(ListTaskActivity.this, android.R.layout.simple_list_item_1, listDescripcion);
-                listViewBovino.setAdapter(listAdapter);
+                listAdapter = new ArrayAdapter<>(ListPersonalActivity.this, android.R.layout.simple_list_item_1, listNombrePersonal);
+                listViewPersonal.setAdapter(listAdapter);
 
             }
         });
         //Toast.makeText(InventoryActivity.this, idFinca, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-        //Intent intent = new Intent(InventoryActivity.this, InfoBovinoActivity.class);
-        //intent.putExtra("name", "vaca");
-        //startActivity(intent);
-        Toast.makeText(ListTaskActivity.this, "Estado: "+listEstado.get(position), Toast.LENGTH_SHORT).show();
     }
 }

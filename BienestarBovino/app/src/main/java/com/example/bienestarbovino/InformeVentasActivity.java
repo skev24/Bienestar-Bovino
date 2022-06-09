@@ -1,5 +1,3 @@
-
-
 package com.example.bienestarbovino;
 
 import androidx.annotation.NonNull;
@@ -61,8 +59,28 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
 
-    private List<venta> bovinos = new ArrayList<>();
-    private List<String> ventasBovinos = new ArrayList<>();
+    private List<String> toro = new ArrayList<>();
+    private List<String> vaca = new ArrayList<>();
+
+    private List<String> toroRaza = new ArrayList<>();
+    private List<String> vacaRaza = new ArrayList<>();
+
+    private List<String> toroRazaVendida = new ArrayList<>();
+    private List<String> vacaRazaVendida = new ArrayList<>();
+
+    private List<String> toroRazaVendidaCont = new ArrayList<>();
+    private List<String> vacaRazaVendidaCont = new ArrayList<>();
+
+    private List<String> toroVendido = new ArrayList<>();
+    private List<Integer> toroVenta = new ArrayList<>();
+
+    private List<String> vacaVendido = new ArrayList<>();
+    private List<Integer> vacaVenta = new ArrayList<>();
+
+    private HashMap<String, String> bovinosVacasHash, bovinosTorosHash;
+
+    private int contVacas=0;
+    private int contToro=0;
 
 
     //Variables necesarias para la grafica
@@ -76,8 +94,10 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
     BarDataSet barDataSet;
 
     // array list for storing entries.
-    ArrayList barEntriesArrayList;
+    ArrayList barEntriesArrayList1;
     //Fin Variables para la grafica
+    ArrayList barEntriesArrayList2;
+    ArrayList barEntriesArrayList3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +113,12 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
         bovinosHash = new HashMap<>();
 
         cargarDatos();
+        contarMonto();
+
+
+
+        cargarSpinners();
+
 
         btnRegresar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,137 +141,84 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if(position == 0){
-            bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-            // creating a new array list
-            //DATOS PARA LA GRAFICA
 
-            // initializing variable for bar chart.
             barChart = findViewById(R.id.idBarChart);
 
-            // calling method to get bar entries.
-            //getBarEntries();
-            barEntriesArrayList = new ArrayList<>();
+            BarDataSet data1 = new BarDataSet(dataValues1(toroVendido.size()), "Macho");
+            BarDataSet data2 = new BarDataSet(dataValues2(vacaVendido.size()),"Hembra");
 
-            // adding new entry to our array list with bar
-            // entry and passing x and y axis value to it.
-            Log.e("HERE",""+position);
-            barEntriesArrayList.add(new BarEntry(1F, position+4));
-            barEntriesArrayList.add(new BarEntry(2f, position+3));
-            barEntriesArrayList.add(new BarEntry(3f, position+2));
-            barEntriesArrayList.add(new BarEntry(4f, position+1));
+            data1.setColor(Color.GREEN);
+            data2.setColor(Color.RED);
 
+            BarData barData = new BarData();
+            barData.addDataSet(data1);
+            barData.addDataSet(data2);
 
-            // creating a new bar data set.
-            barDataSet = new BarDataSet(barEntriesArrayList, "Bienestar Bovino");
+            barData.setValueTextSize(16f);
 
-            // creating a new bar data and
-            // passing our bar data set.
-            barData = new BarData(barDataSet);
-
-            // below line is to set data
-            // to our bar chart.
             barChart.setData(barData);
-
-            // adding color to our bar data set.
-            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
-            // setting text color.
-            barDataSet.setValueTextColor(Color.BLACK);
-
-            // setting text size
-            barDataSet.setValueTextSize(16f);
-            barChart.getDescription().setEnabled(false);
+            barChart.invalidate();
 
             //FIN DATOS PARA LA GRAFICA
-
-
         }else if(position == 1){
-            bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-            // creating a new array list
-            //DATOS PARA LA GRAFICA
 
-            // initializing variable for bar chart.
             barChart = findViewById(R.id.idBarChart);
 
-            // calling method to get bar entries.
-            //getBarEntries();
-            barEntriesArrayList = new ArrayList<>();
+            BarDataSet data1 = new BarDataSet(dataValues1(toroVenta.get(toroVenta.size()-1)), "Macho");
+            BarDataSet data2 = new BarDataSet(dataValues2(vacaVenta.get(vacaVenta.size()-1)),"Hembra");
 
-            // adding new entry to our array list with bar
-            // entry and passing x and y axis value to it.
-            Log.e("HERE",""+position);
-            barEntriesArrayList.add(new BarEntry(1F, 44));
-            barEntriesArrayList.add(new BarEntry(2f, 43));
-            barEntriesArrayList.add(new BarEntry(3f, 2));
-            barEntriesArrayList.add(new BarEntry(4f, 1));
+            data1.setColor(Color.GREEN);
+            data2.setColor(Color.RED);
 
+            BarData barData = new BarData();
+            barData.addDataSet(data1);
+            barData.addDataSet(data2);
 
-            // creating a new bar data set.
-            barDataSet = new BarDataSet(barEntriesArrayList, "Bienestar Bovino");
+            barData.setValueTextSize(16f);
 
-            // creating a new bar data and
-            // passing our bar data set.
-            barData = new BarData(barDataSet);
-
-            // below line is to set data
-            // to our bar chart.
             barChart.setData(barData);
-
-            // adding color to our bar data set.
-            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
-            // setting text color.
-            barDataSet.setValueTextColor(Color.BLACK);
-
-            // setting text size
-            barDataSet.setValueTextSize(16f);
-            barChart.getDescription().setEnabled(false);
-
-
+            barChart.invalidate();
 
         }else if(position == 2){
-            bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-            // creating a new array list
-            //DATOS PARA LA GRAFICA
 
-            // initializing variable for bar chart.
             barChart = findViewById(R.id.idBarChart);
 
-            // calling method to get bar entries.
-            //getBarEntries();
-            barEntriesArrayList = new ArrayList<>();
+            BarDataSet data1 = new BarDataSet(dataValues1(toroRazaVendidaCont.size()+1), "Holstein");
+            BarDataSet data2 = new BarDataSet(dataValues2(vacaRazaVendidaCont.size()-toroRazaVendidaCont.size()),"SALES");
 
-            // adding new entry to our array list with bar
-            // entry and passing x and y axis value to it.
-            Log.e("HERE",""+position);
-            barEntriesArrayList.add(new BarEntry(1F, 1));
-            barEntriesArrayList.add(new BarEntry(2f, 2));
-            barEntriesArrayList.add(new BarEntry(3f, 3));
-            barEntriesArrayList.add(new BarEntry(4f, 1));
+            data1.setColor(Color.GREEN);
+            data2.setColor(Color.RED);
 
+            BarData barData = new BarData();
+            barData.addDataSet(data1);
+            barData.addDataSet(data2);
 
-            // creating a new bar data set.
-            barDataSet = new BarDataSet(barEntriesArrayList, "Bienestar Bovino");
+            barData.setValueTextSize(16f);
 
-            // creating a new bar data and
-            // passing our bar data set.
-            barData = new BarData(barDataSet);
-
-            // below line is to set data
-            // to our bar chart.
             barChart.setData(barData);
+            barChart.invalidate();
 
-            // adding color to our bar data set.
-            barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
-
-            // setting text color.
-            barDataSet.setValueTextColor(Color.BLACK);
-
-            // setting text size
-            barDataSet.setValueTextSize(16f);
-            barChart.getDescription().setEnabled(false);
         }
 
+    }
+
+    private ArrayList<BarEntry> dataValues1(int val){
+        ArrayList<BarEntry> dataVals = new ArrayList<>();
+
+        // adding new entry to our array list with bar
+        // entry and passing x and y axis value to it.
+
+        dataVals.add(new BarEntry(0F, val));
+        return dataVals;
+    }
+    private ArrayList<BarEntry> dataValues2(int val){
+        ArrayList<BarEntry> dataVals = new ArrayList<>();
+
+        // adding new entry to our array list with bar
+        // entry and passing x and y axis value to it.
+
+        dataVals.add(new BarEntry(1F, val));
+        return dataVals;
     }
 
     @Override
@@ -253,9 +226,23 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
 
     }
 
+    private void contarMonto(){
+        int valor1 = 0;
+        int valor2 = 0;
+        for(int i=0;i<vacaVenta.size();i++){
+            valor1 += vacaVenta.get(i);
+        }
+        for(int i=0;i<toroVenta.size();i++){
+            valor2 += toroVenta.get(i);
+        }
+        vacaVenta.add(valor1);
+        toroVenta.add(valor2);
+    }
+
 
 
     public void cargarDatos(){
+
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -274,20 +261,57 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
 
     public void getDataBovino(String idFinca){
         idFincaGlobal = idFinca;
+
         db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                int i =0;
+                int j=0;
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String finca = qs.getString("fincaId");
-                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
+
+                    if(finca.equals(idFinca)){
                         String name = qs.getString("name");
-                        String id = qs.getId();
-                        bovinosHash.put(name,id);
+                        String raza = qs.getString("raza");
+                        Boolean sexo = qs.getBoolean("sexo");
+                        if(sexo) {toro.add(name); toroRaza.add(raza);}
+                        else {vaca.add(name); vacaRaza.add(raza);}
                     }
                 }
             }
         });
-        cargarSpinners();
+        contadorVendidosToro();
+    }
+
+
+
+    public void contadorVendidosToro(){
+
+        db.collection("venta").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            int i =0;
+            int j =0;
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
+                    String name = qs.getString("bovino");
+                    String monto = qs.getString("monto");
+                    if(toro.contains(name)){
+                        toroVendido.add(name);
+                        toroVenta.add(Integer.parseInt(monto));
+                        toroRazaVendidaCont.add(toroRaza.get(i++));
+                    }
+                    else if(vaca.contains(name)){
+                        vacaVendido.add(name);
+                        vacaVenta.add(Integer.parseInt(monto));
+                        vacaRazaVendidaCont.add(vacaRaza.get(j++));
+
+                    }
+
+                }
+            }
+
+
+        });
     }
 
 

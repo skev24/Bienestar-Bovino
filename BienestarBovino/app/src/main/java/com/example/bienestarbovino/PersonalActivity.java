@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -53,7 +52,7 @@ public class PersonalActivity extends AppCompatActivity implements Funciones{
         textLastname = findViewById(R.id.entryLastname);
         selTipoUsuario = findViewById(R.id.spinnerType);
         buttonAddPersonal = findViewById(R.id.buttonGuardarPersonal);
-        buttonBack = findViewById(R.id.btnRegresarPersonal);
+        buttonBack = findViewById(R.id.btnAgregarListaPersonal);
 
         buttonAddPersonal.setOnClickListener(new View.OnClickListener() {
             @Override

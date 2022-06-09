@@ -106,10 +106,10 @@ public class TaskActivity extends AppCompatActivity implements Funciones {
             addDatatoFirebase(fecha, encargadoTarea, descripcion, concluida);
 
             };
-    }
+        }
 
 
-    private void addDatatoFirebase(String p_fecha, String p_encargado, String p_descripcion, String p_concluida) {
+    private void addDatatoFirebase(String p_fecha, String p_encargado, String p_descripcion, boolean p_concluida) {
 
         CollectionReference dbPersonal = db.collection("tarea");
 
@@ -135,7 +135,7 @@ public class TaskActivity extends AppCompatActivity implements Funciones {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(PersonalActivity.this, "Error al agregar tarea. \n" + e, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TaskActivity.this, "Error al agregar tarea. \n" + e, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
