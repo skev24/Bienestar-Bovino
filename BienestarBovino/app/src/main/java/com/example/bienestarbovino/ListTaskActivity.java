@@ -22,15 +22,14 @@ import java.util.List;
 
 import control.Funciones;
 
-public class InventoryActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, Funciones {
+public class ListTaskActivity extends AppCompatActivity implements AdapterView.OnItemClickListener, Funciones {
 
-    private Button btnVentaClass;
-    private Button btnCompraClass;
-    private Button btnRegresarClass;
+    private Button btnAddTask;
+    private Button btnReturn;
 
     private ListView listViewBovino;
-    private List<String> listBovino = new ArrayList<>();
-    private List<String> listIdBovino = new ArrayList<>();
+    private List<String> listDescripcion = new ArrayList<>();
+    private List<String> listEstado = new ArrayList<>();
     private ArrayAdapter<String> listAdapter;
 
     private FirebaseAuth mAuth;
@@ -44,27 +43,18 @@ public class InventoryActivity extends AppCompatActivity implements AdapterView.
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        btnVentaClass = findViewById(R.id.btnVentaInventory);
-        btnCompraClass = findViewById(R.id.btnCompraInventory);
-        btnRegresarClass = findViewById(R.id.btnRegresarInventory);
+        btnAddTask = findViewById(R.id.btnAgregarTarea);
+        btnReturn = findViewById(R.id.btnRegresarListaTareas);
         listViewBovino = findViewById(R.id.listViewTask);
         listViewBovino.setOnItemClickListener(this);
 
-        btnVentaClass.setOnClickListener(new View.OnClickListener() {
+        btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                openVentaActivity();
+            public void onClick(View view) { openAddTaskActivity();
             }
         });
 
-        btnCompraClass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openCompraActivity();
-            }
-        });
-
-        btnRegresarClass.setOnClickListener(new View.OnClickListener() {
+        btnReturn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 goBack();
@@ -74,18 +64,13 @@ public class InventoryActivity extends AppCompatActivity implements AdapterView.
         cargarDatos();
     }
 
-    public void openVentaActivity(){
-        Intent intent = new Intent(InventoryActivity.this, SaleActivity.class);
-        startActivity(intent);
-    }
-
-    public void openCompraActivity(){
-        Intent intent = new Intent(InventoryActivity.this, PurchaseActivity.class);
+    public void openAddTaskActivity(){
+        Intent intent = new Intent(ListTaskActivity.this, TaskActivity.class);
         startActivity(intent);
     }
 
     public void goBack(){
-        Intent intent = new Intent(InventoryActivity.this, MenuActivity.class);
+        Intent intent = new Intent(ListTaskActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 
@@ -108,19 +93,19 @@ public class InventoryActivity extends AppCompatActivity implements AdapterView.
     }
 
     public void getDataBovino(String idFinca){
-        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("tarea").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-                    String finca = qs.getString("fincaId");
-                    if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
-                        String name = qs.getString("name");
-                        String id = qs.getId();
-                        listBovino.add(name);
-                        listIdBovino.add(id);
+                    String finca = qs.getString("idFinca");
+                    if(finca.equals(idFinca)){
+                        String  descripcion = qs.getString("description");
+                        String estado = qs.getString("status");
+                        listDescripcion.add(descripcion);
+                        listEstado.add(estado);
                     }
                 }
-                listAdapter = new ArrayAdapter<>(InventoryActivity.this, android.R.layout.simple_list_item_1, listBovino);
+                listAdapter = new ArrayAdapter<>(ListTaskActivity.this, android.R.layout.simple_list_item_1, listDescripcion);
                 listViewBovino.setAdapter(listAdapter);
 
             }
@@ -134,6 +119,6 @@ public class InventoryActivity extends AppCompatActivity implements AdapterView.
         //Intent intent = new Intent(InventoryActivity.this, InfoBovinoActivity.class);
         //intent.putExtra("name", "vaca");
         //startActivity(intent);
-        Toast.makeText(InventoryActivity.this, "Id: "+listIdBovino.get(position), Toast.LENGTH_SHORT).show();
+        Toast.makeText(ListTaskActivity.this, "Estado: "+listEstado.get(position), Toast.LENGTH_SHORT).show();
     }
 }

@@ -301,6 +301,7 @@ public class EstadoReproductivoActivity extends AppCompatActivity implements Ada
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(EstadoReproductivoActivity.this, "Estado reproductivo guardado.", Toast.LENGTH_SHORT).show();
+                goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

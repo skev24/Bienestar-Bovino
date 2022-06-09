@@ -4,11 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".InventoryActivity"
-    android:background="#CFCDCD">
+    tools:context=".ListTaskActivity"
+    android:background="#E1E0E0">
+
+    <ListView
+        android:id="@+id/listViewTask"
+        android:layout_width="412dp"
+        android:layout_height="478dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnRegresarInventory"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/imageView2"
         android:layout_width="102dp"
         android:layout_height="105dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,7 +29,7 @@
         app:srcCompat="@drawable/_2459_1" />
 
     <Button
-        android:id="@+id/btnRegresarInventory"
+        android:id="@+id/btnRegresarListaTareas"
         android:layout_width="445dp"
         android:layout_height="52dp"
         android:background="#146304"
@@ -36,46 +45,20 @@
         app:layout_constraintVertical_bias="0.998" />
 
     <Button
-        android:id="@+id/btnVentaInventory"
-        android:layout_width="202dp"
-        android:layout_height="53dp"
+        android:id="@+id/btnAgregarTarea"
+        android:layout_width="445dp"
+        android:layout_height="52dp"
         android:background="#146304"
-        android:text="Venta"
+        android:text="Agregar tarea"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904" />
-
-    <Button
-        android:id="@+id/btnCompraInventory"
-        android:layout_width="204dp"
-        android:layout_height="53dp"
-        android:background="#146304"
-        android:text="Compra"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.904" />
-
-    <ListView
-        android:id="@+id/listViewTask"
-        android:layout_width="412dp"
-        android:layout_height="478dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnRegresarInventory"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.896" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

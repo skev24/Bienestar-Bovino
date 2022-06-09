@@ -17,10 +17,6 @@ public class tratamiento {
         this.notas = notas;
     }
 
-    public void guardarTratamiento(String bovino, String diagnostico, String fecha, String diasTratamiento, String notas) {
-
-    }
-
     public String getBovino() {
         return bovino;
     }

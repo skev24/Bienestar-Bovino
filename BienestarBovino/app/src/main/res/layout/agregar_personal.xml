@@ -4,11 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VaccineActivity"
+    tools:context=".PersonalActivity"
     android:background="#E1E0E0">
 
+    <ImageView
+        android:id="@+id/imageView18"
+        android:layout_width="133dp"
+        android:layout_height="123dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.12"
+        app:srcCompat="@drawable/_2459_1" />
+
     <Button
-        android:id="@+id/buttonGuardarVacunacion"
+        android:id="@+id/buttonGuardarPersonal"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:background="#656642"
@@ -24,20 +36,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.914" />
 
-    <ImageView
-        android:id="@+id/imageView15"
-        android:layout_width="156dp"
-        android:layout_height="116dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146"
-        app:srcCompat="@drawable/trabajador" />
-
     <Button
-        android:id="@+id/btnRegresarVacunacion"
+        android:id="@+id/btnRegresarPersonal"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#656642"
@@ -67,7 +67,7 @@
         app:layout_constraintVertical_bias="0.051" />
 
     <EditText
-        android:id="@+id/editNotasVacunacion"
+        android:id="@+id/entryLastname"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -85,7 +85,7 @@
         app:layout_constraintVertical_bias="0.547" />
 
     <EditText
-        android:id="@+id/entryEnfermedadVacunacion"
+        android:id="@+id/entryName"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -103,7 +103,7 @@
         app:layout_constraintVertical_bias="0.456" />
 
     <EditText
-        android:id="@+id/entryFechaVacunacion"
+        android:id="@+id/entryId"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -137,7 +137,7 @@
         app:layout_constraintVertical_bias="0.693" />
 
     <Spinner
-        android:id="@+id/spinnerBovinoVacunacion"
+        android:id="@+id/spinnerType"
         android:layout_width="187dp"
         android:layout_height="42dp"
         android:contentDescription="@string/app_name"

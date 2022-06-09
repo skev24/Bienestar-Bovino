@@ -63,7 +63,7 @@ public class NewBovinoActivity extends AppCompatActivity implements AdapterView.
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.addbovino);
+        setContentView(R.layout.agregar_bovino);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();

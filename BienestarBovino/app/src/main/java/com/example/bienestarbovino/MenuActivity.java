@@ -103,7 +103,7 @@ public class MenuActivity extends AppCompatActivity {
         btnPersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //openPersonal();
+                openPersonal();
             }
         });
 

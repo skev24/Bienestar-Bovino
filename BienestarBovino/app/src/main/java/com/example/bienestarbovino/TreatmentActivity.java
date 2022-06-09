@@ -60,11 +60,11 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        textDate = findViewById(R.id.entryFechaTratamiento);
+        textDate = findViewById(R.id.entryFechaTarea);
         buttonTratamientoRegresarClass = findViewById(R.id.btnRegresarTratamiento);
         setBovino = findViewById(R.id.spinnerBovinoTratamiento);
         textBovinoDiagnostico = findViewById(R.id.entryDiagnosticoTratamiento);
-        textBovinoNotas = findViewById(R.id.editNotasVacunacion);
+        textBovinoNotas = findViewById(R.id.entryLastname);
         textDiasTratamiento = findViewById(R.id.editNotasTratamiento);
         buttonAddTratamiento = findViewById(R.id.buttonGuardarTratamiento);
 

@@ -64,12 +64,12 @@ public class VaccineActivity extends AppCompatActivity implements AdapterView.On
 
         bovinosHash = new HashMap<>();
 
-        textDate = findViewById(R.id.entryFechaVacunacion);
-        buttonVacunaRegresarClass = findViewById(R.id.btnRegresarVacunacion);
-        setBovino = findViewById(R.id.spinnerBovinoVacunacion);
-        textBovinoEnfermedad = findViewById(R.id.entryEnfermedadVacunacion);
-        textBovinoNotas = findViewById(R.id.editNotasVacunacion);
-        buttonAddVacuna = findViewById(R.id.buttonGuardarVacunacion);
+        textDate = findViewById(R.id.entryId);
+        buttonVacunaRegresarClass = findViewById(R.id.btnRegresarPersonal);
+        setBovino = findViewById(R.id.spinnerType);
+        textBovinoEnfermedad = findViewById(R.id.entryName);
+        textBovinoNotas = findViewById(R.id.entryLastname);
+        buttonAddVacuna = findViewById(R.id.buttonGuardarPersonal);
 
         buttonVacunaRegresarClass.setOnClickListener(new View.OnClickListener() {
             @Override

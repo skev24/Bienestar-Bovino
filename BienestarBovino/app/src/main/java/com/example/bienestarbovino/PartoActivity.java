@@ -322,6 +322,7 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(PartoActivity.this, "Nuevo parto guardado.", Toast.LENGTH_SHORT).show();
+                goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -12,6 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MenuTest">
         <activity
+            android:name=".PersonalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListTaskActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TaskActivity"
+            android:exported="false" />
+        <activity
             android:name=".InformeProduccionActivity"
             android:exported="false" />
         <activity
@@ -70,10 +79,10 @@
             android:exported="false" />
         <activity
             android:name=".MenuInformesActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".MenuPersonalActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
