@@ -37,6 +37,7 @@ import model.venta;
 
 public class SaleActivity extends AppCompatActivity implements Funciones {
 
+    private TextView textDate;
     private TextView textID;
     private TextView textRaza;
     private TextView textName;
@@ -48,7 +49,6 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
     private HashMap<String, String> bovinosHash;
 
     private List<venta> bovinos = new ArrayList<>();
-    private List<venta> ventasBovinos = new ArrayList<>();
     private String bovinoSeleccionado = "";
     private String idFincaGlobal = "";
 
@@ -62,6 +62,7 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
         textID = findViewById(R.id.textView4);
         textName = findViewById(R.id.textViewNombreVenta);
         textRaza = findViewById(R.id.textViewRazaVenta);
+
 
         editFecha = findViewById(R.id.editFechaVenta);
         editMonto = findViewById(R.id.editMontoVenta);
@@ -99,52 +100,34 @@ public class SaleActivity extends AppCompatActivity implements Funciones {
 
     public void spinnerBovino(){
 
-        db.collection("venta").whereNotEqualTo("name","Bailey, popa").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        db.collection("bovino").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String name = qs.getString("name");
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
-                    ventasBovinos.add(new venta(name,id,raza));
-                }
-            }
-        });
-
-        db.collection("bovino").whereNotEqualTo("name","Bailey, popa").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-                        String name = qs.getString("name");
-                        String raza = qs.getString("raza");
-                        String id = qs.getString("id");
-
+                    //Toast.makeText(SaleActivity.this, id, Toast.LENGTH_SHORT).show();
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
                         bovinos.add(new venta(name,id,raza));
-
-
-                        //Toast.makeText(SaleActivity.this, id, Toast.LENGTH_SHORT).show();
-                        if(qs.getString("fincaId").equals(idFincaGlobal) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
-                            bovinos.add(new venta(name,id,raza));
-
                 }
-
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(SaleActivity.this, android.R.layout.simple_dropdown_item_1line, bovinos);
                 bovinoName.setAdapter(arrayAdapter);
                 bovinoName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
-                        textID.setText(bovinos.get(position).getmonto());
-                        textName.setText(bovinos.get(position).getbovino());
-                        bovinoSeleccionado = bovinos.get(position).getbovino();
-                        textRaza.setText(bovinos.get(position).getfecha());
-                    }
+                                                         @Override
+                                                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                             //bovinoSeleccionado = parent.getItemAtPosition(position).toString();
+                                                             textID.setText(bovinos.get(position).getmonto());
+                                                             textName.setText(bovinos.get(position).getbovino());
+                                                             bovinoSeleccionado = bovinos.get(position).getbovino();
+                                                             textRaza.setText(bovinos.get(position).getfecha());
+                                                         }
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
+                                                         @Override
+                                                         public void onNothingSelected(AdapterView<?> parent) {
 
-                    }
-                }
+                                                         }
+                                                     }
 
                 );
 
