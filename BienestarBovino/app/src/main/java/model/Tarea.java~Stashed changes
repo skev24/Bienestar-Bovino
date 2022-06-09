@@ -1,13 +1,13 @@
 package model;
 
-public class Tarea {
+public class tarea {
     private String encargadoTarea;
     private String descripcion;
     private String fecha; //cambiar por date
     private boolean concluida;
     private String idFinca;
 
-    public Tarea(String fecha, String encargadoTarea, String descripcion, boolean concluida, String idFinca) {
+    public tarea(String fecha, String encargadoTarea, String descripcion, boolean concluida, String idFinca) {
         this.encargadoTarea = encargadoTarea;
         this.descripcion = descripcion;
         this.fecha = fecha;
