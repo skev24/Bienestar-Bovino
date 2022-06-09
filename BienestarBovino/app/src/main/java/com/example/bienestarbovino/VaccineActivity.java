@@ -65,7 +65,7 @@ public class VaccineActivity extends AppCompatActivity implements AdapterView.On
         bovinosHash = new HashMap<>();
 
         textDate = findViewById(R.id.entryId);
-        buttonVacunaRegresarClass = findViewById(R.id.btnRegresarPersonal);
+        buttonVacunaRegresarClass = findViewById(R.id.btnAgregarListaPersonal);
         setBovino = findViewById(R.id.spinnerType);
         textBovinoEnfermedad = findViewById(R.id.entryName);
         textBovinoNotas = findViewById(R.id.entryLastname);

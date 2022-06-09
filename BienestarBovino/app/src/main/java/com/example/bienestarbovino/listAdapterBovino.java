@@ -8,13 +8,13 @@ import java.util.List;
 
 import model.listaInventariobovinos;
 
-public class listAdapter  extends ArrayAdapter<listaInventariobovinos> {
+public class listAdapterBovino extends ArrayAdapter<listaInventariobovinos> {
 
     private List<listaInventariobovinos> inventario;
     private Context context;
     private int resourceLayout;
 
-    public listAdapter(@NonNull Context context, int resource, @NonNull List<listaInventariobovinos> objects){
+    public listAdapterBovino(@NonNull Context context, int resource, @NonNull List<listaInventariobovinos> objects){
         super(context, resource, objects);
         this.inventario = objects;
         this.context = context;

@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListTaskActivity"
-    android:background="#E1E0E0">
+    tools:context=".ListPersonalActivity"
+    android:background="#CFCDCD">>
 
     <ListView
         android:id="@+id/listViewPersonal"
         android:layout_width="412dp"
         android:layout_height="478dp"
-        app:layout_constraintBottom_toBottomOf="@+id/btnRegresarListaTareas"
+        app:layout_constraintBottom_toBottomOf="@+id/btnAgregarListaPersonal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imageView23"
         android:layout_width="102dp"
         android:layout_height="105dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,7 +29,7 @@
         app:srcCompat="@drawable/_2459_1" />
 
     <Button
-        android:id="@+id/btnRegresarListaTareas"
+        android:id="@+id/btnRegresarListaPersonal"
         android:layout_width="445dp"
         android:layout_height="52dp"
         android:background="#146304"
@@ -45,11 +45,11 @@
         app:layout_constraintVertical_bias="0.998" />
 
     <Button
-        android:id="@+id/btnAgregarTarea"
+        android:id="@+id/btnAgregarListaPersonal"
         android:layout_width="445dp"
         android:layout_height="52dp"
         android:background="#146304"
-        android:text="Agregar tarea"
+        android:text="Agregar personal"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
@@ -59,6 +59,6 @@
         app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.896" />
+        app:layout_constraintVertical_bias="0.908" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
