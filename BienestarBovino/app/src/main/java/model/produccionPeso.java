@@ -6,13 +6,15 @@ public class produccionPeso {
     private String fecha;  //cambiar por date
     private String peso;
     private String notas;
+    private String idBovino;
 
-    public produccionPeso(String bovino, String peso, String fecha, String dieta, String notas) {
+    public produccionPeso(String bovino, String peso, String fecha, String dieta, String notas, String id) {
         this.bovino = bovino;
         this.peso = peso;
         this.dieta = dieta;
         this.fecha = fecha;
         this.notas = notas;
+        this.idBovino = id;
     }
 
     //Getters
@@ -36,6 +38,10 @@ public class produccionPeso {
         return notas;
     }
 
+    public String getIdBovino() {
+        return idBovino;
+    }
+
     //Setters
     public void setBovino(String bovino) {
         this.bovino = bovino;
@@ -45,15 +51,19 @@ public class produccionPeso {
         this.peso = peso;
     }
 
-    public void setdieta(String dieta) {
-        this.dieta = dieta;
-    }
-
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
     public void setNotas(String notas) {
         this.notas = notas;
+    }
+
+    public void setDieta(String dieta) {
+        this.dieta = dieta;
+    }
+
+    public void setIdBovino(String idBovino) {
+        this.idBovino = idBovino;
     }
 }

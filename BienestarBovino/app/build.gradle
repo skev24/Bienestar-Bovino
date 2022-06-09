@@ -38,9 +38,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.1.0'
     implementation 'com.google.firebase:firebase-auth:21.0.3'
     implementation 'com.google.firebase:firebase-database:20.0.0'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation files('../hellocharts-library-1.5.8.jar')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }

@@ -53,6 +53,7 @@
     </string-array>
 
     <string-array name="Dieta">
+        <item>Forrajes</item>
         <item>Normal</item>
     </string-array>
 </resources>

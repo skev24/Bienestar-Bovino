@@ -50,7 +50,7 @@ public class MenuInformesActivity extends AppCompatActivity implements Funciones
     }
 
     public void infoProdu(){
-        Intent intent = new Intent(MenuInformesActivity.this, VaccineActivity.class);
+        Intent intent = new Intent(MenuInformesActivity.this, InformeProduccionActivity.class);
         startActivity(intent);
     }
     public void infoVentas(){
