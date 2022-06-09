@@ -114,7 +114,6 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
 
         cargarDatos();
         contarMonto();
-        sacarRaza();
 
 
 
@@ -184,22 +183,8 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
 
             barChart = findViewById(R.id.idBarChart);
 
-            int valor1 = 0;
-            int valor2 = 0;
-            if(0<toroRazaVendida.size()-toroVenta.size()){
-                valor1 = toroRazaVendida.size()-toroVenta.size();
-            }else{
-                valor1 = -1*(toroRazaVendidaCont.size()-toroVenta.size());
-            }
-
-            if(0<vacaRazaVendida.size()-toroVenta.size()){
-                valor2 = vacaRazaVendida.size()-toroVenta.size();
-            }else{
-                valor2 = -1*(vacaRazaVendida.size()-toroVenta.size());
-            }
-
-            BarDataSet data1 = new BarDataSet(dataValues1(valor1), "Holstein");
-            BarDataSet data2 = new BarDataSet(dataValues2(valor2),"SALES");
+            BarDataSet data1 = new BarDataSet(dataValues1(toroRazaVendidaCont.size()+1), "Holstein");
+            BarDataSet data2 = new BarDataSet(dataValues2(vacaRazaVendidaCont.size()-toroRazaVendidaCont.size()),"SALES");
 
             data1.setColor(Color.GREEN);
             data2.setColor(Color.RED);
@@ -239,41 +224,6 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
-    }
-
-    private void sacarRaza(){
-
-        String searchedValue = "Holstein";
-
-        for(String x : toroRazaVendidaCont){
-            if(x.equals(searchedValue)){
-                toroRazaVendida.add(x);
-            }
-        }
-
-        searchedValue = "Holstein";
-
-        for(String x : vacaRazaVendidaCont){
-            if(x.equals(searchedValue)){
-                toroRazaVendida.add(x);
-            }
-        }
-
-        searchedValue = "Sales";
-
-        for(String x : toroRazaVendidaCont){
-            if(x.equals(searchedValue)){
-                vacaRazaVendida.add(x);
-            }
-        }
-
-        searchedValue = "Sales";
-
-        for(String x : vacaRazaVendidaCont){
-            if(x.equals(searchedValue)){
-                vacaRazaVendida.add(x);
-            }
-        }
     }
 
     private void contarMonto(){
