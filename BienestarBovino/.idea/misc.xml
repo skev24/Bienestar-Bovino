@@ -24,11 +24,12 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.16980692545572923" />
         <entry key="app/src/main/res/layout/activity_register2.xml" value="0.125" />
         <entry key="app/src/main/res/layout/addbovino.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/agregar_tarea.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/agregar_trabajadores.xml" value="0.25" />
         <entry key="app/src/main/res/layout/bienvenida.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/chequeo_menu.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/compra.xml" value="0.25885416666666666" />
-        <entry key="app/src/main/res/layout/control_reproductivo.xml" value="0.55" />
+        <entry key="app/src/main/res/layout/control_reproductivo.xml" value="0.16178741455078127" />
         <entry key="app/src/main/res/layout/estadistica_ventas.xml" value="0.24791666666666667" />
         <entry key="app/src/main/res/layout/finca.xml" value="0.25" />
         <entry key="app/src/main/res/layout/gestacion.xml" value="0.24583333333333332" />
@@ -40,6 +41,7 @@
         <entry key="app/src/main/res/layout/inventario.xml" value="0.25677083333333334" />
         <entry key="app/src/main/res/layout/inventario_vacas.xml" value="0.25885416666666666" />
         <entry key="app/src/main/res/layout/item_row.xml" value="0.246875" />
+        <entry key="app/src/main/res/layout/lista_tareas.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/login.xml" value="0.335" />
         <entry key="app/src/main/res/layout/menu_chequeo.xml" value="0.5" />
         <entry key="app/src/main/res/layout/menu_principal.xml" value="0.375" />
