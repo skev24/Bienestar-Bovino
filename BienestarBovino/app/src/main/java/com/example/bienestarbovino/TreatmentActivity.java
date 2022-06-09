@@ -64,8 +64,8 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
         buttonTratamientoRegresarClass = findViewById(R.id.btnRegresarTratamiento);
         setBovino = findViewById(R.id.spinnerBovinoTratamiento);
         textBovinoDiagnostico = findViewById(R.id.entryDiagnosticoTratamiento);
-        textBovinoNotas = findViewById(R.id.editNotasVacunacion);
-        textDiasTratamiento = findViewById(R.id.editNotasTratamiento);
+        textBovinoNotas = findViewById(R.id.editNotasTratamiento);
+        textDiasTratamiento = findViewById(R.id.entryDiasTratamiento);
         buttonAddTratamiento = findViewById(R.id.buttonGuardarTratamiento);
 
         bovinosHash = new HashMap<>();
@@ -168,26 +168,27 @@ public class TreatmentActivity extends AppCompatActivity implements AdapterView.
         String diasTratamiento = textDiasTratamiento.getText().toString();
         String notas = textBovinoNotas.getText().toString();
         String fecha = textDate.getText().toString();
+        String id = bovinosHash.get(bovinoSeleccionado);
 
         if (TextUtils.isEmpty(bovino) && TextUtils.isEmpty(diagnostico) && TextUtils.isEmpty(fecha)) {
 
             Toast.makeText(TreatmentActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
-            addDatatoFirebase(bovino, fecha, diagnostico, diasTratamiento, notas, view);
+            addDatatoFirebase(bovino, fecha, diagnostico, diasTratamiento, notas, id, view);
         }
     }
 
     //addDataToFirebase agrega a la base de datos el registro de vacuna
-    private void addDatatoFirebase(String p_bovino, String p_fecha, String p_diagnostico, String p_diasTratamiento, String p_notas, View view) {
+    private void addDatatoFirebase(String p_bovino, String p_fecha, String p_diagnostico, String p_diasTratamiento, String p_notas, String id, View view) {
 
         CollectionReference dbTratamiento = db.collection("tratamiento");
-        tratamiento nuevoTratamiento = new tratamiento(p_bovino, p_fecha, p_diagnostico, p_diasTratamiento, p_notas);
+        tratamiento nuevoTratamiento = new tratamiento(p_bovino, p_diagnostico, p_diasTratamiento, p_fecha, p_notas, id);
 
         dbTratamiento.add(nuevoTratamiento).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(TreatmentActivity.this, "Registro de tratamiento agregado.", Toast.LENGTH_SHORT).show();
-            goBack();
+                goBack();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

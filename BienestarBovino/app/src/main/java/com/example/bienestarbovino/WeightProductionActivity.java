@@ -128,7 +128,6 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
     }
 
     public void cargarSpinners(){
-
         ArrayAdapter<CharSequence> adapterDieta = ArrayAdapter.createFromResource(this,
                 R.array.Dieta, android.R.layout.simple_spinner_item);
         adapterDieta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

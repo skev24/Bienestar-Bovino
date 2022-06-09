@@ -86,12 +86,17 @@ public class InformeProduccionActivity extends AppCompatActivity implements  Ada
         vacasGenero.setAdapter(adapterVacas);
         vacasGenero.setOnItemSelectedListener(this);
 
-        //dieta
+        ArrayAdapter<CharSequence> adapterDieta = ArrayAdapter.createFromResource(this,
+                R.array.Dieta, android.R.layout.simple_spinner_item);
+        adapterDieta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        vacasDieta.setAdapter(adapterDieta);
+        vacasDieta.setOnItemSelectedListener(this);
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        generoSpin = parent.getItemAtPosition(position).toString();
+        generoSpin = vacasGenero.getItemAtPosition(position).toString();
+        dietaSpin = vacasDieta.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
     }
 

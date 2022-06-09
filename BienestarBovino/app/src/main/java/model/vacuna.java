@@ -3,18 +3,18 @@ package model;
 import java.util.ArrayList;
 
 public class vacuna {
-    private ArrayList<String> id;
     private String bovino;
-    private String nombre;
     private String fecha;  //cambiar por date
     private String enfermedadATratar;
     private String notas;
+    private String idBovino;
 
-    public vacuna(String bovino, String enfermedad, String fecha, String notas) {
+    public vacuna(String bovino, String enfermedad, String fecha, String notas, String id) {
         this.bovino = bovino;
         this.enfermedadATratar = enfermedad;
         this.fecha = fecha;
         this.notas = notas;
+        this.idBovino = id;
     }
 
     public void guardarVacuna(String bovino, String fecha, String enfermedadATratar, String notas) {
@@ -55,6 +55,14 @@ public class vacuna {
 
     public void setBovino(String bovino) {
         this.bovino = bovino;
+    }
+
+    public String getIdBovino() {
+        return idBovino;
+    }
+
+    public void setIdBovino(String idBovino) {
+        this.idBovino = idBovino;
     }
 }
 

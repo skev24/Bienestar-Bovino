@@ -8,13 +8,15 @@ public class tratamiento {
     private String fecha;  //cambiar por date
     private String diasTratamiento;
     private String notas;
+    private String idBovino;
 
-    public tratamiento(String bovino, String diagnostico, String diasTratamiento, String fecha, String notas) {
+    public tratamiento(String bovino, String diagnostico, String diasTratamiento, String fecha, String notas, String id) {
         this.bovino = bovino;
         this.diagnostico = diagnostico;
         this.fecha = fecha;
         this.diasTratamiento = diasTratamiento;
         this.notas = notas;
+        this.idBovino = id;
     }
 
     public void guardarTratamiento(String bovino, String diagnostico, String fecha, String diasTratamiento, String notas) {
@@ -60,6 +62,14 @@ public class tratamiento {
     public void setDiasTratamiento(String diasTratamiento) {
         this.diasTratamiento = diasTratamiento;
 
+    }
+
+    public String getIdBovino() {
+        return idBovino;
+    }
+
+    public void setIdBovino(String idBovino) {
+        this.idBovino = idBovino;
     }
 }
 
