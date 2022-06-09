@@ -41,7 +41,7 @@
         android:id="@+id/textView51"
         android:layout_width="252dp"
         android:layout_height="22dp"
-        android:text="Seleccione Tipo De Estadistica"
+        android:text="Seleccione el tipo de estadística"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
