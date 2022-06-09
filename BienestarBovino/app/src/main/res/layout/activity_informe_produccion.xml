@@ -8,7 +8,7 @@
     android:background="#E1E0E0">
 
     <Button
-        android:id="@+id/buttonInfoGenerar"
+        android:id="@+id/buttonInforPrudGenerar"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:background="#656642"

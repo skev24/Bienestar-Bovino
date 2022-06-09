@@ -49,15 +49,15 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
 
 
         seleccionarInfoVenta = findViewById(R.id.spinnerEstadisticaVenta);
-        btnRegresar = findViewById(R.id.btnRegVen);
+        //btnRegresar = findViewById(R.id.btnRegVen);
 
 
-        btnRegresar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goBack();
-            }
-        });
+//        btnRegresar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                goBack();
+//            }
+//        });
 
         cargarSpinners();
     }

@@ -37,8 +37,22 @@ public class InformeProduccionActivity extends AppCompatActivity implements  Ada
         vacasDieta = findViewById(R.id.spinnerDietaInfoProduccion);
         vacasGenero = findViewById(R.id.spinnerSexoInfoProduccion);
 
-        btnRegresar = findViewById(R.id.btnInfoBovinoRegresar);
-        btnGuardar = findViewById(R.id.buttonInfoGenerar);
+        btnRegresar = findViewById(R.id.btnInfoProduccionRegresar);
+        btnGuardar = findViewById(R.id.buttonInforPrudGenerar);
+
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        btnRegresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goBack();
+            }
+        });
 
         cargarSpinners();
     }
@@ -65,7 +79,7 @@ public class InformeProduccionActivity extends AppCompatActivity implements  Ada
     }
 
     public void goBack(){
-        Intent intent = new Intent(InformeProduccionActivity.this, ControlReproductivoActivity.class);
+        Intent intent = new Intent(InformeProduccionActivity.this, MenuInformesActivity.class);
         startActivity(intent);
     }
 }
