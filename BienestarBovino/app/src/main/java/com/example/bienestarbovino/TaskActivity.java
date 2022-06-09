@@ -7,7 +7,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Bundle;
-import android.text.SpannableString;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -26,8 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import control.Funciones;
-import model.Tarea;
-import model.personal;
+import model.tarea;
 
 public class TaskActivity extends AppCompatActivity implements Funciones {
 
@@ -96,7 +94,7 @@ public class TaskActivity extends AppCompatActivity implements Funciones {
     public void addNewTask(View view){
         String fecha = textDate.getText().toString();;
         String descripcion = textDescripcion.getText().toString();
-        String encargadoTarea = "Ignacio Araya";
+        String encargadoTarea = "Ignacio Araya"; //quemado, falta el spinner
         boolean concluida = false;
 
         if (TextUtils.isEmpty(fecha) && TextUtils.isEmpty(encargadoTarea) && TextUtils.isEmpty(descripcion)) {
@@ -124,7 +122,7 @@ public class TaskActivity extends AppCompatActivity implements Funciones {
                         break;
                     }
                 }
-                Tarea nuevoTarea = new Tarea(p_fecha, p_encargado, p_descripcion, p_concluida, idFinca);
+                tarea nuevoTarea = new tarea(p_fecha, p_encargado, p_descripcion, p_concluida, idFinca);
 
                 dbPersonal.add(nuevoTarea).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
