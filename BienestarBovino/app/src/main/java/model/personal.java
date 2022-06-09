@@ -6,6 +6,7 @@ public class personal {
     private String apellido;
     private String tipo;
     private String idFinca;
+    private Boolean activoEnFinca;
 
     public personal(String nombre, String id, String apellido, String tipo, String idFinca) {
         this.nombre = nombre;
@@ -13,6 +14,7 @@ public class personal {
         this.id = id;
         this.tipo = tipo;
         this.idFinca = idFinca;
+        this.activoEnFinca = true;
     }
 
     public void setId(String id) {
@@ -53,5 +55,13 @@ public class personal {
 
     public  String getTipo(){
         return tipo;
+    }
+
+    public Boolean getActivoEnFinca() {
+        return activoEnFinca;
+    }
+
+    public void setActivoEnFinca(Boolean activoEnFinca) {
+        this.activoEnFinca = activoEnFinca;
     }
 }

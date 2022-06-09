@@ -47,7 +47,7 @@ public class InventoryActivity extends AppCompatActivity implements AdapterView.
         btnVentaClass = findViewById(R.id.btnVentaInventory);
         btnCompraClass = findViewById(R.id.btnCompraInventory);
         btnRegresarClass = findViewById(R.id.btnRegresarInventory);
-        listViewBovino = findViewById(R.id.listViewPersonal);
+        listViewBovino = findViewById(R.id.listViewBovinos);
         listViewBovino.setOnItemClickListener(this);
 
         btnVentaClass.setOnClickListener(new View.OnClickListener() {

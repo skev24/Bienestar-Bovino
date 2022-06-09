@@ -29,7 +29,7 @@ public class ListPersonalActivity extends AppCompatActivity implements AdapterVi
 
     private ListView listViewPersonal;
     private List<String> listNombrePersonal = new ArrayList<>();
-    private List<String> listIdPersonal = new ArrayList<>();
+    private List<String> listTipoPersonal = new ArrayList<>();
     private ArrayAdapter<String> listAdapter;
 
     private FirebaseAuth mAuth;
@@ -51,7 +51,7 @@ public class ListPersonalActivity extends AppCompatActivity implements AdapterVi
         btnAgregarPersonal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openTaskActivity();
+                openPersonalActivity();
             }
         });
 
@@ -65,8 +65,8 @@ public class ListPersonalActivity extends AppCompatActivity implements AdapterVi
         cargarDatos();
     }
 
-    public void openTaskActivity(){
-        Intent intent = new Intent(ListPersonalActivity.this, TaskActivity.class);
+    public void openPersonalActivity(){
+        Intent intent = new Intent(ListPersonalActivity.this, PersonalActivity.class);
         startActivity(intent);
     }
 
@@ -77,8 +77,7 @@ public class ListPersonalActivity extends AppCompatActivity implements AdapterVi
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
-        Toast.makeText(ListPersonalActivity.this, "id: "+listIdPersonal.get(position), Toast.LENGTH_SHORT).show();
+        Toast.makeText(ListPersonalActivity.this, "Tipo: "+listTipoPersonal.get(position), Toast.LENGTH_SHORT).show();
     }
 
     public void cargarDatos(){
@@ -107,16 +106,14 @@ public class ListPersonalActivity extends AppCompatActivity implements AdapterVi
                     if(finca.equals(idFinca) && qs.getBoolean("activoEnFinca").equals(Boolean.TRUE)){
                         String name = qs.getString("nombre");
                         String lastname = qs.getString("apellido");
-                        String id = qs.getId();
-                        listNombrePersonal.add(name+""+lastname);
-                        listIdPersonal.add(id);
+                        String tipo = qs.getString("tipo");
+                        listNombrePersonal.add(name + " " + lastname);
+                        listTipoPersonal.add(tipo);
                     }
                 }
                 listAdapter = new ArrayAdapter<>(ListPersonalActivity.this, android.R.layout.simple_list_item_1, listNombrePersonal);
                 listViewPersonal.setAdapter(listAdapter);
-
             }
         });
-        //Toast.makeText(InventoryActivity.this, idFinca, Toast.LENGTH_SHORT).show();
     }
 }

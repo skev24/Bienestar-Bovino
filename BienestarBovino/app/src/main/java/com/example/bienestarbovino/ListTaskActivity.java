@@ -38,14 +38,14 @@ public class ListTaskActivity extends AppCompatActivity implements AdapterView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.inventario);
+        setContentView(R.layout.lista_tareas);
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         btnAddTask = findViewById(R.id.btnAgregarTarea);
         btnReturn = findViewById(R.id.btnRegresarListaTareas);
-        listViewBovino = findViewById(R.id.listViewPersonal);
+        listViewBovino = findViewById(R.id.listViewTareas);
         listViewBovino.setOnItemClickListener(this);
 
         btnAddTask.setOnClickListener(new View.OnClickListener() {

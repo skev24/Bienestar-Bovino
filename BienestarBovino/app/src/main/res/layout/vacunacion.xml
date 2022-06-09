@@ -8,7 +8,7 @@
     android:background="#E1E0E0">
 
     <EditText
-        android:id="@+id/entryId"
+        android:id="@+id/entryFechaVacunacion"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="0.399" />
 
     <Button
-        android:id="@+id/buttonGuardarPersonal"
+        android:id="@+id/buttonGuardarVacunacion"
         android:layout_width="414dp"
         android:layout_height="54dp"
         android:background="#656642"
@@ -45,7 +45,7 @@
         app:layout_constraintVertical_bias="0.914" />
 
     <Button
-        android:id="@+id/btnAgregarListaPersonal"
+        android:id="@+id/btnRegresarVacunacion"
         android:layout_width="417dp"
         android:layout_height="49dp"
         android:background="#656642"
@@ -62,7 +62,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Spinner
-        android:id="@+id/spinnerType"
+        android:id="@+id/spinnerBovinoVacunacion"
         android:layout_width="308dp"
         android:layout_height="53dp"
         android:contentDescription="@string/app_name"
@@ -87,7 +87,7 @@
         app:layout_constraintVertical_bias="0.158" />
 
     <EditText
-        android:id="@+id/entryName"
+        android:id="@+id/entryEnfermedadVacunacion"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"
@@ -105,7 +105,7 @@
         app:layout_constraintVertical_bias="0.537" />
 
     <EditText
-        android:id="@+id/entryLastname"
+        android:id="@+id/editNotasVacunacion"
         android:layout_width="304dp"
         android:layout_height="50dp"
         android:background="@drawable/rectangle_drawable"

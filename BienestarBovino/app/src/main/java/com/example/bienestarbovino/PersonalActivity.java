@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -24,7 +26,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import control.Funciones;
 import model.personal;
 
-public class PersonalActivity extends AppCompatActivity implements Funciones{
+public class PersonalActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, Funciones{
 
     private EditText textId, textName, textLastname;
     private Spinner selTipoUsuario;
@@ -47,12 +49,12 @@ public class PersonalActivity extends AppCompatActivity implements Funciones{
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
 
-        textName = findViewById(R.id.entryName);
-        textId = findViewById(R.id.entryId);
-        textLastname = findViewById(R.id.entryLastname);
-        selTipoUsuario = findViewById(R.id.spinnerType);
-        buttonAddPersonal = findViewById(R.id.buttonGuardarPersonal);
-        buttonBack = findViewById(R.id.btnAgregarListaPersonal);
+        textName = findViewById(R.id.entryNameNewPersonal);
+        textId = findViewById(R.id.entryIdNewPersonal);
+        textLastname = findViewById(R.id.entryLastnameNewPersonal);
+        selTipoUsuario = findViewById(R.id.spinnerTypeNewPersonal);
+        buttonAddPersonal = findViewById(R.id.buttonGuardarNewPersonal);
+        buttonBack = findViewById(R.id.buttonRegresarNewPersonal);
 
         buttonAddPersonal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +69,27 @@ public class PersonalActivity extends AppCompatActivity implements Funciones{
                 goBack();
             }
         });
+
+        cargarSpinners();
+    }
+
+    public void cargarSpinners(){
+        ArrayAdapter<CharSequence> adapterDieta = ArrayAdapter.createFromResource(this,
+                R.array.tipoPersonal, android.R.layout.simple_spinner_item);
+        adapterDieta.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        selTipoUsuario.setAdapter(adapterDieta);
+        selTipoUsuario.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        TipoSpin = selTipoUsuario.getItemAtPosition(position).toString();
+        //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 
 
@@ -80,13 +103,10 @@ public class PersonalActivity extends AppCompatActivity implements Funciones{
         String name = textName.getText().toString();
         String id = textId.getText().toString();
         String lastname = textLastname.getText().toString();
-        String tipoSpin = "" ;
-
-
+        String tipoSpin = TipoSpin;
 
         if (TextUtils.isEmpty(name) && TextUtils.isEmpty(id) && TextUtils.isEmpty(name) && TextUtils.isEmpty(lastname)
                 && TextUtils.isEmpty(id)) {
-
             Toast.makeText(PersonalActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
             addDatatoFirebase(name, id, lastname, tipoSpin);

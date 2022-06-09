@@ -34,8 +34,6 @@ public class MenuPersonalActivity extends AppCompatActivity {
     private ImageButton btnPersonal, btnTarea;
     private Button btnReturn;
 
-    private FirebaseFirestore db;
-    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +73,7 @@ public class MenuPersonalActivity extends AppCompatActivity {
     }
 
     public void openPersonal(View view){
-        Intent intent = new Intent(MenuPersonalActivity.this, PersonalActivity.class);
+        Intent intent = new Intent(MenuPersonalActivity.this, ListPersonalActivity.class);
         startActivity(intent);
     }
 

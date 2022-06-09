@@ -5,16 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListPersonalActivity"
-    android:background="#CFCDCD">>
+    android:background="#CFCDCD">
 
     <ListView
         android:id="@+id/listViewPersonal"
-        android:layout_width="412dp"
-        android:layout_height="478dp"
+        android:layout_width="409dp"
+        android:layout_height="442dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnAgregarListaPersonal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.691" />
 
     <ImageView
         android:id="@+id/imageView23"

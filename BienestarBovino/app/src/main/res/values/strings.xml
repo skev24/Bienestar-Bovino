@@ -56,4 +56,9 @@
         <item>Forrajes</item>
         <item>Normal</item>
     </string-array>
+
+    <string-array name="tipoPersonal">
+        <item>Administrador</item>
+        <item>Colaborador</item>
+    </string-array>
 </resources>

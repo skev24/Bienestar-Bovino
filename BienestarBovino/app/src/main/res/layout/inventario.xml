@@ -70,9 +70,9 @@
         app:layout_constraintVertical_bias="0.904" />
 
     <ListView
-        android:id="@+id/listViewPersonal"
-        android:layout_width="412dp"
-        android:layout_height="478dp"
+        android:id="@+id/listViewBovinos"
+        android:layout_width="417dp"
+        android:layout_height="457dp"
         app:layout_constraintBottom_toBottomOf="@+id/btnRegresarInventory"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
