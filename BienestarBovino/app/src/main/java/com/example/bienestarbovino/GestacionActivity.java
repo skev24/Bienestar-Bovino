@@ -151,7 +151,8 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                     String raza = qs.getString("raza");
                     String id = qs.getString("id");
                     Boolean sexo = qs.getBoolean("sexo");
-                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.TRUE))
+                    if(qs.getString("fincaId").equals(idFincaGlobal) && sexo.equals(Boolean.TRUE) &&
+                            qs.getBoolean("activoEnFinca").equals(Boolean.TRUE))
                         bovinosToro.add(new venta(name,id,raza));
                 }
                 ArrayAdapter<venta> arrayAdapter = new ArrayAdapter<>(GestacionActivity.this, android.R.layout.simple_dropdown_item_1line, bovinosToro);
@@ -191,7 +192,7 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         //vacaSpin = parent.getItemAtPosition(position).toString();
         //toroSpin = parent.getItemAtPosition(position).toString();
-        tipoSpin = parent.getItemAtPosition(position).toString();
+        tipoSpin = tipoGestacionSpinner.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
     }
 
@@ -217,8 +218,8 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                     String idBovinoToro = qs.getString("idBovinoToro");
                     Boolean estadoGestacion = qs.getBoolean("estadoFinalizado");
                     String fechaGestacion = fecha.getText().toString();
-                    String tipo = "monta"; // spinner
-                    if(idBovinoVaca.equals(idVaca) && idBovinoToro.equals(idToro) && estadoGestacion.equals(false)){
+                    String tipo = tipoSpin; // spinner
+                    if(idBovinoVaca.equals(idVaca) && estadoGestacion.equals(false)){
                         db.collection("estadoGestacion").document(qs.getId()).update("fecha", fechaGestacion);
                         db.collection("estadoGestacion").document(qs.getId()).update("idBovinoToro", idToro);
                         db.collection("estadoGestacion").document(qs.getId()).update("tipo", tipo);
@@ -227,8 +228,7 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
                         break;
                     }
                     else {
-                        db.collection("bovino").document(idVaca).update("estadoGestacion", true);
-                        db.collection("bovino").document(idToro).update("estadoGestacion", true); // se puede quitar porque seguro no se usa
+
                         addDatatoFirebase(idVaca, idToro, tipo, fechaGestacion);
                         break;
                     }
@@ -241,9 +241,12 @@ public class GestacionActivity extends AppCompatActivity implements AdapterView.
 
         estadoGestacion nuevaGestacion = new estadoGestacion(idBovinoVaca, idBovinoToro, tipo, fecha);
 
+
         db.collection("estadoGestacion").add(nuevaGestacion).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
+                db.collection("bovino").document(idBovinoVaca).update("estadoGestacion", true);
+                db.collection("bovino").document(idBovinoToro).update("estadoGestacion", true); // se puede quitar porque seguro no se usa
                 Toast.makeText(GestacionActivity.this, "Estado de gestación guardado.", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {

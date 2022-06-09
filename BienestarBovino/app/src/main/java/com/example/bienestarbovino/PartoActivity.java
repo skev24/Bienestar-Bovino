@@ -264,7 +264,7 @@ public class PartoActivity extends AppCompatActivity implements AdapterView.OnIt
 
                     if(idBovinoVaca.equals(idVaca) && estadoGestacion.equals(false)){
                         db.collection("estadoGestacion").document(qs.getId()).update("estadoFinalizado", true);
-                        db.collection("bovino").document(idVaca).update("EstadoGestacion", false);
+                        db.collection("bovino").document(idVaca).update("estadoGestacion", false);
 
                         addDatatoFirebase(nombreNuevoBovino, idNuevoBovino, raza, idBovinoToro, idVaca, fechaN, pesoNuevoBovino, idFincaGlobal, sexo);
                         btnGuardar.setEnabled(false);
