@@ -50,7 +50,7 @@ public class MenuPersonalActivity extends AppCompatActivity {
     }
 
     public void openTarea(View view){
-        Intent intent = new Intent(MenuPersonalActivity.this, TaskActivity.class);
+        Intent intent = new Intent(MenuPersonalActivity.this, ListTaskActivity.class);
         startActivity(intent);
     }
 
@@ -60,7 +60,7 @@ public class MenuPersonalActivity extends AppCompatActivity {
     }
 
     public void goBack(){
-        Intent intent = new Intent(MenuPersonalActivity.this, TaskActivity.class);
+        Intent intent = new Intent(MenuPersonalActivity.this, MenuActivity.class);
         startActivity(intent);
     }
 }

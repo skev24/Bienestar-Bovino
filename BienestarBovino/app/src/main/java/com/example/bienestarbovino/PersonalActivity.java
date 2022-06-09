@@ -134,7 +134,7 @@ public class PersonalActivity extends AppCompatActivity implements AdapterView.O
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Toast.makeText(PersonalActivity.this, "Personal agregado.", Toast.LENGTH_SHORT).show();
-                    goBack();
+                        goBack();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override

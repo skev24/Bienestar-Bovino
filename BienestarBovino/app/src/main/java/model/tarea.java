@@ -7,11 +7,11 @@ public class tarea {
     private boolean concluida;
     private String idFinca;
 
-    public tarea(String fecha, String encargadoTarea, String descripcion, boolean concluida, String idFinca) {
+    public tarea(String fecha, String encargadoTarea, String descripcion, String idFinca) {
         this.encargadoTarea = encargadoTarea;
         this.descripcion = descripcion;
         this.fecha = fecha;
-        this.concluida = concluida;
+        this.concluida = false;
         this.idFinca = idFinca;
     }
 

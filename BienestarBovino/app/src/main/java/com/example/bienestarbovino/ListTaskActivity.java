@@ -29,7 +29,7 @@ public class ListTaskActivity extends AppCompatActivity implements AdapterView.O
 
     private ListView listViewBovino;
     private List<String> listDescripcion = new ArrayList<>();
-    private List<String> listEstado = new ArrayList<>();
+    private List<String> listFecha = new ArrayList<>();
     private ArrayAdapter<String> listAdapter;
 
     private FirebaseAuth mAuth;
@@ -70,12 +70,11 @@ public class ListTaskActivity extends AppCompatActivity implements AdapterView.O
     }
 
     public void goBack(){
-        Intent intent = new Intent(ListTaskActivity.this, MenuActivity.class);
+        Intent intent = new Intent(ListTaskActivity.this, MenuPersonalActivity.class);
         startActivity(intent);
     }
 
     public void cargarDatos(){
-
         db.collection("finca").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
@@ -99,10 +98,12 @@ public class ListTaskActivity extends AppCompatActivity implements AdapterView.O
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
                     String finca = qs.getString("idFinca");
                     if(finca.equals(idFinca)){
-                        String  descripcion = qs.getString("description");
-                        String estado = qs.getString("status");
-                        listDescripcion.add(descripcion);
-                        listEstado.add(estado);
+                        String descripcion = qs.getString("descripcion");
+                        String encargado = qs.getString("encargadoTarea");
+                        String fecha = qs.getString("fecha");
+                        boolean estado = qs.getBoolean("concluida");
+                        listDescripcion.add(descripcion + ".    Encargado: " + encargado);
+                        listFecha.add(fecha);
                     }
                 }
                 listAdapter = new ArrayAdapter<>(ListTaskActivity.this, android.R.layout.simple_list_item_1, listDescripcion);
@@ -116,9 +117,6 @@ public class ListTaskActivity extends AppCompatActivity implements AdapterView.O
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-        //Intent intent = new Intent(InventoryActivity.this, InfoBovinoActivity.class);
-        //intent.putExtra("name", "vaca");
-        //startActivity(intent);
-        Toast.makeText(ListTaskActivity.this, "Estado: "+listEstado.get(position), Toast.LENGTH_SHORT).show();
+        Toast.makeText(ListTaskActivity.this, "Fecha: "+listFecha.get(position), Toast.LENGTH_SHORT).show();
     }
 }
