@@ -139,7 +139,7 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 //        vacaSpin = parent.getItemAtPosition(position).toString();
-        dietaSpin = parent.getItemAtPosition(position).toString();
+        dietaSpin = dietaSpinner.getItemAtPosition(position).toString();
         //Toast.makeText(parent.getContext(), tipoSpin, Toast.LENGTH_SHORT).show();
     }
 
@@ -176,22 +176,23 @@ public class WeightProductionActivity extends AppCompatActivity implements Adapt
         String peso = textPesoBovino.getText().toString();
         String notas = textPesoNotas.getText().toString();
         String fecha = textDate.getText().toString();
-        String dieta = "Forrajes";
+        String dieta = dietaSpin;
+        String id = bovinosHash.get(bovinoSeleccionado);
 
         if (TextUtils.isEmpty(bovino) && TextUtils.isEmpty(peso) && TextUtils.isEmpty(fecha)) {
             Toast.makeText(WeightProductionActivity.this, "Ingrese todos los datos.", Toast.LENGTH_SHORT).show();
         } else {
-            addDatatoFirebase(bovino, peso, fecha, dieta, notas, view);
+            addDatatoFirebase(bovino, peso, fecha, dieta, notas, id, view);
         }
     }
 
     //addDataToFirebase agrega a la base de datos el registro de vacuna
-    private void addDatatoFirebase(String p_bovino, String p_peso, String p_fecha, String p_dieta, String p_notas, View view) {
+    private void addDatatoFirebase(String p_bovino, String p_peso, String p_fecha, String p_dieta, String p_notas, String id, View view) {
 
-        CollectionReference dbVacuna = db.collection("produccionPeso");
-        produccionPeso nuevoPesaje = new produccionPeso(p_bovino, p_peso, p_fecha, p_dieta, p_notas);
+        CollectionReference dbProduccion = db.collection("produccionPeso");
+        produccionPeso nuevoPesaje = new produccionPeso(p_bovino, p_peso, p_fecha, p_dieta, p_notas, id);
 
-        dbVacuna.add(nuevoPesaje).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        dbProduccion.add(nuevoPesaje).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(WeightProductionActivity.this, "Registro de pesaje agregado.", Toast.LENGTH_SHORT).show();
