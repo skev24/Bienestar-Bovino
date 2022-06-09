@@ -114,9 +114,6 @@ public class InformeVentasActivity extends AppCompatActivity implements Funcione
 
         cargarDatos();
         contarMonto();
-
-
-
         cargarSpinners();
 
 

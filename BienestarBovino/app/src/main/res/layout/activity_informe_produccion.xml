@@ -43,19 +43,18 @@
 
     <Spinner
         android:id="@+id/spinnerDietaInfoProduccion"
-        android:layout_width="324dp"
+        android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_marginTop="256dp"
+        android:layout_marginTop="132dp"
         android:contentDescription="@string/app_name"
         android:outlineAmbientShadowColor="#FFFFFF"
         android:outlineSpotShadowColor="#FFFFFF"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.808"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView55"
@@ -65,26 +64,25 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
+        app:layout_constraintHorizontal_bias="0.864"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.139" />
 
     <Spinner
         android:id="@+id/spinnerBovinoInfoProduccion"
-        android:layout_width="324dp"
+        android:layout_width="150dp"
         android:layout_height="60dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="132dp"
         android:contentDescription="@string/app_name"
         android:outlineAmbientShadowColor="#FFFFFF"
         android:outlineSpotShadowColor="#FFFFFF"
         android:textColor="@android:color/white"
         android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintHorizontal_bias="0.114"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.207" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView54"
@@ -125,26 +123,24 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.067" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        tools:context=".InformeProduccionActivity"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:context=".InformeProduccionActivity">
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/idLinearChart"
-            android:layout_width="match_parent"
-            android:layout_height="268dp"
+            android:layout_width="387dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="325dp"
+            android:layout_marginTop="200dp"
             android:layout_marginEnd="2dp"
-            android:layout_marginBottom="67dp" />
-    </LinearLayout>
+            android:layout_marginBottom="125dp" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -110,7 +110,6 @@ public class InformeProduccionActivity extends AppCompatActivity implements  Ada
                        @Override
                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                            bovinoSpin = bovinos.get(position).getbovino();
-//                           obtenerDatos();
                        }
 
                        @Override
@@ -188,30 +187,34 @@ public class InformeProduccionActivity extends AppCompatActivity implements  Ada
 
     private void obtenerDatos(){
         String id = bovinosHash.get(bovinoSpin);
-        String dieta = dietaSpin;
+        //String dieta = dietaSpin;
         db.collection("produccionPeso").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for(DocumentSnapshot qs: queryDocumentSnapshots.getDocuments()){
-                    if(id.equals(qs.getString("idBovino")) && qs.getString("dieta").equals(dieta)){
+                    if(id.equals(qs.getString("idBovino")) && qs.getString("dieta").equals(dietaSpin)){
                         fechasPesaje.add(qs.getString("fecha"));
                         pesos.add(Integer.parseInt(qs.getString("peso")));
                     }
                 }
             }
         });
-        createCharts();
+        if(fechasPesaje.isEmpty() && pesos.isEmpty())
+            Toast.makeText(InformeProduccionActivity.this, "No hay datos de pesaje.", Toast.LENGTH_SHORT).show();
+        else{
+            createCharts();
+        }
         fechasPesaje.clear();
         pesos.clear();
-
     }
+
 
     private Chart getSameChart(Chart chart, String description, int textColor, int backgroundColor, int animateX){
         chart.getDescription().setText(description);
         chart.getDescription().setTextSize(15);
         chart.setBackgroundColor(backgroundColor);
         chart.animateX(animateX);
-        //setLegend(chart);
+        setLegend(chart);
 
         return chart;
     }
@@ -219,13 +222,13 @@ public class InformeProduccionActivity extends AppCompatActivity implements  Ada
     private void setLegend(Chart chart){
         Legend legend = chart.getLegend();
         legend.setForm(Legend.LegendForm.CIRCLE);
-        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.CENTER);
+        legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);
 
         ArrayList<LegendEntry> entries = new ArrayList<>();
-        for(int i = 0; i< fechasPesaje.size(); i++){
+        for(int i = 0; i< 1; i++){
             LegendEntry entry = new LegendEntry();
             entry.formColor = colores[0];
-            entry.label = fechasPesaje.get(i);//fechasPesaje[i];
+            entry.label = bovinoSpin;//fechasPesaje.get(i);//fechasPesaje[i];
             entries.add(entry);
         }
         legend.setCustom(entries);
@@ -243,7 +246,7 @@ public class InformeProduccionActivity extends AppCompatActivity implements  Ada
         axis.setGranularityEnabled(true);
         axis.setPosition(XAxis.XAxisPosition.BOTTOM);
         axis.setValueFormatter(new IndexAxisValueFormatter(fechasPesaje));
-        axis.setLabelRotationAngle(90);
+        //axis.setLabelRotationAngle(90);
     }
 
     private void axisLeft(YAxis axis){
